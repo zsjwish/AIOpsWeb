@@ -107,7 +107,7 @@ def insert_train_datas(db, table_name, np_array):
         return False
 
 
-def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0):
+def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0):
     """
     按条件查询数据库
     :param db:
@@ -115,22 +115,27 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0):
     :param label: 标签
     :param start_time: 开始时间
     :param end_time: 结束时间  时间区间限制
+    :param number: 查询最后多少条数据
     :return: 返回查询到的数据或者None
     """
     # 使用cursor()方法获取操作游标
     cursor = db.cursor()
     condition = ""
-    if start_time != 0 and end_time != 0:
-        condition = "and `time` between '%s' and '%s'" % (start_time, end_time)
-    elif start_time != 0:
-        condition = "and `time` >= '%s'" % start_time
-    elif end_time != 0:
-        condition = "and `time` <= '%s'" % end_time
     if label == 0 or label == 1:
         condition += "and label = %d" % label
-
-    # SQL 查询语句
-    sql = "SELECT * FROM `%s` where 1=1 %s" % (table_name, condition)
+    if number != 0:
+        sql = "SELECT * FROM `%s`where 1=1 %s order by id desc limit %d " % (table_name, condition, number)
+    else:
+        if start_time != 0 and end_time != 0:
+            condition = "and `time` between '%s' and '%s'" % (start_time, end_time)
+        elif start_time != 0:
+            condition = "and `time` >= '%s'" % start_time
+        elif end_time != 0:
+            condition = "and `time` <= '%s'" % end_time
+        if label == 0 or label == 1:
+            condition += "and label = %d" % label
+        # SQL 查询语句
+        sql = "SELECT * FROM `%s` where 1=1 %s" % (table_name, condition)
     print(sql)
     try:
         # 执行SQL语句

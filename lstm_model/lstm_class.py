@@ -6,7 +6,6 @@
 # @Description:
 import math
 import time
-from datetime import datetime
 
 import numpy as np
 from keras import Sequential
@@ -55,11 +54,8 @@ class LSTMModel:
 
     def train(self, data=None):
         if data is None:
-            times = "2018-11-16 21:38:11"
-            end_time = datetime.strptime(times, '%Y-%m-%d %H:%M:%S')
-            # 从数据库获取数据，model_name就是表名,最后截止时间是创建表的时间，数据为一天的数据量
-            # data = load_data_for_lstm_from_mysql(self.name, self.create_time, 7)
-            data = load_data_for_lstm_from_mysql(self.name, end_time, 7)
+            # 从数据库获取数据，model_name就是表名,获取最后10000条数据作为训练集
+            data = load_data_for_lstm_from_mysql(self.name, 10000)
         # 更改data shape为符合训练的size
         data = data.reshape(len(data), 1)
         # 归一化处理
@@ -123,13 +119,18 @@ class LSTMModel:
         预测，循环调用predict_next_value来预测之后的值，使用预测的值再预测
         :return:
         """
+        # 获取该表最后50个数据作为预测的输入
+        data = load_data_for_lstm_from_mysql(self.name, 50)
+        data = np.reshape(data, (len(data), 1))
+        data = data[-50:, :].tolist()
+        self.predict_data = data
         while len(self.predict_data) < self.look_back + self.look_forward:
             tmp = self.predict_next_value(data = self.predict_data)
             self.predict_data.append(tmp)
         # 二维数据转一维数据
         self.predict_data = sum(self.predict_data, [])
-        # 精确到小数点后4位
-        self.predict_data = [round(i, 3) for i in self.predict_data]
+        # 精确到小数点后2位
+        self.predict_data = [round(i, 2) for i in self.predict_data]
         # 只取后三十个预测的值存储
         str_value = self.predict_data[(-1 * self.look_forward):]
         # 转换成str,并使用,分割
@@ -202,16 +203,14 @@ def create_dataset(dataset):
     return np.array(dataX), np.array(dataY)
 
 
-times = "2018-11-16 21:38:11"
-end_time = datetime.strptime(times, '%Y-%m-%d %H:%M:%S')
 lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
-data = load_data_for_lstm_from_mysql("982c78b5-435a-40b3-9a31-9fb5fbf8b16", end_time, 0.5)
-data = np.reshape(data, (len(data), 1))
-data = data[-50:, :].tolist()
-lstm1.predict_data = data
+# data = load_data_for_lstm_from_mysql("982c78b5-435a-40b3-9a31-9fb5fbf8b16", 9000)
+# print(data)
+# data = np.reshape(data, (len(data), 1))
+# data = data[-50:, :].tolist()
+# lstm1.predict_data = data
 lstm1.predict_values()
-time.sleep(10)
-lstm1.update_database_model()
-save_lstm_class(lstm1)
-lstm2 = load_lstm_class(lstm1.name)
-print(lstm2.predict_str_value)
+# time.sleep(10)
+# save_lstm_class(lstm1)
+# lstm2 = load_lstm_class(lstm1.name)
+# print(lstm2.predict_str_value)
