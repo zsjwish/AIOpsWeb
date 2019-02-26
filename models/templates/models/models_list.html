@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>models list</title>
+</head>
+<body>
+<label>请选择算法类型：</label>
+<select>
+  <option value="XGBoost">XGBoost</option>
+  <option value="LSTM">LSTM</option>
+</select>
+<form action="/models/upload/" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p><input type="file" name="f1"></p>
+    <input type="submit" value="upload">
+</body>
+</html>

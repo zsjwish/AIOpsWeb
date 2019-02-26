@@ -1,0 +1,18 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+# @Time    : 2019/1/23 11:05
+# @Author  : zsj
+# @File    : urls.py
+# @Description:
+from django.conf.urls import url
+
+from models import views
+
+app_name = 'models'
+urlpatterns = [
+    url(r'^index/$', views.index, name = 'index'),
+    url(r'^upload/$', views.upload, name = 'upload'),
+    url(r'^success/$', views.success, name = 'success'),
+    url(r'^menu/$', views.menu, name = 'menu'),
+    url(r'^hello/$', views.hello, name = 'hello'),
+]
