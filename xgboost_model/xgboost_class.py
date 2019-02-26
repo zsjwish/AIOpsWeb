@@ -12,7 +12,7 @@ from db.mysql_operation import insert_xgboost_model, update_xgboost_model
 from isolate_model.base_function import load_data_for_xgboost_from_mysql
 
 
-class Xgboost:
+class XGBoost:
     def __init__(self, model_name):
         self.name = model_name
         self.param = {

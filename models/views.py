@@ -1,11 +1,7 @@
 import csv
+import json
 import os
-import shutil
-from datetime import time
-from time import sleep
 
-from django import forms
-from django.http import HttpResponse, HttpResponseRedirect
 
 # Create your views here.
 from django.shortcuts import render_to_response, render
@@ -13,6 +9,8 @@ from django.views.decorators.csrf import csrf_exempt
 
 from models.hello import Hello
 from models.models import xgboost_list, lstm_list
+
+
 
 
 def index(request):
@@ -26,12 +24,25 @@ def menu(request):
 def hello(request):
     h1 = Hello()
     string = h1.get_str("world!")
-    context = {"string": string, "xgboost": xgboost_list, "lstm":lstm_list}
+    context = {"string": string, "xgboost": xgboost_list, "lstm": lstm_list}
     return render(request, 'models/hello.html', context = context)
 
 
 def success(request):
     return render(request, 'models/upload_success.html')
+
+
+
+def submit(request):
+    # 判断接收的值是否为POST
+    print(request.body.decode())
+    print(type(request.body.decode()))
+    if request.method == "POST":
+        body = json.loads(request.body.decode())
+        print("time", body["time"])
+        print("kpi", body["CPU"])
+    return render(request, 'models/upload_one_data.html')
+
 
 @csrf_exempt
 def upload(request):
@@ -59,3 +70,5 @@ def upload(request):
         f.close()
         return render(request, 'models/upload_success.html')
     return render(request, 'models/upload_csv.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
+
+

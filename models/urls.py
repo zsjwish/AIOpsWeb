@@ -15,4 +15,6 @@ urlpatterns = [
     url(r'^success/$', views.success, name = 'success'),
     url(r'^menu/$', views.menu, name = 'menu'),
     url(r'^hello/$', views.hello, name = 'hello'),
+    url(r'^submit/$', views.submit, name = 'submit'),
+
 ]

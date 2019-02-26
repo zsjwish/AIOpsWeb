@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form role="form"  name="filter_form" method="get">
+      <div class="content_head">
+         <div>
+            <br/><br/>
+            <span>投放效果分析 :</span>
+            <br/>
+            <div class="key_word">
+                <span style="float: left;font-size: 12px;line-height: 35px">关键字：</span>
+                   <ul class="main_box" style="position:absolute;display:block;z-index:100;margin-left:82px;">
+                       <li class="select_box">
+                            {% if type == '1' %}
+                                  <span class="img" style="margin-left:0;">活动编号</span>
+                                <input type="hidden" name="type" class="type_text" value="1" />
+                            {% else %}
+                               <span class="img" style="margin-left:0;">活动名称</span>
+                                <input type="hidden" name="type" class="type_text" value="0" />
+                            {% endif %}
+                           <ul class="son_ul">
+                               <li value="0">活动名称</li>
+                               <li value="1">活动编号</li>
+                           </ul>
+                       </li>
+                   </ul>
+
+                  &nbsp;&nbsp;&nbsp;
+                  <input type="text" name="key" class="key_text" placeholder="请输入关键字"  value="{{ key }}" style="margin-left:200px;"/>
+            </div>
+         </div>
+         <div>
+            <div class="key_word">
+               <span style="float: left;font-size: 12px;line-height: 35px">日期：</span>
+               <div class="date">
+                  <input type="text" name="time" placeholder="请选择日期区间" class="choose-date" value="{{ timereport }}"/>
+               </div>
+
+               <div class="date_detail" id="today">今天</div>
+               <div class="date_detail" id="yesterday">昨天</div>
+               <div class="date_detail" id="last7">最近7天</div>
+               <div class="date_detail" id="last30">最近30天</div>
+            </div>
+         </div>
+
+         <div class="key_button">
+            <button type="submit" class="btn btn-default normal" style="float: left;margin-right:10px;" >查询</button>
+                <a onclick="textinput()" id="ep">{# {% url 'datainput' %} #}
+                <span class="blue"
+                    style="border: 0;display: inline-block;
+                    width: 98px;height: 35px;border-radius: 5px;
+                    text-align: center;line-height: 35px;">导出
+                </span>
+            </a>
+         </div>
+      </div>
+</form>
+</body>
+</html>

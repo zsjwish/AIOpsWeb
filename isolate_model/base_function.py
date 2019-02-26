@@ -146,36 +146,6 @@ def translate_to_xgboost_datas(np_array):
     :param np_array:输入的数组
     :return:时间转换后的数组，仅仅在时间上做出改变，其他列不变
     """
-    hour_minute_week_array = [str_to_time_hour_minute(time) for time in np_array[1:, 1]]
-    hour = []
-    minute = []
-    week = []
-    for hour_minute_week in hour_minute_week_array:
-        hour.append(int(hour_minute_week[0]))
-        minute.append(int(hour_minute_week[1]))
-        week.append((int(hour_minute_week[2])))
-    hour.insert(0, "hour")
-    minute.insert(0, "minute")
-    week.insert(0, "week")
-    # 删除时间一列
-    np_array = np.delete(np_array, 1, axis = 1)
-    # 增加分钟一列
-    np_array = np.insert(np_array, 1, values = minute, axis = 1)
-    # 增加小时一列
-    np_array = np.insert(np_array, 1, values = hour, axis = 1)
-    # 增加星期一列
-    np_array = np.insert(np_array, 1, values = week, axis = 1)
-    return np_array
-
-
-def load_data_for_xgboost_from_mysql(table_name):
-    """
-    从数据库为xgboost模型读取数据，并进行时间格式转换
-    :param table_name: 要读取的表名
-    :return:
-    """
-    db = connectdb()
-    np_array = np.array(query_datas(db, table_name = table_name))
     # 删除id列
     np_array = np.delete(np_array, 0, axis = 1)
     # 获取时间列
@@ -192,12 +162,42 @@ def load_data_for_xgboost_from_mysql(table_name):
     np_array = np.insert(np_array, 0, values = minute, axis = 1)
     np_array = np.insert(np_array, 0, values = hour, axis = 1)
     np_array = np.insert(np_array, 0, values = week, axis = 1)
+    # 此时返回的属性分别是 week, hour, minute, kpi_1... kpi_n,label
+    return np_array
+
+
+def load_data_for_xgboost_from_mysql(table_name, number_data=20000):
+    """
+    从数据库为xgboost模型读取数据，并进行时间格式转换
+    :param number_data: 取最后多少个数据来训练或者预测
+    :param table_name: 要读取的表名
+    :return:
+    """
+    db = connectdb()
+    np_array = np.array(query_datas(db, table_name = table_name, number = number_data))
+    # # 删除id列
+    # np_array = np.delete(np_array, 0, axis = 1)
+    # # 获取时间列
+    # time_array = np_array[:, 0]
+    # # 删除时间列
+    # np_array = np.delete(np_array, 0, axis = 1)
+    # hour = []
+    # minute = []
+    # week = []
+    # for time in time_array:
+    #     hour.append(time.hour)
+    #     minute.append(time.minute)
+    #     week.append(time.weekday())
+    # np_array = np.insert(np_array, 0, values = minute, axis = 1)
+    # np_array = np.insert(np_array, 0, values = hour, axis = 1)
+    # np_array = np.insert(np_array, 0, values = week, axis = 1)
+    np_array = translate_to_xgboost_datas(np_array)
     closedb(db)
     # 此时返回的属性分别是 week, hour, minute, kpi_1... kpi_n,label
     return np_array
 
 
-def load_data_for_lstm_from_mysql(table_name, number_data):
+def load_data_for_lstm_from_mysql(table_name, number_data=20000):
     """
     从数据库为lstm模型读取一天的数据
     :param number_data: 取最后多少个数据来训练或者预测
