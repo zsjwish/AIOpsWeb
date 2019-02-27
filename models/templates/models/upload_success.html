@@ -5,7 +5,7 @@
     <title>success</title>
 </head>
 <body>
-文件上传成功...
+您已成功上传  {{ file_name }}  文件并存储到数据库中,可以开始训练啦！
 <form>
     <button><a href="{% url 'models:upload' %}">继续上传</a></button>
     <button><a href="{% url 'models:upload' %}">开始训练</a></button>

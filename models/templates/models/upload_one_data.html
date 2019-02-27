@@ -7,9 +7,10 @@
 <body>
 <form action="/models/submit/" method="POST">
 {#    {% csrf_token %}#}
-  time: <input type="text" name="time" />
-  CPU: <input type="text" name="CPU" />
-  <input type="submit" value="提交" />
+    host_id:<input type="text" name="host_id" />
+    time: <input type="text" name="time" />
+    CPU: <input type="text" name="CPU" />
+    <input type="submit" value="提交" />
 </form>
 </body>
 </html>

@@ -133,6 +133,10 @@ from isolate_model.isolate_class import Isolate
 # dtrain = xgb.DMatrix(npymat, label = labels)
 # watchlist = [(dtest, 'eval'), (dtrain, 'train')]
 # bst = xgb.train(param, dtrain, num_round, watchlist)
+
+
+
 from xgboost_model.xgboost_class import XGBoost
 
 xgb1 = XGBoost("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
+

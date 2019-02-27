@@ -15,6 +15,7 @@ from sklearn.preprocessing import MinMaxScaler
 
 from db.mysql_operation import insert_lstm_model, update_lstm_model
 from isolate_model.base_function import load_data_for_lstm_from_mysql, save_lstm_class, load_lstm_class
+from models.models import lstm_model_dict
 
 
 class LSTMModel:
@@ -51,6 +52,8 @@ class LSTMModel:
         self.model = model
         self.insert_database_model()
         self.train()
+        save_lstm_class(self)
+        lstm_model_dict[self.name] = self.model
 
     def train(self, data=None):
         if data is None:
@@ -210,6 +213,7 @@ lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
 # data = data[-50:, :].tolist()
 # lstm1.predict_data = data
 lstm1.predict_values()
+print(lstm_model_dict["982c78b5-435a-40b3-9a31-9fb5fbf8b16"])
 # time.sleep(10)
 # save_lstm_class(lstm1)
 # lstm2 = load_lstm_class(lstm1.name)

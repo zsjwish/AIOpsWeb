@@ -11,7 +11,9 @@ from datetime import datetime, timedelta
 import numpy as np
 import matplotlib.pyplot as plt
 
-from db.mysql_operation import connectdb, query_datas, closedb
+from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas
+from isolate_model.isolate_class import Isolate
+from models.models import xgboost_model_dict, data_set
 
 
 def load_csv(file_name):
@@ -125,13 +127,22 @@ def draw_with_diff_color(np_array):
     print(green_arr)
 
 
-def save_datas_with_labels(np_arrays):
+def save_datas_with_labels(file_name):
     """
     存储已经由孤立森林学习过的带有标签的数据
-    :param np_arrays:
-    :return:
+    :return:True or False
     """
-    pass
+    cases = load_csv(file_name)
+    isolate1 = Isolate('isolate', cases)
+    np_array = isolate1.merge_arrays()
+    table_name = np_array[1, 0]
+    db = connectdb()
+    if not query_table(db, table_name):
+        create_table(db, np_array[0], table_name)
+    if insert_train_datas(db, table_name, np_array[1:]):
+        data_set.append(file_name)
+        return True
+    return False
 
 
 def str_to_time_hour_minute(time):
@@ -139,6 +150,10 @@ def str_to_time_hour_minute(time):
     year, month, day, hour, minute, secend = re.split(r"[/ :]", time)
     return [hour, minute, week]
 
+
+def use_XGBoost_predict(model_name, data):
+    XGBoost_model = xgboost_model_dict[model_name]
+    return XGBoost_model.predict(data)
 
 def translate_to_xgboost_datas(np_array):
     """
@@ -217,7 +232,7 @@ def save_xgboost_class(model):
     :param model:
     :return:
     """
-    file_name = "../models/xgboost/%s" % model.name
+    file_name = "../models_file/xgboost/%s" % model.name
     with open(file_name, 'wb') as file_obj:
         pickle.dump(model, file_obj)
 
@@ -228,7 +243,7 @@ def load_xgboost_class(model_name):
     :param model_name:模型名
     :return: 返回模型
     """
-    file_name = "../models/xgboost/%s" % model_name
+    file_name = "../models_file/xgboost/%s" % model_name
     return pickle.load(open(file_name, "rb"))
 
 
@@ -238,7 +253,7 @@ def save_lstm_class(model):
     :param model:
     :return:
     """
-    file_name = "../models/lstm/%s" % model.name
+    file_name = "../models_file/lstm/%s" % model.name
     with open(file_name, 'wb') as file_obj:
         pickle.dump(model, file_obj)
 
@@ -249,7 +264,7 @@ def load_lstm_class(model_name):
     :param model_name:模型名
     :return: 返回模型
     """
-    file_name = "../models/lstm/%s" % model_name
+    file_name = "../models_file/lstm/%s" % model_name
     return pickle.load(open(file_name, "rb"))
 
 # str = "2018-11-16 21:38:11"

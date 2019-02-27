@@ -2,15 +2,12 @@ import csv
 import json
 import os
 
-
 # Create your views here.
-from django.shortcuts import render_to_response, render
+from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+from isolate_model.base_function import save_datas_with_labels
 from models.hello import Hello
-from models.models import xgboost_list, lstm_list
-
-
 
 
 def index(request):
@@ -24,13 +21,12 @@ def menu(request):
 def hello(request):
     h1 = Hello()
     string = h1.get_str("world!")
-    context = {"string": string, "xgboost": xgboost_list, "lstm": lstm_list}
+    context = {"string": string, "xgboost": xgboost_name_list, "lstm": lstm_name_list}
     return render(request, 'models/hello.html', context = context)
 
 
 def success(request):
     return render(request, 'models/upload_success.html')
-
 
 
 def submit(request):
@@ -39,6 +35,7 @@ def submit(request):
     print(type(request.body.decode()))
     if request.method == "POST":
         body = json.loads(request.body.decode())
+        print("host_id", body["host_id"])
         print("time", body["time"])
         print("kpi", body["CPU"])
     return render(request, 'models/upload_one_data.html')
@@ -47,7 +44,7 @@ def submit(request):
 @csrf_exempt
 def upload(request):
     """
-    上传csv文件，注意文件要以host_id uuid形式命名，文件放到file文件夹下
+    上传csv文件，注意文件要以host_id uuid形式命名，文件放到file文件夹下, 并且解析存储到数据库中
     :param request:
     :return:
     """
@@ -64,11 +61,14 @@ def upload(request):
         print(file_path)
         # 将客户端上传的文件保存在服务器上，一定要用wb二进制方式写入，否则文件会乱码
         f = open(file_path, 'wb+')
+        # 获取上传的文件名
+        f_name = f.name
+        print(f_name)
         # 通过chunks分片上传存储在服务器内存中,以64k为一组，循环写入到服务器中
         for line in file_obj.chunks():
             f.write(line)
         f.close()
-        return render(request, 'models/upload_success.html')
+        if save_datas_with_labels(f_name):
+            return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
+        return render(request, 'models/upload_failed.html')
     return render(request, 'models/upload_csv.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
-
-

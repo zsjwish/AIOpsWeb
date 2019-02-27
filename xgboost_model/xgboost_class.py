@@ -9,7 +9,8 @@ import numpy as np
 import xgboost as xgb
 
 from db.mysql_operation import insert_xgboost_model, update_xgboost_model
-from isolate_model.base_function import load_data_for_xgboost_from_mysql
+from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_xgboost_class
+from models.models import xgboost_model_dict
 
 
 class XGBoost:
@@ -109,6 +110,9 @@ class XGBoost:
         self.model = bst
         # 更新数据库
         self.update_database_model()
+        save_xgboost_class(self)
+        # 将模型名和模型存储到列表中，方便查询和使用
+        xgboost_model_dict[self.name] = self.model
         # 返回模型
         return bst
 
