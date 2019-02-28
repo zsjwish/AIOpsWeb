@@ -2,12 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb06daa-e669-460a-8d1c-27d73ace0191" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/file/mysql_test_case.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/templates/models/tag.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db/mysql_operation.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/mysql_operation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/isolate_model/base_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/isolate_model/base_function.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/data_set_name" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/data_set_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost_name" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/xgboost_name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models_file/lstm/982c78b5-435a-40b3-9a31-9fb5fbf8b165" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/lstm/982c78b5-435a-40b3-9a31-9fb5fbf8b165" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models_file/lstm_name" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/lstm_name" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -20,7 +22,7 @@
     <SUITE FILE_PATH="coverage/AIOps_pro$xgboost_class.coverage" NAME="xgboost_class Coverage Results" MODIFIED="1551247878102" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/xgboost_model" />
     <SUITE FILE_PATH="coverage/AIOps_pro$Unittests_in_test_xgboost_py.coverage" NAME="Unittests in test_xgboost.py Coverage Results" MODIFIED="1550906663248" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/AIOps_pro$urls.coverage" NAME="urls Coverage Results" MODIFIED="1551333585392" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/models" />
-    <SUITE FILE_PATH="coverage/AIOps_pro$lstm_class.coverage" NAME="lstm_class Coverage Results" MODIFIED="1551348140185" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lstm_model" />
+    <SUITE FILE_PATH="coverage/AIOps_pro$lstm_class.coverage" NAME="lstm_class Coverage Results" MODIFIED="1551357124685" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lstm_model" />
     <SUITE FILE_PATH="coverage/AIOps_pro$xgboost_test.coverage" NAME="xgboost_test Coverage Results" MODIFIED="1551251980759" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/xgboost_model" />
     <SUITE FILE_PATH="coverage/AIOps_pro$Unittests_for_test_mysql_operation_MysqlTestCases.coverage" NAME="Unittests for test_mysql_operation.MysqlTestCases Coverage Results" MODIFIED="1551164413191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
     <SUITE FILE_PATH="coverage/AIOps_pro$Unittests_in_test_mysql_operation_py.coverage" NAME="Unittests in test_mysql_operation.py Coverage Results" MODIFIED="1551353084044" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
@@ -52,8 +54,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="240" selection-start-line="240" selection-end-line="240" />
+            <state relative-caret-position="432">
+              <caret line="425" column="17" selection-start-line="425" selection-start-column="17" selection-end-line="425" selection-end-column="17" />
               <folding>
                 <element signature="e#156#167#0" expanded="true" />
               </folding>
@@ -61,53 +63,59 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models_file/data_set_name">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="1" selection-start-line="1" selection-end-line="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xgboost_model/xgboost_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="53" selection-start-line="53" selection-end-line="53" />
-              <folding>
-                <element signature="e#140#151#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="12">
-              <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
-              <folding>
-                <element signature="e#136#147#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/templates/models/upload_one_data.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="7" column="29" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="205">
+              <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/templates/models/tag.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+              <folding>
+                <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/templates/models/train.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="168">
+              <caret line="8" column="28" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="28" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/models/templates/models/train_success.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="147">
+              <caret line="7" column="32" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+            <state relative-caret-position="325">
+              <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -116,40 +124,14 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/file/982c78b5-435a-40b3-9a31-9fb5fbf8b165">
+        <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-11151">
-              <caret line="3" column="53" lean-forward="true" selection-start-line="3" selection-start-column="53" selection-end-line="3" selection-end-column="59" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/keras/engine/training.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="93">
-              <caret line="1114" column="8" selection-start-line="1114" selection-start-column="8" selection-end-line="1114" selection-end-column="8" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="47" lean-forward="true" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
+            <state relative-caret-position="430">
+              <caret line="217" column="24" lean-forward="true" selection-start-line="217" selection-start-column="24" selection-end-line="217" selection-end-column="24" />
               <folding>
-                <element signature="e#0#15#0" expanded="true" />
+                <element signature="e#136#147#0" expanded="true" />
               </folding>
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/file/mysql_test_case.csv">
-          <provider selected="true" editor-type-id="csv-text-editor" />
-          <provider editor-type-id="csv-table-editor">
-            <state showInfoPanel="true" rowLines="3" />
           </provider>
         </entry>
       </file>
@@ -170,6 +152,8 @@
       <find>[-1]</find>
       <find>c</find>
       <find>use</find>
+      <find>delete</find>
+      <find>label</find>
     </findStrings>
     <dirStrings>
       <dir>E:\python_project\AIOps_pro</dir>
@@ -189,7 +173,6 @@
         <option value="$PROJECT_DIR$/models/templates/models/menu.html" />
         <option value="$PROJECT_DIR$/models/hello.py" />
         <option value="$PROJECT_DIR$/lstm_model/raw.csv" />
-        <option value="$PROJECT_DIR$/models/templates/models/index.html" />
         <option value="$PROJECT_DIR$/test/test_mysql_operation.py" />
         <option value="$PROJECT_DIR$/test/xgb_func_test.py" />
         <option value="$PROJECT_DIR$/models/templates/models/test.html" />
@@ -201,9 +184,7 @@
         <option value="$PROJECT_DIR$/models/__init__.py" />
         <option value="$PROJECT_DIR$/xgboost_model/xgboost_test.py" />
         <option value="$PROJECT_DIR$/xgboost_model/xgboost_class.py" />
-        <option value="$PROJECT_DIR$/db/mysql_operation.py" />
         <option value="$PROJECT_DIR$/models/templates/models/models_list.html" />
-        <option value="$PROJECT_DIR$/models/urls.py" />
         <option value="$PROJECT_DIR$/AIOps_pro/settings.py" />
         <option value="$PROJECT_DIR$/models/templates/models/upload_one_data.html" />
         <option value="$PROJECT_DIR$/models/templates/models/train.html" />
@@ -213,14 +194,18 @@
         <option value="$PROJECT_DIR$/models_file/xgboost_name" />
         <option value="$PROJECT_DIR$/models_file/lstm_name" />
         <option value="$PROJECT_DIR$/manage.py" />
-        <option value="$PROJECT_DIR$/lstm_model/lstm_class.py" />
         <option value="$PROJECT_DIR$/models_file/data_set_name" />
+        <option value="$PROJECT_DIR$/models/urls.py" />
+        <option value="$PROJECT_DIR$/lstm_model/lstm_class.py" />
+        <option value="$PROJECT_DIR$/models/templates/models/index.html" />
         <option value="$PROJECT_DIR$/isolate_model/base_function.py" />
         <option value="$PROJECT_DIR$/models/views.py" />
+        <option value="$PROJECT_DIR$/models/templates/models/tag.html" />
+        <option value="$PROJECT_DIR$/db/mysql_operation.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-140" />
     <option name="y" value="75" />
     <option name="width" value="1945" />
@@ -384,8 +369,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\python_project\AIOps_pro\file" />
       <recent name="E:\python_project\AIOps_pro\models\templates\models" />
+      <recent name="E:\python_project\AIOps_pro\file" />
       <recent name="E:\python_project\AIOps_pro\lstm_model" />
       <recent name="C:\Users\zsj\.PyCharm2018.3\system\python_stubs\-171466679" />
       <recent name="E:\python_project\AIOps_pro" />
@@ -591,8 +576,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests in test_mysql_operation.py" />
         <item itemvalue="Python.lstm_class" />
+        <item itemvalue="Python tests.Unittests in test_mysql_operation.py" />
         <item itemvalue="Python.urls" />
         <item itemvalue="Python.xgboost_test" />
         <item itemvalue="Python.xgb_func_test" />
@@ -632,7 +617,7 @@
       <workItem from="1551346533065" duration="1625000" />
       <workItem from="1551348271221" duration="60000" />
       <workItem from="1551348336671" duration="383000" />
-      <workItem from="1551348777746" duration="5384000" />
+      <workItem from="1551348777746" duration="15867000" />
     </task>
     <servers />
   </component>
@@ -669,7 +654,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="121740000" />
+    <option name="totallyTimeSpent" value="132223000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -681,23 +666,23 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="7" />
+    <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.2627346" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.19560878" />
       <window_info id="Structure" order="1" sideWeight="0.50442475" side_tool="true" weight="0.27949062" />
       <window_info id="Favorites" order="2" sideWeight="0.5012658" side_tool="true" weight="0.26876676" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" weight="0.3286119" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.6926346" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.50141644" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.47450426" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3189135" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.43259558" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286119" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.43201134" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.43158954" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.5056657" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.39943343" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32897383" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.35977337" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -734,6 +719,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -776,43 +771,28 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>35</line>
+          <line>36</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>31</line>
+          <line>32</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>140</line>
+          <line>141</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>73</line>
+          <line>99</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>92</line>
+          <line>118</line>
           <option name="timeStamp" value="24" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>51</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>379</line>
-          <option name="timeStamp" value="27" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>390</line>
-          <option name="timeStamp" value="28" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/lstm_model/lstm_class.py</url>
@@ -831,28 +811,43 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>230</line>
-          <option name="timeStamp" value="33" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>254</line>
+          <line>260</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>237</line>
+          <line>243</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>298</line>
+          <line>304</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/xgboost_model/xgboost_class.py</url>
           <line>53</line>
           <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
+          <line>410</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/views.py</url>
+          <line>81</line>
+          <option name="timeStamp" value="40" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/db/mysql_operation.py</url>
+          <line>121</line>
+          <option name="timeStamp" value="41" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/models/views.py</url>
+          <line>84</line>
+          <option name="timeStamp" value="42" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -891,42 +886,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="uml://Python/#E:/python_project/AIOps_pro/xgboost_model/xgboost_class.py">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>Python</ID>
-          <OriginalElement>#E:/python_project/AIOps_pro/xgboost_model/xgboost_class.py</OriginalElement>
-          <nodes>
-            <node x="" y="">xgboost_model.xgboost_class.XGBoost</node>
-            <node x="" y="">object</node>
-          </nodes>
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="131.0" y="55.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/keras/models.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="uml://Python/#E:/python_project/AIOps_pro/AIOps_pro">
-      <provider selected="true" editor-type-id="UmlEditorProvider">
-        <state>
-          <ID>Python</ID>
-          <OriginalElement>#E:/python_project/AIOps_pro/AIOps_pro</OriginalElement>
-          <nodes />
-          <notes />
-          <edges />
-          <settings layout="Hierarchic Group" zoom="1.0" x="556.0" y="255.0" />
-          <SelectedNodes />
-          <Categories />
-          <SCOPE>All</SCOPE>
-        </state>
-      </provider>
-    </entry>
     <entry file="uml://JavaScript-modules-diagram/E:/python_project/AIOps_pro/isolate_model">
       <provider selected="true" editor-type-id="UmlEditorProvider">
         <state>
@@ -1008,20 +967,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/templates/models/models_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/templates/models/test.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="46" column="18" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AIOps_pro/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1046,26 +991,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/templates/models/train_success.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="32" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/test_xgboost.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-148">
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/templates/models/train.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="11" column="39" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -1126,16 +1057,6 @@
     <entry file="file://$PROJECT_DIR$/AIOps_pro/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="27" selection-start-line="16" selection-start-column="27" selection-end-line="16" selection-end-column="27" />
-          <folding>
-            <element signature="e#130#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/tests.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1157,13 +1078,6 @@
           <folding>
             <element signature="e#1123#1133#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="11" column="7" lean-forward="true" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -1191,26 +1105,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AIOps_pro/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
-          <folding>
-            <element signature="e#633#665#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="47" lean-forward="true" selection-start-line="5" selection-start-column="47" selection-end-line="5" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/file/mysql_test_case.csv">
       <provider selected="true" editor-type-id="csv-text-editor" />
       <provider editor-type-id="csv-table-editor">
@@ -1221,23 +1115,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="93">
           <caret line="1114" column="8" selection-start-line="1114" selection-start-column="8" selection-end-line="1114" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12">
-          <caret line="80" column="36" lean-forward="true" selection-start-line="80" selection-start-column="36" selection-end-line="80" selection-end-column="36" />
-          <folding>
-            <element signature="e#136#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/templates/models/upload_one_data.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="7" column="29" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="29" />
         </state>
       </provider>
     </entry>
@@ -1273,23 +1150,125 @@
         <state showInfoPanel="true" rowLines="3" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
+    <entry file="file://$PROJECT_DIR$/models/templates/models/test.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="240" selection-start-line="240" selection-end-line="240" />
+        <state>
+          <caret selection-end-line="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIOps_pro/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="20" column="37" selection-start-line="20" selection-start-column="37" selection-end-line="20" selection-end-column="37" />
           <folding>
-            <element signature="e#156#167#0" expanded="true" />
+            <element signature="e#633#665#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/upload_one_data.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="29" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="50" lean-forward="true" selection-start-line="17" selection-start-column="50" selection-end-line="17" selection-end-column="50" />
+          <folding>
+            <element signature="e#130#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/models_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="21" lean-forward="true" selection-start-line="4" selection-start-column="21" selection-end-line="4" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/train_success.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="32" selection-start-line="7" selection-start-column="23" selection-end-line="7" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="217" column="24" lean-forward="true" selection-start-line="217" selection-start-column="24" selection-end-line="217" selection-end-column="24" />
+          <folding>
+            <element signature="e#136#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/menu.html">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
+          <folding>
+            <element signature="n#style#0;n#iframe#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/train.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="8" column="28" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/tag.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+          <folding>
+            <element signature="n#style#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/models/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="44" column="20" selection-start-line="44" selection-start-column="20" selection-end-line="44" selection-end-column="20" />
+        <state relative-caret-position="325">
+          <caret line="84" column="38" selection-start-line="84" selection-start-column="38" selection-end-line="84" selection-end-column="38" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="425" column="17" selection-start-line="425" selection-start-column="17" selection-end-line="425" selection-end-column="17" />
+          <folding>
+            <element signature="e#156#167#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="205">
+          <caret line="48" column="32" lean-forward="true" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
         </state>
       </provider>
     </entry>

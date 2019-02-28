@@ -17,5 +17,6 @@ urlpatterns = [
     url(r'^train/$', views.train, name = 'train'),
     url(r'^hello/$', views.hello, name = 'hello'),
     url(r'^submit/$', views.submit, name = 'submit'),
+    url(r'^tag/$', views.tag, name = 'tag'),
 
 ]

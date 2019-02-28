@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>数据标注</h1>
+
+<form action="" method="POST">
+    <label>选择数据集</label>
+    <select name="data_name">
+        <option data-tokens="nobody">{{ table_name }}</option>
+        {% for name in data_names %}
+        <option value="{{name}}">
+            {{ name }}
+        </option>
+        {% endfor %}
+    </select>
+
+    <label>开始时间</label>
+    <input type="datetime-local" name="start_time" value="2019-02-25T14:30" />
+
+    <label>结束时间</label>
+    <input type="datetime-local" name="end_time" value="2019-02-27T15:00"/>
+
+    <label>选择标签</label>
+    <select name="label">
+        <option value="0">0</option>
+        <option value="1" selected>1</option>
+    </select>
+    <input type="submit" value="查询" />
+    <input type="submit" value="更改" />
+</form>
+<table border="1" width="70%"  style="margin:  1% 15% 0 15%">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>时间</th>
+            <th>值</th>
+            <th>标签</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in datas %}
+        <tr class=>
+            <td width="10%">
+                {{ data.0 }}
+            </td>
+            <td width="25%">
+                {{ data.1 }}
+            </td>
+            <td width="25%">
+
+                {{ data.2 }}
+            </td>
+            <td width="10%">
+                {{ data.3 }}
+            </td>
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>

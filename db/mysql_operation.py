@@ -122,7 +122,7 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0
     cursor = db.cursor()
     condition = ""
     if label == 0 or label == 1:
-        condition += "and label = %d" % label
+        condition += "and `label` = %d" % label
     if number != 0:
         sql = "SELECT * FROM `%s`where 1=1 %s order by id desc limit %d " % (table_name, condition, number)
     else:
@@ -133,7 +133,7 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0
         elif end_time != 0:
             condition = "and `time` <= '%s'" % end_time
         if label == 0 or label == 1:
-            condition += "and label = %d" % label
+            condition += "and `label` = %d" % label
         # SQL 查询语句
         sql = "SELECT * FROM `%s` where 1=1 %s" % (table_name, condition)
     print(sql)
@@ -169,7 +169,7 @@ def update_datas(db, table_name, label, start_time=0, end_time=0):
         condition = "and `time` <= '%s'" % end_time
 
     # SQL 更新语句
-    sql = "UPDATE `%s` SET label = %d where 1 = 1  %s" % (table_name, label, condition)
+    sql = "UPDATE `%s` SET `label` = %d where 1 = 1  %s" % (table_name, label, condition)
     print(sql)
     try:
         # 执行SQL语句

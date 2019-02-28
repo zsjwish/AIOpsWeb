@@ -13,7 +13,8 @@ from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
 
-from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas
+from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas, \
+    update_datas
 from isolate_model.isolate_class import Isolate
 
 from models.models import xgboost_model_dict, data_set, lstm_model_dict
@@ -228,6 +229,11 @@ def str_to_time_hour_minute(time):
 
 
 def use_XGBoost_predict(json_data):
+    """
+    使用已训练的XGBoost模型检测异常
+    :param json_data:
+    :return:
+    """
     model_name = json_data["host_id"]
     times = datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S')
     print(times.hour)
@@ -374,6 +380,7 @@ def load_lstm_class(model_name):
 
 
 def train_model(model_kind, data_name):
+    """训练模型"""
     from xgboost_model.xgboost_class import XGBoost
     from lstm_model.lstm_class import LSTMModel
     print(data_name)
@@ -390,3 +397,31 @@ def train_model(model_kind, data_name):
         else:
             LSTMModel(data_name)
             return 1
+
+
+def get_datas_for_tag(table_name, start_time=0, end_time=0, label=(0, 1)):
+    """
+    按条件查询数据库表信息
+    :param table_name:
+    :param start_time:
+    :param end_time:
+    :param label:
+    :return:
+    """
+    result = query_datas(connectdb(), table_name = table_name, label = label, start_time = start_time, end_time = end_time)
+    print(type(result))
+    print(result)
+    return result
+
+
+def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
+    """
+
+    :param table_name:
+    :param start_time:
+    :param end_time:
+    :param label:
+    :return:
+    """
+    if update_datas(connectdb(), table_name = table_name, label = label, start_time = start_time, end_time = end_time):
+        return get_datas_for_tag(table_name = table_name, start_time = start_time, end_time = end_time, label = label)

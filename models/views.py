@@ -7,7 +7,8 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model
+from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
+    update_datas_for_tag
 from models.hello import Hello
 from models.models import xgboost_model_dict, lstm_model_dict, data_set
 
@@ -48,6 +49,11 @@ def submit(request):
 
 
 def train(request):
+    """
+    用于训练数据
+    :param request:
+    :return:
+    """
     # 判断接收的值是否为POST
     dataset = {"names": data_set}
     if request.method == "POST":
@@ -60,6 +66,26 @@ def train(request):
         return render(request, 'models/train_success.html', context = info)
     return render(request, 'models/train.html', context = dataset)
 
+
+def tag(request):
+    """
+    对数据标注
+    :param request:
+    :return:
+    """
+    # 判断接收的值是否为POST
+    info = {"data_names": data_set}
+    if request.method == "POST":
+        info["table_name"] = request.POST["data_name"]
+        info["start_time"] = request.POST["start_time"]
+        info["end_time"] = request.POST["end_time"]
+        info["label"] = int(request.POST["label"])
+        info["name"] = request.POST["data_name"]
+        print(info)
+        info["datas"] = get_datas_for_tag(table_name = info["table_name"],start_time = info["start_time"], end_time = info["end_time"], label = info["label"])
+        print(info)
+        return render(request, 'models/tag.html', context = info)
+    return render(request, 'models/tag.html', context = info)
 
 
 
