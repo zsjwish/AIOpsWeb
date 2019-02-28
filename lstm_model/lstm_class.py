@@ -14,7 +14,7 @@ from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
 
 from db.mysql_operation import insert_lstm_model, update_lstm_model
-from isolate_model.base_function import load_data_for_lstm_from_mysql, save_lstm_class, load_lstm_class
+from isolate_model.base_function import save_lstm_class, load_data_for_lstm_from_mysql
 from models.models import lstm_model_dict
 
 
@@ -42,18 +42,19 @@ class LSTMModel:
         # 每次向前预测的值，每次预测look_forward个值
         self.predict_data = []
         # 初始化模型，train_x的维度为(n_samples, time_steps, input_dim)
-        model = Sequential()
+        LSTM_model = Sequential()
         # 增加LSTM网络层
-        model.add(LSTM(50, input_shape = (1, self.look_back), return_sequences = True))
-        model.add(LSTM(100, return_sequences = False))
-        model.add(Dense(units = 1))
-        model.add(Activation('linear'))
-        model.compile(loss = 'mse', optimizer = 'rmsprop')
-        self.model = model
+        LSTM_model.add(LSTM(50, input_shape = (1, self.look_back), return_sequences = True))
+        LSTM_model.add(LSTM(100, return_sequences = False))
+        LSTM_model.add(Dense(units = 1))
+        LSTM_model.add(Activation('linear'))
+        LSTM_model.compile(loss = 'mse', optimizer = 'rmsprop')
+        self.model = LSTM_model
         self.insert_database_model()
         self.train()
+        # 模型持久化到磁盘
         save_lstm_class(self)
-        lstm_model_dict[self.name] = self.model
+        lstm_model_dict[self.name] = self
 
     def train(self, data=None):
         if data is None:
@@ -206,14 +207,14 @@ def create_dataset(dataset):
     return np.array(dataX), np.array(dataY)
 
 
-lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
+# lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
 # data = load_data_for_lstm_from_mysql("982c78b5-435a-40b3-9a31-9fb5fbf8b16", 9000)
 # print(data)
 # data = np.reshape(data, (len(data), 1))
 # data = data[-50:, :].tolist()
 # lstm1.predict_data = data
-lstm1.predict_values()
-print(lstm_model_dict["982c78b5-435a-40b3-9a31-9fb5fbf8b16"])
+# lstm1.predict_values()
+# print(lstm_model_dict["982c78b5-435a-40b3-9a31-9fb5fbf8b16"])
 # time.sleep(10)
 # save_lstm_class(lstm1)
 # lstm2 = load_lstm_class(lstm1.name)

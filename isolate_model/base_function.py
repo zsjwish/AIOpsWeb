@@ -4,16 +4,20 @@
 # @Author  : zsj
 # @File    : base_function.py
 # @Description: 用于提供孤立森林的各种边缘功能
+import h5py
+import os
 import pickle
 import re
 import time
-from datetime import datetime, timedelta
+from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
+from keras.models import load_model
 
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas
 from isolate_model.isolate_class import Isolate
-from models.models import xgboost_model_dict, data_set
+from models.models import xgboost_model_dict, data_set, lstm_model_dict
+# from lstm_model.lstm_class import LSTMModel
 
 
 def load_csv(file_name):
@@ -133,6 +137,9 @@ def save_datas_with_labels(file_name):
     :return:True or False
     """
     cases = load_csv(file_name)
+    print("file name", file_name)
+    title = file_name.split("/")[-1]
+    print(type(title), title)
     isolate1 = Isolate('isolate', cases)
     np_array = isolate1.merge_arrays()
     table_name = np_array[1, 0]
@@ -140,9 +147,70 @@ def save_datas_with_labels(file_name):
     if not query_table(db, table_name):
         create_table(db, np_array[0], table_name)
     if insert_train_datas(db, table_name, np_array[1:]):
-        data_set.append(file_name)
+        # 数据集列表存储表名（内存存储），断电就清空
+        data_set.append(title)
+        # 存储数据集表名（磁盘存储），断电可恢复
+        save_dataset_name_to_file(title)
         return True
     return False
+
+
+def save_dataset_name_to_file(file_name):
+    """
+    将文件名存储到磁盘中，断电重启时能够保证继续运行
+    :param file_name: 文件名称
+    :return:
+    """
+    print(os.getcwd())
+    file_path = "./models_file/data_set_name"
+    with open(file_path, 'a+') as file:
+        file.write(file_name + "\n")
+
+
+def load_dataset_name_to_list():
+    """
+    加载磁盘文件中数据集名到内存中，data_set
+    :return:
+    """
+    file_path = "./models_file/data_set_name"
+    with open(file_path, 'r') as file:
+        lines = file.readlines()
+        for line in lines:
+            if data_set.count(line) == 0:
+                data_set.append(line)
+
+
+def load_lstm_name_to_dict():
+    """
+    加载磁盘文件中LSTM模型到内存中，lstm_name
+    :return:
+    """
+    file_path = "./models_file/lstm_name"
+    with open(file_path, 'r') as file:
+        lines = file.read().splitlines()
+        for line in lines:
+            if line not in lstm_model_dict.keys():
+                lstm_model = load_lstm_class(line)
+                lstm_model_dict[line] = lstm_model
+
+
+def load_xgboost_name_to_dict():
+    """
+    加载磁盘文件中LSTM模型到内存中，lstm_name
+    :return:
+    """
+    file_path = "./models_file/xgboost_name"
+    with open(file_path, 'r') as file:
+        lines = file.read().splitlines()
+        for line in lines:
+            if line not in xgboost_model_dict.keys():
+                xgboost_model_dict[line] = load_xgboost_class(line)
+
+
+def load_datas_from_disk_to_memory():
+    load_dataset_name_to_list()
+    load_xgboost_name_to_dict()
+    load_lstm_name_to_dict()
 
 
 def str_to_time_hour_minute(time):
@@ -151,11 +219,18 @@ def str_to_time_hour_minute(time):
     return [hour, minute, week]
 
 
-def use_XGBoost_predict(model_name, data):
+def use_XGBoost_predict(json_data):
+    model_name = json_data["host_id"]
+    # 加载模型时可能没有模型
     XGBoost_model = xgboost_model_dict[model_name]
-    return XGBoost_model.predict(data)
+    return XGBoost_model.predict(json_data)
 
-def translate_to_xgboost_datas(np_array):
+
+def translate_to_xgboost_datas_from_realtime():
+    pass
+
+
+def translate_to_xgboost_datas_from_mysql(np_array):
     """
     将数据转换成xgboost能够识别的数据，仅仅在时间格式上转换，其他列不变
     :param np_array:输入的数组
@@ -206,7 +281,7 @@ def load_data_for_xgboost_from_mysql(table_name, number_data=20000):
     # np_array = np.insert(np_array, 0, values = minute, axis = 1)
     # np_array = np.insert(np_array, 0, values = hour, axis = 1)
     # np_array = np.insert(np_array, 0, values = week, axis = 1)
-    np_array = translate_to_xgboost_datas(np_array)
+    np_array = translate_to_xgboost_datas_from_mysql(np_array)
     closedb(db)
     # 此时返回的属性分别是 week, hour, minute, kpi_1... kpi_n,label
     return np_array
@@ -228,13 +303,18 @@ def load_data_for_lstm_from_mysql(table_name, number_data=20000):
 
 def save_xgboost_class(model):
     """
-    xgboost 模型持久化，存储在models目录下，使用model.name作为文件名
+    xgboost 模型持久化，存储在models目录下，使用model.name作为文件名,同时持久化模型名称
     :param model:
     :return:
     """
+    # 存储模型
     file_name = "../models_file/xgboost/%s" % model.name
     with open(file_name, 'wb') as file_obj:
         pickle.dump(model, file_obj)
+    # 存储名称
+    file_model_name = "../models_file/xgboost_name"
+    with open(file_model_name, 'a+') as name_obj:
+        name_obj.write(model.name + "\n")
 
 
 def load_xgboost_class(model_name):
@@ -243,29 +323,68 @@ def load_xgboost_class(model_name):
     :param model_name:模型名
     :return: 返回模型
     """
-    file_name = "../models_file/xgboost/%s" % model_name
+    print(os.getcwd())
+    file_name = "./models_file/xgboost/%s" % model_name
     return pickle.load(open(file_name, "rb"))
 
 
-def save_lstm_class(model):
+def save_lstm_class(LSTM_model):
+    from lstm_model.lstm_class import LSTMModel
     """
-    lstm 模型持久化，存储在models目录下，使用model.name作为文件名
+    lstm 模型持久化，存储在models目录下，使用model.name作为文件名,同时持久化模型名称
     :param model:
     :return:
     """
-    file_name = "../models_file/lstm/%s" % model.name
+    # 存储模型
+    file_name = "./models_file/lstm/%s" % LSTM_model.name
     with open(file_name, 'wb') as file_obj:
-        pickle.dump(model, file_obj)
+        pickle.dump(LSTM_model, file_obj, 2)
+    # 存储名称
+    file_model_name = "./models_file/lstm_name"
+    with open(file_model_name, 'a+') as name_obj:
+        name_obj.write(LSTM_model.name + "\n")
 
 
 def load_lstm_class(model_name):
+    from lstm_model.lstm_class import LSTMModel
     """
     根据模型名称加载模型，返回model
     :param model_name:模型名
     :return: 返回模型
     """
-    file_name = "../models_file/lstm/%s" % model_name
+    print(os.getcwd())
+    file_name = "./models_file/lstm/%s" % model_name
+    print(file_name)
     return pickle.load(open(file_name, "rb"))
+
+
+def save_lstm_class1(LSTM_model, model_name):
+    """
+    lstm 模型持久化，存储在models目录下，使用model.name作为文件名,同时持久化模型名称
+    :param model:
+    :return:
+    """
+    # 存储模型
+    file_name = "../models_file/lstm/%s" % model_name
+    if not os.path.exists(file_name):
+        os.makedirs(file_name)
+    LSTM_model.save(file_name + "/1.h5")
+    # 存储名称
+    file_model_name = "../models_file/lstm_name"
+    with open(file_model_name, 'a+') as name_obj:
+        name_obj.write(model_name + "\n")
+
+
+def load_lstm_class1(model_name):
+    """
+    根据模型名称加载模型，返回model
+    :param model_name:模型名
+    :return: 返回模型
+    """
+    print(os.getcwd())
+    file_name = "./models_file/lstm/%s/1.h5" % model_name
+    return load_model(file_name)
+
 
 # str = "2018-11-16 21:38:11"
 # end_time = datetime.strptime(str, '%Y-%m-%d %H:%M:%S')

@@ -6,8 +6,9 @@ import os
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from isolate_model.base_function import save_datas_with_labels
+from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict
 from models.hello import Hello
+from models.models import xgboost_model_dict, lstm_model_dict
 
 
 def index(request):
@@ -21,7 +22,7 @@ def menu(request):
 def hello(request):
     h1 = Hello()
     string = h1.get_str("world!")
-    context = {"string": string, "xgboost": xgboost_name_list, "lstm": lstm_name_list}
+    context = {"string": string, "xgboost": xgboost_model_dict.keys(), "lstm": lstm_model_dict.keys()}
     return render(request, 'models/hello.html', context = context)
 
 
@@ -35,9 +36,11 @@ def submit(request):
     print(type(request.body.decode()))
     if request.method == "POST":
         body = json.loads(request.body.decode())
+        print(type(body))
         print("host_id", body["host_id"])
         print("time", body["time"])
         print("kpi", body["CPU"])
+        use_XGBoost_predict(body)
     return render(request, 'models/upload_one_data.html')
 
 

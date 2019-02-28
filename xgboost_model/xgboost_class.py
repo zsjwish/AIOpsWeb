@@ -110,9 +110,10 @@ class XGBoost:
         self.model = bst
         # 更新数据库
         self.update_database_model()
+        # 模型持久化
         save_xgboost_class(self)
         # 将模型名和模型存储到列表中，方便查询和使用
-        xgboost_model_dict[self.name] = self.model
+        xgboost_model_dict[self.name] = self
         # 返回模型
         return bst
 

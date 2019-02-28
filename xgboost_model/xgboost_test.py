@@ -4,11 +4,12 @@
 # @Author  : zsj
 # @File    : xgboost_test.py
 # @Description:
+import os
 
 import numpy as np
 import xgboost as xgb
 
-from isolate_model.base_function import load_csv, translate_to_xgboost_datas
+from isolate_model.base_function import load_csv, translate_to_xgboost_datas_from_mysql, load_xgboost_class
 from isolate_model.isolate_class import Isolate
 
 # cases = load_csv("../file/predict.csv")
@@ -135,8 +136,13 @@ from isolate_model.isolate_class import Isolate
 # bst = xgb.train(param, dtrain, num_round, watchlist)
 
 
+file_name = "./models_file/lstm/%s//" % "1235"
+os.makedirs(file_name)
 
-from xgboost_model.xgboost_class import XGBoost
 
-xgb1 = XGBoost("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
-
+# from xgboost_model.xgboost_class import XGBoost
+#
+# xgb1 = XGBoost("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
+#
+# pre = load_xgboost_class("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
+# print(pre.name)
