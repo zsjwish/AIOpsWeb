@@ -3,6 +3,7 @@ import json
 import os
 
 # Create your views here.
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
@@ -36,11 +37,13 @@ def submit(request):
     print(type(request.body.decode()))
     if request.method == "POST":
         body = json.loads(request.body.decode())
-        print(type(body))
-        print("host_id", body["host_id"])
-        print("time", body["time"])
-        print("kpi", body["CPU"])
-        use_XGBoost_predict(body)
+        # print(type(body))
+        # print("host_id", body["host_id"])
+        # print("time", body["time"])
+        # print("kpi", body["CPU"])
+        result = use_XGBoost_predict(body)
+        print(result)
+        return HttpResponse(result, content_type = "application/json")
     return render(request, 'models/upload_one_data.html')
 
 

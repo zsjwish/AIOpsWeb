@@ -229,9 +229,16 @@ def str_to_time_hour_minute(time):
 
 def use_XGBoost_predict(json_data):
     model_name = json_data["host_id"]
+    times = datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S')
+    print(times.hour)
+    print(type(times))
+    predict_list = [model_name, datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S'), json_data["kpi"]]
+    print(predict_list)
+    predict_array = np.array(predict_list)
+    tmp = translate_to_xgboost_datas_from_mysql(predict_array.reshape(1,3))
     # 加载模型时可能没有模型
     XGBoost_model = xgboost_model_dict[model_name]
-    return XGBoost_model.predict(json_data)
+    return XGBoost_model.predict(tmp)
 
 
 def translate_to_xgboost_datas_from_realtime():
