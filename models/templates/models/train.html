@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>models list</title>
+</head>
+<body>
+<label>请选择算法类型：</label>
+<form action="/models/train/" method="post">
+    {% csrf_token %}
+    模型类型:<select name="kind">
+        <option value="XGBoost">XGBoost</option>
+        <option value="LSTM">LSTM</option>
+    </select>
+    数据集:<select name="data_name">
+        {% for name in names %}
+        <option value={{ name }}>{{ name }}</option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="提交" />
+</form>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>models list</title>
+</head>
+<body>
+  {{ kind }}  模型  {{ data_name }}  已存在，请到模型详细界面查看信息
+<form>
+    <button><a href="{% url 'models:upload' %}">模型详细信息</a></button>
+    <button><a href="{% url 'models:train' %}">继续训练</a></button>
+</form>
+</body>
+</html>

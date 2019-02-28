@@ -12,11 +12,13 @@ import time
 from datetime import datetime
 import numpy as np
 import matplotlib.pyplot as plt
-from keras.models import load_model
 
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas
 from isolate_model.isolate_class import Isolate
+
 from models.models import xgboost_model_dict, data_set, lstm_model_dict
+
+
 # from lstm_model.lstm_class import LSTMModel
 
 
@@ -174,9 +176,11 @@ def load_dataset_name_to_list():
     """
     file_path = "./models_file/data_set_name"
     with open(file_path, 'r') as file:
-        lines = file.readlines()
+        lines = file.read().splitlines()
         for line in lines:
-            if data_set.count(line) == 0:
+            if line is None or line == "":
+                continue
+            elif data_set.count(line) == 0:
                 data_set.append(line)
 
 
@@ -189,7 +193,9 @@ def load_lstm_name_to_dict():
     with open(file_path, 'r') as file:
         lines = file.read().splitlines()
         for line in lines:
-            if line not in lstm_model_dict.keys():
+            if line is None or line == "":
+                continue
+            elif line not in lstm_model_dict.keys():
                 lstm_model = load_lstm_class(line)
                 lstm_model_dict[line] = lstm_model
 
@@ -203,7 +209,9 @@ def load_xgboost_name_to_dict():
     with open(file_path, 'r') as file:
         lines = file.read().splitlines()
         for line in lines:
-            if line not in xgboost_model_dict.keys():
+            if line is None or line == "":
+                continue
+            elif line not in xgboost_model_dict.keys():
                 xgboost_model_dict[line] = load_xgboost_class(line)
 
 
@@ -308,11 +316,12 @@ def save_xgboost_class(model):
     :return:
     """
     # 存储模型
-    file_name = "../models_file/xgboost/%s" % model.name
+    print("sava_xgboost_path", os.getcwd())
+    file_name = "./models_file/xgboost/%s" % model.name
     with open(file_name, 'wb') as file_obj:
         pickle.dump(model, file_obj)
     # 存储名称
-    file_model_name = "../models_file/xgboost_name"
+    file_model_name = "./models_file/xgboost_name"
     with open(file_model_name, 'a+') as name_obj:
         name_obj.write(model.name + "\n")
 
@@ -323,7 +332,6 @@ def load_xgboost_class(model_name):
     :param model_name:模型名
     :return: 返回模型
     """
-    print(os.getcwd())
     file_name = "./models_file/xgboost/%s" % model_name
     return pickle.load(open(file_name, "rb"))
 
@@ -358,37 +366,20 @@ def load_lstm_class(model_name):
     return pickle.load(open(file_name, "rb"))
 
 
-def save_lstm_class1(LSTM_model, model_name):
-    """
-    lstm 模型持久化，存储在models目录下，使用model.name作为文件名,同时持久化模型名称
-    :param model:
-    :return:
-    """
-    # 存储模型
-    file_name = "../models_file/lstm/%s" % model_name
-    if not os.path.exists(file_name):
-        os.makedirs(file_name)
-    LSTM_model.save(file_name + "/1.h5")
-    # 存储名称
-    file_model_name = "../models_file/lstm_name"
-    with open(file_model_name, 'a+') as name_obj:
-        name_obj.write(model_name + "\n")
+def train_model(model_kind, data_name):
+    from xgboost_model.xgboost_class import XGBoost
+    from lstm_model.lstm_class import LSTMModel
+    print(data_name)
+    if model_kind == "XGBoost":
+        if data_name in xgboost_model_dict.keys():
+            return 0
+        else:
+            XGBoost(data_name)
+            return 1
 
-
-def load_lstm_class1(model_name):
-    """
-    根据模型名称加载模型，返回model
-    :param model_name:模型名
-    :return: 返回模型
-    """
-    print(os.getcwd())
-    file_name = "./models_file/lstm/%s/1.h5" % model_name
-    return load_model(file_name)
-
-
-# str = "2018-11-16 21:38:11"
-# end_time = datetime.strptime(str, '%Y-%m-%d %H:%M:%S')
-# print(end_time)
-# res = load_data_for_lstm_from_mysql("20bc4dbb-f7f8-4521-9187-7dc31cac76e", end_time, 1)
-# print(type(res))
-# print(res)
+    elif model_kind == 'LSTM':
+        if data_name in lstm_model_dict.keys():
+            return 0
+        else:
+            LSTMModel(data_name)
+            return 1

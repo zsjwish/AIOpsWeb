@@ -6,9 +6,9 @@ import os
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
-from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict
+from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model
 from models.hello import Hello
-from models.models import xgboost_model_dict, lstm_model_dict
+from models.models import xgboost_model_dict, lstm_model_dict, data_set
 
 
 def index(request):
@@ -42,6 +42,22 @@ def submit(request):
         print("kpi", body["CPU"])
         use_XGBoost_predict(body)
     return render(request, 'models/upload_one_data.html')
+
+
+def train(request):
+    # 判断接收的值是否为POST
+    dataset = {"names": data_set}
+    if request.method == "POST":
+        kind = request.POST["kind"]
+        data_name = request.POST["data_name"]
+        info = {"kind": kind, "data_name": data_name}
+        res = train_model(kind, data_name)
+        if res == 0:
+            return render(request, 'models/model_exists.html')
+        return render(request, 'models/train_success.html', context = info)
+    return render(request, 'models/train.html', context = dataset)
+
+
 
 
 @csrf_exempt

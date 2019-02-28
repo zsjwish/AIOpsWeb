@@ -67,6 +67,7 @@ class LSTMModel:
         data = scaler.fit_transform(data)
         # 确定训练集和测试集大小
         train_size = int(sum(self.rate) * self.rate[0])
+        # train_size = int(len(data) * self.rate[0] / sum(self.rate))
         train, test = data[0:train_size, :], data[train_size:len(data), :]
         # 确定特征和Y
         trainX, trainY = create_dataset(train)
@@ -207,7 +208,7 @@ def create_dataset(dataset):
     return np.array(dataX), np.array(dataY)
 
 
-# lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b16")
+# lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b165")
 # data = load_data_for_lstm_from_mysql("982c78b5-435a-40b3-9a31-9fb5fbf8b16", 9000)
 # print(data)
 # data = np.reshape(data, (len(data), 1))
@@ -219,3 +220,4 @@ def create_dataset(dataset):
 # save_lstm_class(lstm1)
 # lstm2 = load_lstm_class(lstm1.name)
 # print(lstm2.predict_str_value)
+# print("1lstm")
