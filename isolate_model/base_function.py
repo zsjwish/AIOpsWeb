@@ -14,13 +14,10 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas, \
-    update_datas
+    update_datas, query_lstm_predict_30, query_model_info
 from isolate_model.isolate_class import Isolate
 
 from models.models import xgboost_model_dict, data_set, lstm_model_dict
-
-
-# from lstm_model.lstm_class import LSTMModel
 
 
 def load_csv(file_name):
@@ -197,8 +194,8 @@ def load_lstm_name_to_dict():
             if line is None or line == "":
                 continue
             elif line not in lstm_model_dict.keys():
-                lstm_model = load_lstm_class(line)
-                lstm_model_dict[line] = lstm_model
+                lstm_model_dict[line] = load_lstm_class(line)
+    print("lstm---------------------", lstm_model_dict)
 
 
 def load_xgboost_name_to_dict():
@@ -214,6 +211,7 @@ def load_xgboost_name_to_dict():
                 continue
             elif line not in xgboost_model_dict.keys():
                 xgboost_model_dict[line] = load_xgboost_class(line)
+    print("xgboost-------------------", xgboost_model_dict)
 
 
 def load_datas_from_disk_to_memory():
@@ -241,7 +239,7 @@ def use_XGBoost_predict(json_data):
     predict_list = [model_name, datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S'), json_data["kpi"]]
     print(predict_list)
     predict_array = np.array(predict_list)
-    tmp = translate_to_xgboost_datas_from_mysql(predict_array.reshape(1,3))
+    tmp = translate_to_xgboost_datas_from_mysql(predict_array.reshape(1, 3))
     # 加载模型时可能没有模型
     XGBoost_model = xgboost_model_dict[model_name]
     return XGBoost_model.predict(tmp)
@@ -346,11 +344,15 @@ def load_xgboost_class(model_name):
     :return: 返回模型
     """
     file_name = "./models_file/xgboost/%s" % model_name
-    return pickle.load(open(file_name, "rb"))
+    # return pickle.load(open(file_name, "rb"))
+    print(os.getcwd())
+    print(file_name)
+    with open(file_name, 'rb') as f:
+        xgboost_class = pickle.load(f)
+        return xgboost_class
 
 
 def save_lstm_class(LSTM_model):
-    from lstm_model.lstm_class import LSTMModel
     """
     lstm 模型持久化，存储在models目录下，使用model.name作为文件名,同时持久化模型名称
     :param model:
@@ -358,8 +360,9 @@ def save_lstm_class(LSTM_model):
     """
     # 存储模型
     file_name = "./models_file/lstm/%s" % LSTM_model.name
+    print("save lstm path", file_name)
     with open(file_name, 'wb') as file_obj:
-        pickle.dump(LSTM_model, file_obj, 2)
+        pickle.dump(LSTM_model, file_obj)
     # 存储名称
     file_model_name = "./models_file/lstm_name"
     with open(file_model_name, 'a+') as name_obj:
@@ -367,7 +370,6 @@ def save_lstm_class(LSTM_model):
 
 
 def load_lstm_class(model_name):
-    from lstm_model.lstm_class import LSTMModel
     """
     根据模型名称加载模型，返回model
     :param model_name:模型名
@@ -376,13 +378,16 @@ def load_lstm_class(model_name):
     print(os.getcwd())
     file_name = "./models_file/lstm/%s" % model_name
     print(file_name)
-    return pickle.load(open(file_name, "rb"))
+    with open(file_name, 'rb') as f:
+        lstm_class = pickle.load(f)
+        return lstm_class
 
 
 def train_model(model_kind, data_name):
     """训练模型"""
     from xgboost_model.xgboost_class import XGBoost
     from lstm_model.lstm_class import LSTMModel
+    print("类型",type(data_name))
     print(data_name)
     if model_kind == "XGBoost":
         if data_name in xgboost_model_dict.keys():
@@ -395,7 +400,10 @@ def train_model(model_kind, data_name):
         if data_name in lstm_model_dict.keys():
             return 0
         else:
-            LSTMModel(data_name)
+            print(data_name)
+            print("类型", type(data_name))
+            tmp = LSTMModel(data_name)
+            tmp.train()
             return 1
 
 
@@ -408,7 +416,8 @@ def get_datas_for_tag(table_name, start_time=0, end_time=0, label=(0, 1)):
     :param label:
     :return:
     """
-    result = query_datas(connectdb(), table_name = table_name, label = label, start_time = start_time, end_time = end_time)
+    result = query_datas(connectdb(), table_name = table_name, label = label, start_time = start_time,
+                         end_time = end_time)
     print(type(result))
     print(result)
     return result
@@ -425,3 +434,20 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
     """
     if update_datas(connectdb(), table_name = table_name, label = label, start_time = start_time, end_time = end_time):
         return get_datas_for_tag(table_name = table_name, start_time = start_time, end_time = end_time, label = label)
+
+
+def predict_future_30(table_name):
+    res = query_lstm_predict_30(table_name)
+    predict_value = res[0][1]
+    predict_value = predict_value.split(",")
+    predict_value = [float(i) for i in predict_value]
+    predict_xAxis = list(range(1, len(predict_value) + 1))
+    return predict_xAxis, predict_value
+
+
+def get_model_info(kind):
+    res = query_model_info(kind)
+    print(res)
+    print(len(res))
+    print(type(res))
+

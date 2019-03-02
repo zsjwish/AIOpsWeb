@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <!-- 引入 ECharts 文件 -->
+    <script src="../../static/models/echarts.min.js"></script>
+    <title>LSTM_predict</title>
+</head>
+<body>
+<h1>趋势预测</h1>
+<form action="" method="POST">
+    <label>选择数据集</label>
+    <select name="data_name">
+        <option data-tokens="nobody">{{ table_name }}</option>
+        {% for name in data_names %}
+        <option value="{{name}}">
+            {{ name }}
+        </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="预测未来30个值" />
+</form>
+
+    <!-- 为 ECharts 准备一个具备大小（宽高）的 DOM -->
+    <div id="main" style="width: 800px;height:600px; margin: 10% 20% 0 20%"></div>
+    <script type="text/javascript">
+        var predict_table = {{ predict_table|safe }};
+        var predict_xAxis = {{ predict_xAxis|safe }};
+        var predict_value = {{ predict_value|safe }};
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {
+            title : {
+                text: '未来半小时趋势预测',
+                subtext: "数据集:" + predict_table
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['预测值']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : predict_xAxis
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: predict_value
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'KPI值',
+                    type:'line',
+                    data: predict_value ,
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]
+        };
+
+
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+    </script>
+</body>
+</html>
+

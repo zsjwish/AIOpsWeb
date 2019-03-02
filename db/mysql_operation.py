@@ -54,7 +54,7 @@ def create_table(db, np_array_field, table_name):
     kpi_sql += "`label` int"
 
     # 创建表sql语句，加入一个id自增，因为一分钟内可能有多条数据
-    sql = "create table `%s`(`id` int auto_increment primary key, `time` timestamp not null," % (
+    sql = "create table `%s`(`id` int auto_increment primary key, `time` timestamp not null DEFAULT CURRENT_TIMESTAMP," % (
         table_name) + kpi_sql + ");"
     print(sql)
     try:
@@ -399,6 +399,44 @@ def update_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0, la
         db.rollback()
         return False
 
+
+def query_lstm_predict_30(table_name):
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "select `lasted_predict`,`predict_value` from `lstm_model` where `model_name`='%s'" % table_name
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        return results
+    except:
+        # 如果失败则回滚
+        print('更新lstm数据失败')
+        db.rollback()
+        return False
+
+
+def query_model_info(kind):
+    db = connectdb()
+    cursor = db.cursor()
+    if kind == 'XGBoost':
+        sql = "select * from `model`"
+    elif kind == "LSTM":
+        sql = "select * from `lstm_model`"
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        return results
+    except:
+        # 如果失败则回滚
+        print('更新lstm数据失败')
+        db.rollback()
+        return False
 
 def closedb(db):
     """

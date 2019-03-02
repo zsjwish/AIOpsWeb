@@ -2,8 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>upload file</title>
 </head>
+<h1>上传数据集</h1>
 <body>
 {% if error_message %}<p><strong>{{   error_message }}</strong></p>{% endif %}
 <form action="/models/upload/" method="post" enctype="multipart/form-data">

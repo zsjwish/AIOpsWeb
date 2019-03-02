@@ -7,12 +7,15 @@
 import math
 import time
 
+import keras
 import numpy as np
 from keras import Sequential
 from keras.layers import LSTM, Dense, Activation
+from keras import backend as K
+from sklearn import logger
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-
+import tensorflow as tf
 from db.mysql_operation import insert_lstm_model, update_lstm_model
 from isolate_model.base_function import save_lstm_class, load_data_for_lstm_from_mysql
 from models.models import lstm_model_dict
@@ -20,6 +23,7 @@ from models.models import lstm_model_dict
 
 class LSTMModel:
     def __init__(self, model_name):
+        print("LSTM init`````````````````````````````````````````````````````````")
         self.name = model_name
         # 预测需要前面多少值
         self.look_back = 50
@@ -42,19 +46,21 @@ class LSTMModel:
         # 每次向前预测的值，每次预测look_forward个值
         self.predict_data = []
         # 初始化模型，train_x的维度为(n_samples, time_steps, input_dim)
-        LSTM_model = Sequential()
+        model = Sequential()
         # 增加LSTM网络层
-        LSTM_model.add(LSTM(50, input_shape = (1, self.look_back), return_sequences = True))
-        LSTM_model.add(LSTM(100, return_sequences = False))
-        LSTM_model.add(Dense(units = 1))
-        LSTM_model.add(Activation('linear'))
-        LSTM_model.compile(loss = 'mse', optimizer = 'rmsprop')
-        self.model = LSTM_model
+        model.add(LSTM(50, input_shape = (1, self.look_back), return_sequences = True))
+        model.add(LSTM(100, return_sequences = False))
+        model.add(Dense(units = 1))
+        model.add(Activation('linear'))
+        model.compile(loss = 'mse', optimizer = 'rmsprop')
+        self.model = model
         self.insert_database_model()
-        self.train()
+        # self.model.save(self.name)
+        # self.cnn_model.predict(np.zeros(inputdim))
+
+
         # 模型持久化到磁盘
-        save_lstm_class(self)
-        lstm_model_dict[self.name] = self
+
 
     def train(self, data=None):
         if data is None:
@@ -75,22 +81,44 @@ class LSTMModel:
         # 转换成三维输入，sample，time step，feature
         trainX = np.reshape(trainX, (trainX.shape[0], 1, trainX.shape[1]))
         testX = np.reshape(testX, (testX.shape[0], 1, testX.shape[1]))
+        print(trainX.shape)
+        print(testX.shape)
         # 模型训练
+        print("model type", type(self.model))
         self.model.fit(trainX, trainY, epochs = 100, batch_size = 5, verbose = 2)
+        print("model type", type(self.model))
+        # self.model._make_predict_function()  # have to initialize before threading
+        # self.model.session = K.get_session()
+        # self.model.graph = tf.get_default_graph()
+        # self.model.graph.finalize()  # make graph read-only
         # 预测训练数据
-        trainPredict = self.model.predict(trainX)
+        print("self.model.type", type(self.model))
+        print("++++++++++", self.model.summary())
+        # model = self.model.load_model(self.name)
+        print("model0000000000000000", self.model)
+        try:
+            trainPredict = self.model.predict(trainX)
+        except Exception as e:
+            logger.info(e)
+            keras.backend.clear_session()
+            lstm_model = self.model
+            lstm_model.predict(trainX)
         # 预测测试数据
-        testPredict = self.model.predict(testX)
+        # testPredict = self.model.predict(testX)
         # 将标准化后是数据转换为原始数据
         trainPredict = scaler.inverse_transform(trainPredict)
         trainY = scaler.inverse_transform([trainY])
-        testPredict = scaler.inverse_transform(testPredict)
+        # testPredict = scaler.inverse_transform(testPredict)
         testY = scaler.inverse_transform([testY])
         trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
-        testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
-        self.rmse = min(trainScore, testScore)
+        # testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
+        # self.rmse = min(trainScore, testScore)
+        self.rmse = trainScore
         self.lasted_predict = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.update_database_model()
+        save_lstm_class(self)
+        lstm_model_dict[self.name] = self
+        return self.model
 
     def create_dataset(self, dataset):
         """
@@ -207,17 +235,6 @@ def create_dataset(dataset):
     # print("dataY", dataY)
     return np.array(dataX), np.array(dataY)
 
-
+#
 # lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b165")
-# data = load_data_for_lstm_from_mysql("982c78b5-435a-40b3-9a31-9fb5fbf8b16", 9000)
-# print(data)
-# data = np.reshape(data, (len(data), 1))
-# data = data[-50:, :].tolist()
-# lstm1.predict_data = data
 # lstm1.predict_values()
-# print(lstm_model_dict["982c78b5-435a-40b3-9a31-9fb5fbf8b16"])
-# time.sleep(10)
-# save_lstm_class(lstm1)
-# lstm2 = load_lstm_class(lstm1.name)
-# print(lstm2.predict_str_value)
-# print("1lstm")

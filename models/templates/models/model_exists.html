@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <title>models list</title>
 </head>
+<h1>模型已存在</h1>
 <body>
   {{ kind }}  模型  {{ data_name }}  已存在，请到模型详细界面查看信息
 <form>
-    <button><a href="{% url 'models:upload' %}">模型详细信息</a></button>
+    <button><a href="{% url 'models:model_info' %}">模型详细信息</a></button>
     <button><a href="{% url 'models:train' %}">继续训练</a></button>
 </form>
 </body>

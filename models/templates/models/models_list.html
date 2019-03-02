@@ -1,18 +1,133 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:table-layout="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>models list</title>
+    <title>model_list</title>
 </head>
 <body>
-<label>请选择算法类型：</label>
-<select>
-  <option value="XGBoost">XGBoost</option>
-  <option value="LSTM">LSTM</option>
-</select>
-<form action="/models/upload/" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    <p><input type="file" name="f1"></p>
-    <input type="submit" value="upload">
+<h1>模型信息</h1>
+
+<form action="" method="POST">
+    <label>请选择模型类型</label>
+    <select name="kind">
+        <option value="XGBoost"selected>XGBoost</option>
+        <option value="LSTM">LSMT</option>
+    </select>
+    <input type="submit" value="查询模型信息" />
+</form>
+
+{% if kind == 'XGBoost' %}
+    <table id="table1" border="1" width="90%"  style="margin:  2% 5% 0 5%">
+        <thead>
+            <tr>
+                <th>模型名称</th>
+                <th>精确率</th>
+                <th>召回率</th>
+                <th>f1</th>
+                <th>训练数据量</th>
+                <th>模型是否已训练完成</th>
+                <th>数据集是否已更改</th>
+                <th>模型创建时间</th>
+                <th>最后修改时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datas %}
+            <tr class=>
+                <td width="30%">
+                    {{ data.0 }}
+                </td>
+                <td width="5%">
+                    {{ data.1 }}
+                </td>
+                <td width="5%">
+                    {{ data.2 }}
+                </td>
+                <td width="5%">
+                    {{ data.3 }}
+                </td>
+
+                <td width="5%">
+                    {{ data.4 }}
+                </td>
+
+                <td width="5%">
+                    {{ data.5 }}
+                </td>
+
+                <td width="5%">
+                    {{ data.6 }}
+                </td>
+
+                <td width="20%">
+                    {{ data.7 }}
+                </td>
+
+                <td width="20%">
+                    {{ data.8 }}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+
+{% if kind == 'LSTM' %}
+    <table id="table2" border="1" width="90%"  style="margin:  2% 5% 0 5%; table-layout: fixed;word-break:break-all;">
+        <thead>
+            <tr>
+                <th width="28%">模型名称</th>
+                <th width="4%">均方根误差</th>
+                <th width="10%">最后预测时间</th>
+                <th width="32%">最后预测值</th>
+                <th width="8%">模型创建时间</th>
+                <th width="8%">最后修改时间</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for data in datas %}
+            <tr class=>
+                <td width="28%">
+                    {{ data.0 }}
+                </td>
+                <td width="4%">
+                    {{ data.1 }}
+                </td>
+                <td width="10%">
+
+                    {{ data.2 }}
+                </td>
+                <td width="32%">
+                    {{ data.3 }}
+                </td>
+
+                <td width="8%">
+                    {{ data.4 }}
+                </td>
+
+                <td width="8%">
+                    {{ data.5 }}
+                </td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+<{% endif %}
 </body>
+{#<script type="text/javascript">#}
+{#    $(document).ready(function(){#}
+{##}
+{#        let table_name = {{ 'kind' }};#}
+{#        console.log(table_name);#}
+{#        if (table_name == 'XGBoost') {#}
+{#            let table1 = document.getElementById("table1");#}
+{#            table1.style.display = 'block';#}
+{#        } else if (table_name == 'LSTM') {#}
+{#            let table2 = document.getElementById("table2");#}
+{#            table2.style.display = 'block';#}
+{#        }#}
+{##}
+{#    });#}
+{#</script>#}
 </html>

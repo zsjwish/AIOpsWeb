@@ -18,5 +18,7 @@ urlpatterns = [
     url(r'^hello/$', views.hello, name = 'hello'),
     url(r'^submit/$', views.submit, name = 'submit'),
     url(r'^tag/$', views.tag, name = 'tag'),
+    url(r'^predict/$', views.predict, name = 'predict'),
+    url(r'^model_info/$', views.model_info, name = 'model_info'),
 
 ]

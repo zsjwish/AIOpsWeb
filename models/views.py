@@ -7,8 +7,9 @@ from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+from db.mysql_operation import query_model_info
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
-    update_datas_for_tag
+    update_datas_for_tag, predict_future_30
 from models.hello import Hello
 from models.models import xgboost_model_dict, lstm_model_dict, data_set
 
@@ -82,11 +83,49 @@ def tag(request):
         info["label"] = int(request.POST["label"])
         info["name"] = request.POST["data_name"]
         print(info)
-        info["datas"] = get_datas_for_tag(table_name = info["table_name"],start_time = info["start_time"], end_time = info["end_time"], label = info["label"])
+        info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+                                             end_time = info["end_time"], label = info["label"])
         print(info)
         return render(request, 'models/tag.html', context = info)
     return render(request, 'models/tag.html', context = info)
 
+
+def model_info(request):
+    """
+    查看模型信息
+    :param request:
+    :return:
+    """
+    info = {"kind" : "XGBoost"}
+    if request.method == 'POST':
+        kind = request.POST["kind"]
+        res = query_model_info(kind)
+        print(type(res))
+        return render(request, 'models/models_list.html', {"kind": kind,
+                                                           "datas": res})
+    return render(request, 'models/models_list.html', context = info)
+
+
+def predict(request):
+    """
+    对数据标注
+    :param request:
+    :return:
+    """
+    # 判断接收的值是否为POST
+    info = {"data_names": data_set}
+    if request.method == "POST":
+        data_name = request.POST["data_name"]
+        predict_xAxis, predict_value = predict_future_30(data_name)
+        info["predict_table"] = data_name
+        info["predict_xAxis"] = predict_xAxis
+        info["predict_value"] = predict_value
+
+        return render(request, 'models/lstm_predict.html', {'predict_value': json.dumps(info["predict_value"]),
+                                                            'predict_table': json.dumps(info["predict_table"]),
+                                                            'predict_xAxis': json.dumps(info["predict_xAxis"]),
+                                                            'data_names': info["data_names"]})
+    return render(request, 'models/lstm_predict.html', context = info)
 
 
 @csrf_exempt

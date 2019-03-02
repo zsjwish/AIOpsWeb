@@ -8,7 +8,7 @@ from models.models import data_set, xgboost_model_dict, lstm_model_dict
 if __name__ == '__main__':
     # 从磁盘中加载数据集名列表
     load_datas_from_disk_to_memory()
-
+    #
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AIOps_pro.settings')
     try:
         from django.core.management import execute_from_command_line
