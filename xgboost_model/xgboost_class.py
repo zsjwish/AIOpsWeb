@@ -10,7 +10,7 @@ import xgboost as xgb
 
 from db.mysql_operation import insert_xgboost_model, update_xgboost_model
 from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_xgboost_class
-from models.models import xgboost_model_dict
+from models.models import xgboost_model_dict, xgboost_name
 
 
 class XGBoost:
@@ -113,7 +113,8 @@ class XGBoost:
         # 模型持久化
         save_xgboost_class(self)
         # 将模型名和模型存储到列表中，方便查询和使用
-        xgboost_model_dict[self.name] = self
+        # xgboost_model_dict[self.name] = self
+        xgboost_name.append(self.name)
         # 返回模型
         return bst
 

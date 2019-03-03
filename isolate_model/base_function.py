@@ -17,7 +17,7 @@ from db.mysql_operation import connectdb, query_datas, closedb, query_table, cre
     update_datas, query_lstm_predict_30, query_model_info
 from isolate_model.isolate_class import Isolate
 
-from models.models import xgboost_model_dict, data_set, lstm_model_dict
+from models.models import xgboost_model_dict, data_set, lstm_model_dict, xgboost_name, lstm_name
 
 
 def load_csv(file_name):
@@ -131,7 +131,7 @@ def draw_with_diff_color(np_array):
     print(green_arr)
 
 
-def save_datas_with_labels(file_name):
+def save_datas_with_labels(file_name, abnormal_rate):
     """
     存储已经由孤立森林学习过的带有标签的数据
     :return:True or False
@@ -140,7 +140,7 @@ def save_datas_with_labels(file_name):
     print("file name", file_name)
     title = file_name.split("/")[-1]
     print(type(title), title)
-    isolate1 = Isolate('isolate', cases)
+    isolate1 = Isolate('isolate', cases, rate = abnormal_rate)
     np_array = isolate1.merge_arrays()
     table_name = np_array[1, 0]
     db = connectdb()
@@ -178,8 +178,41 @@ def load_dataset_name_to_list():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif data_set.count(line) == 0:
+            elif line not in data_set:
                 data_set.append(line)
+    print(data_set)
+
+
+def load_xgboost_name_to_list():
+    """
+    加载磁盘文件中XGBoost模型名到内存中，xgboost_name
+    :return:
+    """
+    file_path = "./models_file/xgboost_name"
+    with open(file_path, 'r') as file:
+        lines = file.read().splitlines()
+        for line in lines:
+            if line is None or line == "":
+                continue
+            elif line not in xgboost_name:
+                xgboost_name.append(line)
+    print(xgboost_name)
+
+
+def load_lstm_name_to_list():
+    """
+    加载磁盘文件中LSTM模型名到内存中，lstm_name
+    :return:
+    """
+    file_path = "./models_file/lstm_name"
+    with open(file_path, 'r') as file:
+        lines = file.read().splitlines()
+        for line in lines:
+            if line is None or line == "":
+                continue
+            elif line not in lstm_name:
+                lstm_name.append(line)
+    print(lstm_name)
 
 
 def load_lstm_name_to_dict():
@@ -216,8 +249,10 @@ def load_xgboost_name_to_dict():
 
 def load_datas_from_disk_to_memory():
     load_dataset_name_to_list()
-    load_xgboost_name_to_dict()
-    load_lstm_name_to_dict()
+    load_xgboost_name_to_list()
+    load_lstm_name_to_list()
+    # load_xgboost_name_to_dict()
+    # load_lstm_name_to_dict()
 
 
 def str_to_time_hour_minute(time):
@@ -239,9 +274,12 @@ def use_XGBoost_predict(json_data):
     predict_list = [model_name, datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S'), json_data["kpi"]]
     print(predict_list)
     predict_array = np.array(predict_list)
+    # 转换成XGBoost能使用的数据格式
     tmp = translate_to_xgboost_datas_from_mysql(predict_array.reshape(1, 3))
-    # 加载模型时可能没有模型
-    XGBoost_model = xgboost_model_dict[model_name]
+    # 由于频次较低，每次从磁盘文件中读取模型然后判断
+    XGBoost_model = load_xgboost_class(model_name)
+    print("load xgboost0000000000000000000000")
+    print("model name", XGBoost_model.name)
     return XGBoost_model.predict(tmp)
 
 
@@ -387,17 +425,17 @@ def train_model(model_kind, data_name):
     """训练模型"""
     from xgboost_model.xgboost_class import XGBoost
     from lstm_model.lstm_class import LSTMModel
-    print("类型",type(data_name))
+    print("类型", type(data_name))
     print(data_name)
     if model_kind == "XGBoost":
-        if data_name in xgboost_model_dict.keys():
+        if data_name in xgboost_name:
             return 0
         else:
             XGBoost(data_name)
             return 1
 
     elif model_kind == 'LSTM':
-        if data_name in lstm_model_dict.keys():
+        if data_name in lstm_name:
             return 0
         else:
             print(data_name)
@@ -437,12 +475,12 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
 
 
 def predict_future_30(table_name):
-    res = query_lstm_predict_30(table_name)
-    predict_value = res[0][1]
-    predict_value = predict_value.split(",")
-    predict_value = [float(i) for i in predict_value]
-    predict_xAxis = list(range(1, len(predict_value) + 1))
-    return predict_xAxis, predict_value
+    lstm_model = load_lstm_class(table_name)
+    res = lstm_model.predict_values()
+    print(type(res))
+    print(res)
+    predict_xAxis = list(range(1, len(res) + 1))
+    return predict_xAxis, res
 
 
 def get_model_info(kind):

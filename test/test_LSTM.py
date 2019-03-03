@@ -1,10 +1,32 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# @Time    : 2019/3/2 14:17
-# @Author  : zsj
-# @File    : test_LSTM.py
-# @Description:
-# from lstm_model.lstm_class import LSTMModel
-#
-# lstm1 = LSTMModel("982c78b5-435a-40b3-9a31-9fb5fbf8b165")
-# lstm1.predict_values()
+import threading
+import time
+import queue
+
+
+class Mythrea():
+    def __init__(self, maxsize=5):
+        self.maxsize = maxsize
+        self.q = queue.Queue(maxsize)
+        for i in range(maxsize):
+            self.q.put(threading.Thread)
+
+    def get_thread(self):
+        return self.q.get()
+
+    def put_thread(self):
+        self.q.put(threading.Thread)
+
+
+pool = Mythrea(5)
+
+
+def task(arg, p):
+    print(arg)
+    time.sleep(1)
+    p.put_thread()
+
+
+for i in range(100):
+    t = pool.get_thread()
+    obj = t(target = task, args = (i, pool,))
+    obj.start()

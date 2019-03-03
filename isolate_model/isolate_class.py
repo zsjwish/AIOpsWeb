@@ -49,20 +49,14 @@ class Isolate:
         while i * 256 < len(self.cases):
             self.init_fit(self.cases, i * 256, min(len(self.cases), (i + 1) * 256))
             i += 1
-        print("length", len(self.label_list))
-        print('-------训练完成--------')
-        print("result:", self.merge_arrays())
 
     def merge_arrays(self):
         """
         重新拼接数据，包括title, label，数据集，host_id等
         :return:
         """
-        print(self.title)
-        print(type(self.title))
         array_label = np.array(["label"])
         title = np.concatenate((self.title, array_label))
-        print(self.test_cases[1:, 1])
         # 拼接数据集和label
         cases_label = np.c_[self.test_cases[1:, 1], self.cases, self.label_list]
         # 拼接title，数据集，label

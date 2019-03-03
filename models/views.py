@@ -120,7 +120,6 @@ def predict(request):
         info["predict_table"] = data_name
         info["predict_xAxis"] = predict_xAxis
         info["predict_value"] = predict_value
-
         return render(request, 'models/lstm_predict.html', {'predict_value': json.dumps(info["predict_value"]),
                                                             'predict_table': json.dumps(info["predict_table"]),
                                                             'predict_xAxis': json.dumps(info["predict_xAxis"]),
@@ -137,6 +136,8 @@ def upload(request):
     """
     # 判断接收的值是否为POST
     if request.method == "POST":
+        abnormal_rate = request.POST["abnormal_rate"]
+        print(abnormal_rate)
         # 上传文件的接收方式应该是request.FILES
         inp_files = request.FILES
         # 通过get方法获取upload.html页面提交过来的文件
@@ -155,7 +156,7 @@ def upload(request):
         for line in file_obj.chunks():
             f.write(line)
         f.close()
-        if save_datas_with_labels(f_name):
+        if save_datas_with_labels(f_name, float(abnormal_rate)):
             return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         return render(request, 'models/upload_failed.html')
     return render(request, 'models/upload_csv.html')  # 将处理好的结果通过render方式传给upload.html进行渲染

@@ -2,8 +2,7 @@
 import os
 import sys
 
-from isolate_model.base_function import load_datas_from_disk_to_memory, load_lstm_class, load_xgboost_class
-from models.models import data_set, xgboost_model_dict, lstm_model_dict
+from isolate_model.base_function import load_datas_from_disk_to_memory
 
 if __name__ == '__main__':
     # 从磁盘中加载数据集名列表

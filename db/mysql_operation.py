@@ -401,6 +401,11 @@ def update_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0, la
 
 
 def query_lstm_predict_30(table_name):
+    """
+    预测表名为table_name的监控指标未来30个时间点的值
+    :param table_name: 使用哪个模型
+    :return:
+    """
     db = connectdb()
     cursor = db.cursor()
     sql = "select `lasted_predict`,`predict_value` from `lstm_model` where `model_name`='%s'" % table_name

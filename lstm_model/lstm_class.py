@@ -11,14 +11,12 @@ import keras
 import numpy as np
 from keras import Sequential
 from keras.layers import LSTM, Dense, Activation
-from keras import backend as K
 from sklearn import logger
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-import tensorflow as tf
 from db.mysql_operation import insert_lstm_model, update_lstm_model
 from isolate_model.base_function import save_lstm_class, load_data_for_lstm_from_mysql
-from models.models import lstm_model_dict
+from models.models import lstm_model_dict, lstm_name
 
 
 class LSTMModel:
@@ -87,15 +85,8 @@ class LSTMModel:
         print("model type", type(self.model))
         self.model.fit(trainX, trainY, epochs = 100, batch_size = 5, verbose = 2)
         print("model type", type(self.model))
-        # self.model._make_predict_function()  # have to initialize before threading
-        # self.model.session = K.get_session()
-        # self.model.graph = tf.get_default_graph()
-        # self.model.graph.finalize()  # make graph read-only
         # 预测训练数据
-        print("self.model.type", type(self.model))
         print("++++++++++", self.model.summary())
-        # model = self.model.load_model(self.name)
-        print("model0000000000000000", self.model)
         try:
             trainPredict = self.model.predict(trainX)
         except Exception as e:
@@ -117,7 +108,8 @@ class LSTMModel:
         self.lasted_predict = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.update_database_model()
         save_lstm_class(self)
-        lstm_model_dict[self.name] = self
+        # 将模型名存储到文件lstm_name中
+        lstm_name.append(self.name)
         return self.model
 
     def create_dataset(self, dataset):
@@ -168,8 +160,10 @@ class LSTMModel:
         str_value = self.predict_data[(-1 * self.look_forward):]
         # 转换成str,并使用,分割
         self.predict_str_value = ','.join(str(e) for e in str_value)
+        self.lasted_predict = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         # 更新数据库表
         self.update_database_model()
+        return str_value
 
     def predict_next_value(self, data):
         """
