@@ -10,6 +10,8 @@ import pickle
 import re
 import time
 from datetime import datetime
+
+import keras
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -475,6 +477,7 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
 
 
 def predict_future_30(table_name):
+    keras.backend.clear_session()
     lstm_model = load_lstm_class(table_name)
     res = lstm_model.predict_values()
     print(type(res))

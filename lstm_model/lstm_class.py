@@ -53,11 +53,6 @@ class LSTMModel:
         model.compile(loss = 'mse', optimizer = 'rmsprop')
         self.model = model
         self.insert_database_model()
-        # self.model.save(self.name)
-        # self.cnn_model.predict(np.zeros(inputdim))
-
-
-        # 模型持久化到磁盘
 
 
     def train(self, data=None):
@@ -70,7 +65,7 @@ class LSTMModel:
         scaler = MinMaxScaler(feature_range = (0, 1))
         data = scaler.fit_transform(data)
         # 确定训练集和测试集大小
-        train_size = int(sum(self.rate) * self.rate[0])
+        train_size = int(sum(self.rate) * self.rate[0] * 20)
         # train_size = int(len(data) * self.rate[0] / sum(self.rate))
         train, test = data[0:train_size, :], data[train_size:len(data), :]
         # 确定特征和Y

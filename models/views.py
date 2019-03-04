@@ -11,7 +11,7 @@ from db.mysql_operation import query_model_info
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
     update_datas_for_tag, predict_future_30
 from models.hello import Hello
-from models.models import xgboost_model_dict, lstm_model_dict, data_set
+from models.models import xgboost_model_dict, lstm_model_dict, data_set, executor, lstm_name
 
 
 def index(request):
@@ -61,7 +61,8 @@ def train(request):
         kind = request.POST["kind"]
         data_name = request.POST["data_name"]
         info = {"kind": kind, "data_name": data_name}
-        res = train_model(kind, data_name)
+        res = executor.start_train(kind, data_name)
+        print("overoverover")
         if res == 0:
             return render(request, 'models/model_exists.html')
         return render(request, 'models/train_success.html', context = info)
@@ -113,7 +114,7 @@ def predict(request):
     :return:
     """
     # 判断接收的值是否为POST
-    info = {"data_names": data_set}
+    info = {"data_names": lstm_name}
     if request.method == "POST":
         data_name = request.POST["data_name"]
         predict_xAxis, predict_value = predict_future_30(data_name)

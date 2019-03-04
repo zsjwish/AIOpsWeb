@@ -15,6 +15,7 @@ from models.models import xgboost_model_dict, xgboost_name
 
 class XGBoost:
     def __init__(self, model_name):
+        print("xgboost init --------------------------------------")
         self.name = model_name
         self.param = {
             'booster': 'gbtree',  # 助推器，默认为gbtree，可不写
