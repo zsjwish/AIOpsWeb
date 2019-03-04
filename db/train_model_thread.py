@@ -4,7 +4,7 @@
 # @Author  : zsj
 # @File    : train_model_thread.py
 # @Description:
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 from models.models import xgboost_name, lstm_name
 
@@ -34,27 +34,34 @@ def train_model(model_kind, data_name):
             print(data_name)
             print("类型", type(data_name))
             tmp = LSTMModel(data_name)
-            tmp.train()
+            # tmp.train()
             return 1
 
 
-class TrainModelThreadPool:
-    def __init__(self):
-        """
-        初始化一个有着5个线程的线程池，线程放在thread_queue中
-        :param max_size:
-        """
-        with ThreadPoolExecutor(5) as executor:
-            self.executor = executor
+# class TrainModelThreadPool:
+#     def __init__(self):
+#         """
+#         初始化一个有着5个线程的线程池，线程放在thread_queue中
+#         :param max_size:
+#         """
+#         with ProcessPoolExecutor(3) as executor:
+#             self.executor = executor
+#
+#     def start_train(self, kind, model_name):
+#         if kind == "XGBoost":
+#             future = self.executor.submit(train_model, kind, model_name)
+#             print("train xgboost------------------------")
+#             self.executor.shutdown(wait = True)
+#         elif kind == "LSTM":
+#             future = self.executor.submit(train_model, kind, model_name)
+#             print("train lstm++++++++++++++++++++++++++++")
 
-    def start_train(self, kind, model_name):
-        if kind == "XGBoost":
-            future = self.executor.map(fn = train_model(kind, model_name))
-            print("train xgboost------------------------")
 
-        elif kind == "LSTM":
-            future = self.executor.map(fn = train_model(kind, model_name))
-            print("train lstm++++++++++++++++++++++++++++")
-
-
-
+def start_train(kind, model_name):
+    if kind == "XGBoost":
+        train_model(kind, model_name)
+        print("train xgboost------------------------")
+    elif kind == "LSTM":
+        future = executor.submit(train_model, kind, model_name)
+        print("train lstm++++++++++++++++++++++++++++")
+        executor.shutdown(wait = False)

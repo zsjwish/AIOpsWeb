@@ -5,8 +5,11 @@ import sys
 from isolate_model.base_function import load_datas_from_disk_to_memory
 
 if __name__ == '__main__':
+    print("manage 33333333333333333333")
     # 从磁盘中加载数据集名列表
+
     load_datas_from_disk_to_memory()
+
     #
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'AIOps_pro.settings')
     try:

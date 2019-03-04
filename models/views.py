@@ -3,17 +3,18 @@ import json
 import os
 
 # Create your views here.
+
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 
+from AIOps_pro.static_value import StaticValue
 from db.mysql_operation import query_model_info
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
-    update_datas_for_tag, predict_future_30
-from models.hello import Hello
-from models.models import xgboost_model_dict, lstm_model_dict, data_set, executor, lstm_name
+    update_datas_for_tag, predict_future_30, print_model
 
-
+sv = StaticValue()
 def index(request):
     return render(request, 'models/index.html')
 
@@ -23,10 +24,7 @@ def menu(request):
 
 
 def hello(request):
-    h1 = Hello()
-    string = h1.get_str("world!")
-    context = {"string": string, "xgboost": xgboost_model_dict.keys(), "lstm": lstm_model_dict.keys()}
-    return render(request, 'models/hello.html', context = context)
+    return render(request, 'models/hello.html')
 
 
 def success(request):
@@ -56,15 +54,19 @@ def train(request):
     :return:
     """
     # 判断接收的值是否为POST
-    dataset = {"names": data_set}
+    dataset = {"names": sv.data_set}
+    print()
     if request.method == "POST":
         kind = request.POST["kind"]
         data_name = request.POST["data_name"]
         info = {"kind": kind, "data_name": data_name}
-        res = executor.start_train(kind, data_name)
+
+        sv.executor5.submit(print_model, kind, data_name)
+        sv.executor5.submit(train_model, kind, data_name)
+        # executor5.shutdown(wait = False)
         print("overoverover")
-        if res == 0:
-            return render(request, 'models/model_exists.html')
+        # if res == 0:
+        #     return render(request, 'models/model_exists.html')
         return render(request, 'models/train_success.html', context = info)
     return render(request, 'models/train.html', context = dataset)
 
@@ -76,7 +78,7 @@ def tag(request):
     :return:
     """
     # 判断接收的值是否为POST
-    info = {"data_names": data_set}
+    info = {"data_names": sv.data_set}
     if request.method == "POST":
         info["table_name"] = request.POST["data_name"]
         info["start_time"] = request.POST["start_time"]
@@ -97,7 +99,7 @@ def model_info(request):
     :param request:
     :return:
     """
-    info = {"kind" : "XGBoost"}
+    info = {"kind": "XGBoost"}
     if request.method == 'POST':
         kind = request.POST["kind"]
         res = query_model_info(kind)
@@ -114,7 +116,7 @@ def predict(request):
     :return:
     """
     # 判断接收的值是否为POST
-    info = {"data_names": lstm_name}
+    info = {"data_names": sv.lstm_name}
     if request.method == "POST":
         data_name = request.POST["data_name"]
         predict_xAxis, predict_value = predict_future_30(data_name)

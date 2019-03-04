@@ -15,13 +15,12 @@ import keras
 import numpy as np
 import matplotlib.pyplot as plt
 
+from AIOps_pro.static_value import StaticValue
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas, \
     update_datas, query_lstm_predict_30, query_model_info
 from isolate_model.isolate_class import Isolate
 
-from models.models import xgboost_model_dict, data_set, lstm_model_dict, xgboost_name, lstm_name
-
-
+sv = StaticValue()
 def load_csv(file_name):
     """
     使用numpy加载csv文件,并把除了host_id的都转换成float类型，因为孤立森林只能判别数值类型
@@ -150,7 +149,7 @@ def save_datas_with_labels(file_name, abnormal_rate):
         create_table(db, np_array[0], table_name)
     if insert_train_datas(db, table_name, np_array[1:]):
         # 数据集列表存储表名（内存存储），断电就清空
-        data_set.append(title)
+        sv.data_set.append(title)
         # 存储数据集表名（磁盘存储），断电可恢复
         save_dataset_name_to_file(title)
         return True
@@ -180,9 +179,9 @@ def load_dataset_name_to_list():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in data_set:
-                data_set.append(line)
-    print(data_set)
+            elif line not in sv.data_set:
+                sv.data_set.append(line)
+    print("sv1", sv.data_set)
 
 
 def load_xgboost_name_to_list():
@@ -196,9 +195,9 @@ def load_xgboost_name_to_list():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in xgboost_name:
-                xgboost_name.append(line)
-    print(xgboost_name)
+            elif line not in sv.xgboost_name:
+                sv.xgboost_name.append(line)
+    print("sv2", sv.xgboost_name)
 
 
 def load_lstm_name_to_list():
@@ -212,9 +211,9 @@ def load_lstm_name_to_list():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in lstm_name:
-                lstm_name.append(line)
-    print(lstm_name)
+            elif line not in sv.lstm_name:
+                sv.lstm_name.append(line)
+    print("sv3", sv.lstm_name)
 
 
 def load_lstm_name_to_dict():
@@ -228,9 +227,9 @@ def load_lstm_name_to_dict():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in lstm_model_dict.keys():
-                lstm_model_dict[line] = load_lstm_class(line)
-    print("lstm---------------------", lstm_model_dict)
+            elif line not in sv.lstm_model_dict.keys():
+                sv.lstm_model_dict[line] = load_lstm_class(line)
+    print("lstm---------------------", sv.lstm_model_dict)
 
 
 def load_xgboost_name_to_dict():
@@ -244,9 +243,9 @@ def load_xgboost_name_to_dict():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in xgboost_model_dict.keys():
-                xgboost_model_dict[line] = load_xgboost_class(line)
-    print("xgboost-------------------", xgboost_model_dict)
+            elif line not in sv.xgboost_model_dict.keys():
+                sv.xgboost_model_dict[line] = load_xgboost_class(line)
+    print("xgboost-------------------", sv.xgboost_model_dict)
 
 
 def load_datas_from_disk_to_memory():
@@ -423,27 +422,33 @@ def load_lstm_class(model_name):
         return lstm_class
 
 
+def print_model(model_kind, data_name):
+    print("print_modelllllllllllllllllll", model_kind, data_name)
+
+
+from xgboost_model.xgboost_class import XGBoost
+from lstm_model.lstm_class import LSTMModel
+
+
 def train_model(model_kind, data_name):
     """训练模型"""
-    from xgboost_model.xgboost_class import XGBoost
-    from lstm_model.lstm_class import LSTMModel
     print("类型", type(data_name))
     print(data_name)
     if model_kind == "XGBoost":
-        if data_name in xgboost_name:
+        if data_name in sv.xgboost_name:
             return 0
         else:
             XGBoost(data_name)
             return 1
 
     elif model_kind == 'LSTM':
-        if data_name in lstm_name:
+        if data_name in sv.lstm_name:
             return 0
         else:
             print(data_name)
             print("类型", type(data_name))
             tmp = LSTMModel(data_name)
-            tmp.train()
+            # tmp.train()
             return 1
 
 
@@ -477,9 +482,9 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
 
 
 def predict_future_30(table_name):
-    keras.backend.clear_session()
-    lstm_model = load_lstm_class(table_name)
-    res = lstm_model.predict_values()
+    # keras.backend.clear_session()
+    lstm_model_tmp = load_lstm_class(table_name)
+    res = lstm_model_tmp.predict_values()
     print(type(res))
     print(res)
     predict_xAxis = list(range(1, len(res) + 1))
@@ -491,4 +496,3 @@ def get_model_info(kind):
     print(res)
     print(len(res))
     print(type(res))
-

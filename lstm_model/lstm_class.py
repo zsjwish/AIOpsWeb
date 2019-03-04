@@ -7,20 +7,23 @@
 import math
 import time
 
-import keras
 import numpy as np
 from keras import Sequential
 from keras.layers import LSTM, Dense, Activation
-from sklearn import logger
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
+
+from AIOps_pro.static_value import StaticValue
+from db.model_persistence import save_lstm_class
 from db.mysql_operation import insert_lstm_model, update_lstm_model
-from isolate_model.base_function import save_lstm_class, load_data_for_lstm_from_mysql
-from models.models import lstm_model_dict, lstm_name
+from isolate_model.base_function import load_data_for_lstm_from_mysql
+
+sv = StaticValue()
 
 
 class LSTMModel:
     def __init__(self, model_name):
+        print("sv", sv.lstm_name)
         print("LSTM init`````````````````````````````````````````````````````````")
         self.name = model_name
         # 预测需要前面多少值
@@ -53,7 +56,7 @@ class LSTMModel:
         model.compile(loss = 'mse', optimizer = 'rmsprop')
         self.model = model
         self.insert_database_model()
-
+        self.train()
 
     def train(self, data=None):
         if data is None:
@@ -65,7 +68,8 @@ class LSTMModel:
         scaler = MinMaxScaler(feature_range = (0, 1))
         data = scaler.fit_transform(data)
         # 确定训练集和测试集大小
-        train_size = int(sum(self.rate) * self.rate[0] * 20)
+        # train_size = int(sum(self.rate) * self.rate[0])
+        train_size = int(sum(self.rate) * self.rate[0] * 5)
         # train_size = int(len(data) * self.rate[0] / sum(self.rate))
         train, test = data[0:train_size, :], data[train_size:len(data), :]
         # 确定特征和Y
@@ -82,13 +86,13 @@ class LSTMModel:
         print("model type", type(self.model))
         # 预测训练数据
         print("++++++++++", self.model.summary())
-        try:
-            trainPredict = self.model.predict(trainX)
-        except Exception as e:
-            logger.info(e)
-            keras.backend.clear_session()
-            lstm_model = self.model
-            lstm_model.predict(trainX)
+        # try:
+        trainPredict = self.model.predict(trainX)
+        # except Exception as e:
+        #     logger.info(e)
+        #     keras.backend.clear_session()
+        #     lstm_model = self.model
+        #     lstm_model.predict(trainX)
         # 预测测试数据
         # testPredict = self.model.predict(testX)
         # 将标准化后是数据转换为原始数据
@@ -104,7 +108,8 @@ class LSTMModel:
         self.update_database_model()
         save_lstm_class(self)
         # 将模型名存储到文件lstm_name中
-        lstm_name.append(self.name)
+        sv.lstm_name.append(self.name)
+        print(sv.lstm_name)
         return self.model
 
     def create_dataset(self, dataset):
