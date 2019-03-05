@@ -12,18 +12,14 @@ from keras import Sequential
 from keras.layers import LSTM, Dense, Activation
 from sklearn.metrics import mean_squared_error
 from sklearn.preprocessing import MinMaxScaler
-
-from AIOps_pro.static_value import StaticValue
 from db.model_persistence import save_lstm_class
 from db.mysql_operation import insert_lstm_model, update_lstm_model
 from isolate_model.base_function import load_data_for_lstm_from_mysql
 
-sv = StaticValue()
 
 
 class LSTMModel:
     def __init__(self, model_name):
-        print("sv", sv.lstm_name)
         print("LSTM init`````````````````````````````````````````````````````````")
         self.name = model_name
         # 预测需要前面多少值
@@ -106,10 +102,6 @@ class LSTMModel:
         self.rmse = trainScore
         self.lasted_predict = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.update_database_model()
-        save_lstm_class(self)
-        # 将模型名存储到文件lstm_name中
-        sv.lstm_name.append(self.name)
-        print(sv.lstm_name)
         return self.model
 
     def create_dataset(self, dataset):

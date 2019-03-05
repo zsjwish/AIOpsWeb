@@ -4,9 +4,19 @@
 # @Author  : zsj
 # @File    : a.py
 # @Description:
-from AIOps_pro.static_value import sv
+import time
 
 
+class Datas:
+    def __init__(self, name):
+        print('init data')
+        self.name = name
+        self.data = name + "'s datas"
+        self.time = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
 
-def print_a():
-    print(sv.lstm_name)
+    def get_name(self):
+        return self.name
+
+    def get_data(self):
+        return self.data
+

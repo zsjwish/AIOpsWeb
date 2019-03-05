@@ -118,7 +118,17 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    "default": {
+        "BACKEND": "django_redis.cache.RedisCache",
+        "LOCATION": "redis://127.0.0.1:6379/1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "django_redis.client.DefaultClient",
+            # "CONNECTION_POOL_KWARGS": {"max_connections": 100},
+            "PICKLE_VERSION": -1  # Use the latest protocol version
+        }
     }
 }
+DJANGO_REDIS_IGNORE_EXCEPTIONS = True
+REDIS_TIMEOUT = 7 * 24 * 60 * 60
+CUBES_REDIS_TIMEOUT = 60 * 60
+NEVER_REDIS_TIMEOUT = 365 * 24 * 60 * 60

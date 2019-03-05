@@ -8,15 +8,12 @@ import time
 import numpy as np
 import xgboost as xgb
 
-from AIOps_pro.static_value import StaticValue
 from db.mysql_operation import insert_xgboost_model, update_xgboost_model
 from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_xgboost_class
 
-sv = StaticValue()
 class XGBoost:
     def __init__(self, model_name):
         print("xgboost init --------------------------------------")
-        print("sv,", sv.lstm_name)
         self.name = model_name
         self.param = {
             'booster': 'gbtree',  # 助推器，默认为gbtree，可不写
@@ -50,7 +47,6 @@ class XGBoost:
         self.insert_database_model()
         # 初始化模型
         self.model = self.init_model()
-        time.sleep(20)
 
     def init_model(self):
         # 从数据库获取数据，model_name就是表名
@@ -65,7 +61,6 @@ class XGBoost:
         total_rate = sum(rate)
         rate_num1 = int(self.trained_number * rate[0] / total_rate)
         # 训练集
-        print(datas)
         dtrain = xgb.DMatrix(datas[0:rate_num1, 0:-1].astype(float),
                              label = datas[0: rate_num1, -1].astype(int))
         # 验证集
@@ -113,11 +108,8 @@ class XGBoost:
         self.model = bst
         # 更新数据库
         self.update_database_model()
-        # 模型持久化
-        save_xgboost_class(self)
-        # 将模型名和模型存储到列表中，方便查询和使用
-        sv.xgboost_name.append(self.name)
         # 返回模型
+        time.sleep(10)
         return bst
 
     def predict(self, data):

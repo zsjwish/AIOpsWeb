@@ -23,12 +23,9 @@ def singleton(cls):
 @singleton
 class StaticValue(object):
     def __init__(self):
-        self.data_set = []
-        self.xgboost_name = []
-        self.lstm_name = []
-        self.executor5 = ThreadPoolExecutor(5)
+        self.executor5 = ProcessPoolExecutor(5)
+        # self.executor5 = ThreadPoolExecutor(5)
 
 
 sv = StaticValue()
-sv2 = StaticValue()
-sv3 = StaticValue()
+

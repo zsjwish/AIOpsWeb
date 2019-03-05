@@ -10,17 +10,15 @@ import pickle
 import re
 import time
 from datetime import datetime
-
-import keras
 import numpy as np
 import matplotlib.pyplot as plt
+from django_redis import get_redis_connection
 
-from AIOps_pro.static_value import StaticValue
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas, \
     update_datas, query_lstm_predict_30, query_model_info
 from isolate_model.isolate_class import Isolate
 
-sv = StaticValue()
+
 def load_csv(file_name):
     """
     使用numpy加载csv文件,并把除了host_id的都转换成float类型，因为孤立森林只能判别数值类型
@@ -148,8 +146,10 @@ def save_datas_with_labels(file_name, abnormal_rate):
     if not query_table(db, table_name):
         create_table(db, np_array[0], table_name)
     if insert_train_datas(db, table_name, np_array[1:]):
-        # 数据集列表存储表名（内存存储），断电就清空
-        sv.data_set.append(title)
+        # 数据集列表存储表名（redis存储），断电就清空
+        redis_conn = get_redis_connection("default")
+        redis_conn.sadd('data_set_name', title)
+        # sv.data_set.append(title)
         # 存储数据集表名（磁盘存储），断电可恢复
         save_dataset_name_to_file(title)
         return True
@@ -170,23 +170,23 @@ def save_dataset_name_to_file(file_name):
 
 def load_dataset_name_to_list():
     """
-    加载磁盘文件中数据集名到内存中，data_set
+    加载磁盘文件中数据集名到缓存中，data_set
     :return:
     """
+
     file_path = "./models_file/data_set_name"
     with open(file_path, 'r') as file:
         lines = file.read().splitlines()
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in sv.data_set:
-                sv.data_set.append(line)
-    print("sv1", sv.data_set)
+            redis_conn = get_redis_connection("default")
+            redis_conn.sadd('data_set_name', line)
 
 
 def load_xgboost_name_to_list():
     """
-    加载磁盘文件中XGBoost模型名到内存中，xgboost_name
+    加载磁盘文件中XGBoost模型名到缓存中，xgboost_name
     :return:
     """
     file_path = "./models_file/xgboost_name"
@@ -195,65 +195,62 @@ def load_xgboost_name_to_list():
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in sv.xgboost_name:
-                sv.xgboost_name.append(line)
-    print("sv2", sv.xgboost_name)
+            redis_conn = get_redis_connection("default")
+            redis_conn.sadd('xgboost_name', line)
 
 
 def load_lstm_name_to_list():
     """
-    加载磁盘文件中LSTM模型名到内存中，lstm_name
+    加载磁盘文件中LSTM模型名到缓存中，lstm_name
     :return:
     """
+
     file_path = "./models_file/lstm_name"
     with open(file_path, 'r') as file:
         lines = file.read().splitlines()
         for line in lines:
             if line is None or line == "":
                 continue
-            elif line not in sv.lstm_name:
-                sv.lstm_name.append(line)
-    print("sv3", sv.lstm_name)
+            redis_conn = get_redis_connection("default")
+            redis_conn.sadd('lstm_name', line)
 
 
-def load_lstm_name_to_dict():
-    """
-    加载磁盘文件中LSTM模型到内存中，lstm_name
-    :return:
-    """
-    file_path = "./models_file/lstm_name"
-    with open(file_path, 'r') as file:
-        lines = file.read().splitlines()
-        for line in lines:
-            if line is None or line == "":
-                continue
-            elif line not in sv.lstm_model_dict.keys():
-                sv.lstm_model_dict[line] = load_lstm_class(line)
-    print("lstm---------------------", sv.lstm_model_dict)
-
-
-def load_xgboost_name_to_dict():
-    """
-    加载磁盘文件中LSTM模型到内存中，lstm_name
-    :return:
-    """
-    file_path = "./models_file/xgboost_name"
-    with open(file_path, 'r') as file:
-        lines = file.read().splitlines()
-        for line in lines:
-            if line is None or line == "":
-                continue
-            elif line not in sv.xgboost_model_dict.keys():
-                sv.xgboost_model_dict[line] = load_xgboost_class(line)
-    print("xgboost-------------------", sv.xgboost_model_dict)
+# def load_lstm_name_to_dict():
+#     """
+#     加载磁盘文件中LSTM模型到内存中，lstm_name
+#     :return:
+#     """
+#     file_path = "./models_file/lstm_name"
+#     with open(file_path, 'r') as file:
+#         lines = file.read().splitlines()
+#         for line in lines:
+#             if line is None or line == "":
+#                 continue
+#             elif line not in sv.lstm_model_dict.keys():
+#                 sv.lstm_model_dict[line] = load_lstm_class(line)
+#     print("lstm---------------------", sv.lstm_model_dict)
+#
+#
+# def load_xgboost_name_to_dict():
+#     """
+#     加载磁盘文件中LSTM模型到内存中，lstm_name
+#     :return:
+#     """
+#     file_path = "./models_file/xgboost_name"
+#     with open(file_path, 'r') as file:
+#         lines = file.read().splitlines()
+#         for line in lines:
+#             if line is None or line == "":
+#                 continue
+#             elif line not in sv.xgboost_model_dict.keys():
+#                 sv.xgboost_model_dict[line] = load_xgboost_class(line)
+#     print("xgboost-------------------", sv.xgboost_model_dict)
 
 
 def load_datas_from_disk_to_memory():
     load_dataset_name_to_list()
     load_xgboost_name_to_list()
     load_lstm_name_to_list()
-    # load_xgboost_name_to_dict()
-    # load_lstm_name_to_dict()
 
 
 def str_to_time_hour_minute(time):
@@ -278,6 +275,7 @@ def use_XGBoost_predict(json_data):
     # 转换成XGBoost能使用的数据格式
     tmp = translate_to_xgboost_datas_from_mysql(predict_array.reshape(1, 3))
     # 由于频次较低，每次从磁盘文件中读取模型然后判断
+
     XGBoost_model = load_xgboost_class(model_name)
     print("load xgboost0000000000000000000000")
     print("model name", XGBoost_model.name)
@@ -432,23 +430,38 @@ from lstm_model.lstm_class import LSTMModel
 
 def train_model(model_kind, data_name):
     """训练模型"""
+    redis_conn = get_redis_connection("default")
     print("类型", type(data_name))
     print(data_name)
     if model_kind == "XGBoost":
-        if data_name in sv.xgboost_name:
+        # 多进程训练模型
+        if redis_conn.sismember("xgboost_name", data_name):
             return 0
         else:
-            XGBoost(data_name)
+            xgboost_train = XGBoost(data_name)
+            # 存储到redis中
+            redis_conn.hset('xgboost_model', data_name, pickle.dumps(xgboost_train))
+            redis_conn.sadd('xgboost_name', data_name)
+            # 模型持久化
+            save_xgboost_class(xgboost_train)
+            print("xgboost_name", data_name)
             return 1
 
     elif model_kind == 'LSTM':
-        if data_name in sv.lstm_name:
+        # 多进程训练模型
+        if redis_conn.sismember("lstm_name", data_name):
             return 0
         else:
             print(data_name)
             print("类型", type(data_name))
-            tmp = LSTMModel(data_name)
-            # tmp.train()
+            lstm_train = LSTMModel(data_name)
+            print("lasted", lstm_train.lasted_update)
+            # 存储到redis中
+            redis_conn.hset('lstm_model', data_name, pickle.dumps(lstm_train))
+            redis_conn.sadd('lstm_name', data_name)
+            # 模型持久化
+            save_lstm_class(lstm_train)
+            print("xgboost_name", data_name)
             return 1
 
 
@@ -482,11 +495,30 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
 
 
 def predict_future_30(table_name):
-    # keras.backend.clear_session()
-    lstm_model_tmp = load_lstm_class(table_name)
-    res = lstm_model_tmp.predict_values()
-    print(type(res))
-    print(res)
+    """
+    首先从redis中获取模型，如果没有则从磁盘中获取，并将模型存储至redis中
+    :param table_name:lstm模型名，
+    :return:
+    """
+    # redis连接池
+    redis_conn = get_redis_connection("default")
+    # 如果模型不存在于redis的lstm_model hash中就加载，如果在就直接从redis中获取模型进行判断
+    if not redis_conn.hexists('lstm_model', table_name):
+        # 从磁盘中加载LSTM模型对象
+        lstm_model_tmp = load_lstm_class(table_name)
+        # 初始化时就预测，避免因为graph冲突
+        lstm_model_tmp.model.predict(np.zeros((1, 1, 50)))
+        # 将模型加到redis中
+        redis_conn.hset('lstm_model', table_name, pickle.dumps(lstm_model_tmp))
+        model_tmp = lstm_model_tmp
+    else:
+        # 从redis中获取模型对象
+        model_bytes = redis_conn.hget('lstm_model', table_name)
+        # 解析为对象
+        model_tmp = pickle.loads(model_bytes)
+    # 预测值
+    res = model_tmp.predict_values()
+    # 设置横轴
     predict_xAxis = list(range(1, len(res) + 1))
     return predict_xAxis, res
 

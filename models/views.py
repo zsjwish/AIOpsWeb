@@ -8,13 +8,14 @@ import os
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
+from django_redis import get_redis_connection
 
-from AIOps_pro.static_value import StaticValue
+from AIOps_pro.static_value import sv
 from db.mysql_operation import query_model_info
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
     update_datas_for_tag, predict_future_30, print_model
 
-sv = StaticValue()
+
 def index(request):
     return render(request, 'models/index.html')
 
@@ -53,15 +54,16 @@ def train(request):
     :param request:
     :return:
     """
+    # redis连接池
+    redis_conn = get_redis_connection("default")
+    # 获取data_set_name数据集名称并返回str的list表
+    data_name = redis_conn.smembers("data_set_name")
+    dataset = {"names": [i.decode for i in data_name]}
     # 判断接收的值是否为POST
-    dataset = {"names": sv.data_set}
-    print()
     if request.method == "POST":
         kind = request.POST["kind"]
         data_name = request.POST["data_name"]
         info = {"kind": kind, "data_name": data_name}
-
-        sv.executor5.submit(print_model, kind, data_name)
         sv.executor5.submit(train_model, kind, data_name)
         # executor5.shutdown(wait = False)
         print("overoverover")
@@ -78,7 +80,9 @@ def tag(request):
     :return:
     """
     # 判断接收的值是否为POST
-    info = {"data_names": sv.data_set}
+    redis_conn = get_redis_connection("default")
+    data_name = redis_conn.smembers("data_set_name")
+    info = {"data_names": [i.decode for i in data_name]}
     if request.method == "POST":
         info["table_name"] = request.POST["data_name"]
         info["start_time"] = request.POST["start_time"]
@@ -116,7 +120,9 @@ def predict(request):
     :return:
     """
     # 判断接收的值是否为POST
-    info = {"data_names": sv.lstm_name}
+    redis_conn = get_redis_connection("default")
+    lstm_name = redis_conn.smembers("lstm_name")
+    info = {"data_names": [i.decode for i in lstm_name]}
     if request.method == "POST":
         data_name = request.POST["data_name"]
         predict_xAxis, predict_value = predict_future_30(data_name)
