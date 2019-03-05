@@ -2,27 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb06daa-e669-460a-8d1c-27d73ace0191" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIOps_pro/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIOps_pro/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIOps_pro/static_value.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIOps_pro/static_value.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/a.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/a.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/d.py" beforeDir="false" afterPath="$PROJECT_DIR$/db/d.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/isolate_model/base_function.py" beforeDir="false" afterPath="$PROJECT_DIR$/isolate_model/base_function.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lstm_model/lstm_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/lstm_model/lstm_class.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/manage.py" beforeDir="false" afterPath="$PROJECT_DIR$/manage.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/lstm/26035cd8-eff2-4802-82db-34674afe8fa9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/lstm/79b6081b-6391-42a5-912c-db7aa4db686b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/lstm/982c78b5-435a-40b3-9a31-9fb5fbf8b165" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/lstm_name" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/lstm_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost/26035cd8-eff2-4802-82db-34674afe8fa9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost/2689c82d-cc45-4998-9525-29b407464508" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost/79b6081b-6391-42a5-912c-db7aa4db686b" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost/982c78b5-435a-40b3-9a31-9fb5fbf8b16" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost/982c78b5-435a-40b3-9a31-9fb5fbf8b165" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models_file/xgboost_name" beforeDir="false" afterPath="$PROJECT_DIR$/models_file/xgboost_name" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv/pip-selfcheck.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/xgboost_model/xgboost_class.py" beforeDir="false" afterPath="$PROJECT_DIR$/xgboost_model/xgboost_class.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -70,14 +50,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="444" column="19" selection-start-line="444" selection-start-column="19" selection-end-line="444" selection-end-column="19" />
+            <state relative-caret-position="1020">
+              <caret line="528" lean-forward="true" selection-start-line="528" selection-end-line="528" />
               <folding>
-                <element signature="e#156#167#0" expanded="true" />
+                <element signature="e#157#166#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://E:/python3/Lib/concurrent/futures/process.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="465" selection-start-line="465" selection-end-line="465" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/AIOps_pro/__init__.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -88,22 +86,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/xgboost_model/xgboost_class.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-247">
-              <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
-              <folding>
-                <element signature="e#140#151#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="134">
-              <caret line="95" selection-start-line="95" selection-end-line="95" />
+            <state relative-caret-position="1310">
+              <caret line="91" column="16" lean-forward="true" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
               <folding>
                 <element signature="e#136#147#0" expanded="true" />
               </folding>
@@ -114,7 +100,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="78">
+            <state relative-caret-position="141">
               <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -144,7 +130,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models_file/lstm_name">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="21">
@@ -197,6 +183,8 @@
       <find>set</find>
       <find>xgboost_name</find>
       <find>sv</find>
+      <find>(1,1,50)</find>
+      <find>50</find>
     </findStrings>
     <dirStrings>
       <dir>E:\python_project\AIOps_pro</dir>
@@ -254,11 +242,11 @@
         <option value="$PROJECT_DIR$/models/views.py" />
         <option value="$PROJECT_DIR$/manage.py" />
         <option value="$PROJECT_DIR$/lstm_model/lstm_class.py" />
-        <option value="$PROJECT_DIR$/isolate_model/base_function.py" />
         <option value="$PROJECT_DIR$/xgboost_model/xgboost_class.py" />
         <option value="$PROJECT_DIR$/AIOps_pro/static_value.py" />
         <option value="$PROJECT_DIR$/models_file/lstm_name" />
         <option value="$PROJECT_DIR$/models_file/xgboost_name" />
+        <option value="$PROJECT_DIR$/isolate_model/base_function.py" />
       </list>
     </option>
   </component>
@@ -688,7 +676,7 @@
       <workItem from="1551512507336" duration="16883000" />
       <workItem from="1551582985979" duration="14702000" />
       <workItem from="1551662131432" duration="33702000" />
-      <workItem from="1551748984296" duration="27934000" />
+      <workItem from="1551748984296" duration="30557000" />
     </task>
     <servers />
   </component>
@@ -725,7 +713,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="256997000" />
+    <option name="totallyTimeSpent" value="259620000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -738,21 +726,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.2935657" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.2935657" />
       <window_info id="Structure" order="1" sideWeight="0.50442475" side_tool="true" weight="0.27949062" />
       <window_info id="Favorites" order="2" sideWeight="0.5012658" side_tool="true" weight="0.26876676" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.69121814" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32577905" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.45892352" />
+      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.51983005" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.42917848" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.4036827" />
-      <window_info anchor="bottom" id="Terminal" order="10" visible="true" weight="0.41784704" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.562323" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.35977337" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3286119" />
@@ -864,7 +853,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>28</line>
+          <line>26</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -879,27 +868,27 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>295</line>
+          <line>293</line>
           <option name="timeStamp" value="34" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>339</line>
+          <line>337</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>476</line>
+          <line>473</line>
           <option name="timeStamp" value="39" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>222</line>
+          <line>220</line>
           <option name="timeStamp" value="46" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>456</line>
+          <line>453</line>
           <option name="timeStamp" value="52" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -909,12 +898,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>238</line>
+          <line>236</line>
           <option name="timeStamp" value="57" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>245</line>
+          <line>243</line>
           <option name="timeStamp" value="58" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1019,42 +1008,37 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>278</line>
+          <line>276</line>
           <option name="timeStamp" value="113" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>432</line>
+          <line>426</line>
           <option name="timeStamp" value="114" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="115" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>430</line>
+          <line>424</line>
           <option name="timeStamp" value="116" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>458</line>
+          <line>455</line>
           <option name="timeStamp" value="117" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>459</line>
+          <line>456</line>
           <option name="timeStamp" value="118" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>462</line>
+          <line>459</line>
           <option name="timeStamp" value="119" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/isolate_model/base_function.py</url>
-          <line>398</line>
+          <line>396</line>
           <option name="timeStamp" value="120" />
         </line-breakpoint>
       </breakpoints>
@@ -1178,9 +1162,6 @@
     <entry file="file://$PROJECT_DIR$/AIOps_pro/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/AIOps_pro/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/test/1.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="129">
@@ -1203,13 +1184,6 @@
           <folding>
             <element signature="e#130#162#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/python3/Lib/concurrent/futures/process.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="127">
-          <caret line="466" selection-start-line="466" selection-end-line="466" />
         </state>
       </provider>
     </entry>
@@ -1351,26 +1325,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="95" selection-start-line="95" selection-end-line="95" />
-          <folding>
-            <element signature="e#136#147#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="78">
-          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xgboost_model/xgboost_class.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-247">
@@ -1392,16 +1346,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models_file/xgboost/79b6081b-6391-42a5-912c-db7aa4db686b">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="444" column="19" selection-start-line="444" selection-start-column="19" selection-end-line="444" selection-end-column="19" />
-          <folding>
-            <element signature="e#156#167#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manage.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -1437,6 +1381,50 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="21">
           <caret line="1" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="141">
+          <caret line="66" column="36" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/lstm_model/lstm_class.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1310">
+          <caret line="91" column="16" lean-forward="true" selection-start-line="91" selection-start-column="16" selection-end-line="91" selection-end-column="16" />
+          <folding>
+            <element signature="e#136#147#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://E:/python3/Lib/concurrent/futures/process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="465" selection-start-line="465" selection-end-line="465" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AIOps_pro/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/isolate_model/base_function.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1020">
+          <caret line="528" lean-forward="true" selection-start-line="528" selection-end-line="528" />
+          <folding>
+            <element signature="e#157#166#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
