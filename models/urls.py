@@ -21,5 +21,5 @@ urlpatterns = [
     url(r'^tag/$', views.tag, name = 'tag'),
     url(r'^predict/$', views.predict, name = 'predict'),
     url(r'^model_info/$', views.model_info, name = 'model_info'),
-
+    url(r'^dashboard/$', views.dashboard),
 ]

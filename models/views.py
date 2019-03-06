@@ -17,7 +17,7 @@ from isolate_model.base_function import save_datas_with_labels, use_XGBoost_pred
 
 
 def index(request):
-    return render(request, 'models/index.html')
+    return render(request, 'models/main.html')
 
 
 def menu(request):
@@ -169,3 +169,8 @@ def upload(request):
             return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         return render(request, 'models/upload_failed.html')
     return render(request, 'models/upload_csv.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
+
+
+def dashboard(request):
+    pass
+    return render(request, 'models/dashboard.html', locals())

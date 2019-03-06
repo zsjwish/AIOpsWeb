@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>hello world</h1>
-<iframe src="/models/menu/" height="600" width="200" style="right:auto">
-   <a href="menu.html">
-      你的浏览器不支持iframe页面嵌套，请点击这里访问页面内容。
-   </a>
-</iframe>
-<h2>hello zsj</h2>
-</body>
-</html>
+
+
+
+{% extends 'models/adminlte/lib/_main_siderbar.html' %}
+
+{% block nav_links %}
+    <li>
+        <a href="/some/url">
+            <i class="fa fa-dashboard"></i> <span>Home</span>
+        </a>
+    </li>
+    <li>
+        <a href="/some/url">
+            <i class="fa fa-user"></i> <span>Users</span>
+        </a>
+    </li>
+{% endblock nav_links %}
