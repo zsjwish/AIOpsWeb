@@ -1,11 +1,8 @@
 {% extends 'adminlte/lib/_main_sidebar.html' %}
-
 {% block nav_links %}
-    <sidebar>
-    <ui class="sidebar-menu tree" data-weight="tree"></ui>
-    <li style="padding-top:10px">
-        <a href="/models/dashboard">
-            <i class="fa fa-dashboard"></i> <span>主页</span>
+    <li>
+        <a href="/some/url">
+            <i class="fa fa-dashboard"></i> <span>Home</span>
         </a>
     </li>
     <li>
@@ -13,5 +10,23 @@
             <i class="fa fa-user"></i> <span>Users</span>
         </a>
     </li>
-    </sidebar>
 {% endblock nav_links %}
+{#{% block nav_links %}#}
+{#    <sidebar>#}
+{#        <aside class="main-sidebar">#}
+{#            <section class="sidebar">#}
+{#                <ul class="sidebar-menu tree" data-weight="tree"></ul>#}
+{#                    <li style="padding-top:10px">#}
+{#                        <a href="/models/dashboard">#}
+{#                            <i class="fa fa-dashboard"></i> <span>主页</span>#}
+{#                        </a>#}
+{#                    </li>#}
+{#                    <li>#}
+{#                        <a href="/some/url">#}
+{#                            <i class="fa fa-user"></i> <span>Users</span>#}
+{#                        </a>#}
+{#                    </li>#}
+{#            </section>#}
+{#        </aside>#}
+{#    </sidebar>#}
+{#{% endblock nav_links %}#}
