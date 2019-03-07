@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>监控系统</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="../../static/AdminLTE/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="../../static/AdminLTE/dist/css/skins/_all-skins.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+</head>
+<!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
+<!-- the fixed layout is not compatible with sidebar-mini -->
+<body class="hold-transition skin-blue-light fixed sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="../../index2.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini">
+          <img src="../../static/image/mt_white.png" style="width:30px;height:30px"></span>
+      </span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg">
+          <img src="../../static/image/logo_200x75.png" style="width:120px;height:50px">
+      </span>
+    </a>
+    <!-- Header Navbar: style can be found in header.less -->
+    <nav class="navbar navbar-static-top">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- =============================================== -->
+
+  <!-- Left side column. contains the sidebar -->
+  <aside class="main-sidebar">
+    <!-- sidebar: style can be found in sidebar.less -->
+    <section class="sidebar">
+      <!-- sidebar menu: : style can be found in sidebar.less -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li style="padding-top: 10px">
+            <a href="/models/dashboard">
+                <i class="fa fa-home"></i> <span>主页</span>
+            </a>
+        </li>
+        <li>
+            <a href="/some/url">
+                <i class="fa fa-user"></i> <span>训练模型</span>
+            </a>
+        </li>
+        <li class="treeview active">
+            <a href="#">
+                <i class="fa fa-bar-chart"></i> <span>模型信息</span>
+                <span class="pull-right-container">
+                    <i class="fa fa-angle-left pull-right"></i>
+                </span>
+            </a>            <ul class="treeview-menu" style="display: block">
+                <li>
+                    <a class="pointer" href="/models/xgboost_model_info">
+                        <i class="fa fa-circle-o"></i>异常检测模型信息
+                    </a>
+                </li>
+                <li>
+                    <a class="pointer">
+                        <i class="fa fa-circle-o"> </i>趋势预测模型信息
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a href="/some/url">
+                <i class="fa fa-dashboard"></i> <span>趋势预测</span>
+            </a>
+        </li>
+        <li>
+            <a href="/some/url">
+                <i class="fa fa-database"></i> <span>数据标记</span>
+            </a>
+        </li>
+      </ul>
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+    {% block content %}
+        123
+    {% endblock %}
+
+</div>
+  <!-- =============================================== -->
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper"></div>
+  <!-- /.content-wrapper -->
+
+  <footer class="main-footer">
+    <div class="pull-right hidden-xs">
+      <b>版本：</b> 1.0.0
+    </div>
+   <strong>版权所有：
+    </strong> 南京慕测信息科技有限公司
+  </footer>
+
+<!-- jQuery 3 -->
+<script src="../../static/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="../../static/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../static/AdminLTE/dist/js/adminlte.min.js"></script>
+
+</body>
+</html>

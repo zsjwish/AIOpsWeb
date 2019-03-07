@@ -73,6 +73,10 @@ def train(request):
     return render(request, 'models/train.html', context = dataset)
 
 
+def xgboost_model_info(request):
+    return render(request, 'models/xgboost_model_info.html')
+
+
 def tag(request):
     """
     对数据标注
@@ -174,3 +178,11 @@ def upload(request):
 def dashboard(request):
     pass
     return render(request, 'models/dashboard.html', locals())
+
+
+def test(request):
+    return render(request, 'models/test.html')
+
+
+def fixed(request):
+    return render(request, 'models/fixed.html')

@@ -9,7 +9,6 @@ from django.conf.urls import url
 from models import views
 
 app_name = 'models'
-print("urlssssss")
 urlpatterns = [
     url(r'^index/$', views.index, name = 'index'),
     url(r'^upload/$', views.upload, name = 'upload'),
@@ -22,4 +21,7 @@ urlpatterns = [
     url(r'^predict/$', views.predict, name = 'predict'),
     url(r'^model_info/$', views.model_info, name = 'model_info'),
     url(r'^dashboard/$', views.dashboard),
+    url(r'^xgboost_model_info/$', views.xgboost_model_info),
+    url(r'^test/$', views.test),
+    url(r'^fixed/$', views.fixed),
 ]

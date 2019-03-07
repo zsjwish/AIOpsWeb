@@ -1,0 +1,17 @@
+<footer class="main-footer">
+    <div class="pull-right hidden-xs">
+        {% block footer_right %}
+            <b>Version</b> {% block version %}1.0{% endblock %}
+        {% endblock %}
+    </div>
+
+    {% block footer_left %}
+    {% block legal %}
+    <strong>版权所有：
+        {% if site %}
+            <a href="http://mooctest.net"></a>
+        {% endif %}
+    </strong> 南京慕测信息科技有限公司
+    {% endblock %}
+    {% endblock %}
+</footer>

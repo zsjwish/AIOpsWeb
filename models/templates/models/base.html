@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8"/>
+{#    <link rel="shortcut icon" href="../../static/favicon.ico"/>#}
+    <link href="../../static/bootstrap/css/bootstrap.min.css" rel="stylesheet"/>
+{#    <link rel="stylesheet" href="../../static/css/base.css" type="text/css"/>#}
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="../../static/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="../../static/AdminLTE/bower_components/Ionicons/css/ionicons.min.css" />
+    <!-- Theme style -->
+    <link rel="stylesheet" href="../../static/AdminLTE/dist/css/AdminLTE.min.css" />
+    <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
+      page. However, you can choose any other skin. Make sure you
+      apply the skin class to the body tag so the changes take effect. -->
+    <link rel="stylesheet" href="../../static/AdminLTE/dist/css/skins/skin-blue.min.css" />
+
+    <title>报告审核</title>
+    <style>
+        .box-shadow {
+            box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+        }
+        .my-img-thumbnail {
+            display: inline-block;
+            max-width: 100%;
+            padding: 4px;
+            line-height: 1.42857143;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all .2s ease-in-out;
+            width: 60px;
+            height: 90px;
+        }
+        .pointer {
+            cursor: pointer;
+            cursor: hand;
+        }
+    </style>
+
+</head>
+<body class="skin-blue sidebar-mini" style="height: auto; min-height: 100%;">
+<div class="wrapper" style="height: auto; min-height: 100%;">
+    <header class="main-header">
+        <!-- Logo -->
+        <a href="/home" class="logo">
+            <span class="logo-lg">
+                    <b>MOOCTEST</b>
+                </span>
+        </a>
+
+        <!-- Header Navbar -->
+        <div class="navbar navbar-static-top" role="navigation">
+            <!-- Navbar Right Menu -->
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="user user-menu">
+                        <a href="#">
+                            <span class="hidden-xs">Admin</span>
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <div layout:fragment="mainbody"></div>
+
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../static/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
+<!--     <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script> -->
+<!-- Bootstrap -->
+<script src="../../static/bootstrap/js/bootstrap.min.js"></script>
+<!-- AdminLTE Task -->
+<script src="../../static/AdminLTE/dist/js/adminlte.min.js"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<div layout:fragment="js"></div>
+
+</body>
+</html>
