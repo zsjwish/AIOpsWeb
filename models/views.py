@@ -74,7 +74,10 @@ def train(request):
 
 
 def xgboost_model_info(request):
-    return render(request, 'models/xgboost_model_info.html')
+    # if request.method == 'POST':
+    res = query_model_info("XGBoost")
+    return render(request, 'models/xgboost_model_info.html', {"datas": res})
+    # return render(request, 'models/test.html', {"datas": res})
 
 
 def tag(request):
@@ -115,6 +118,9 @@ def model_info(request):
         return render(request, 'models/models_list.html', {"kind": kind,
                                                            "datas": res})
     return render(request, 'models/models_list.html', context = info)
+
+
+
 
 
 def predict(request):
@@ -181,7 +187,10 @@ def dashboard(request):
 
 
 def test(request):
-    return render(request, 'models/test.html')
+    # if request.method == 'POST':
+    res = query_model_info("XGBoost")
+    return render(request, 'models/test.html', {"datas": res})
+    # return render(request, 'models/test.html', {"datas": res})
 
 
 def fixed(request):

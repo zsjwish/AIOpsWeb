@@ -1,128 +1,139 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>监控系统</title>
-  <!-- Tell the browser to be responsive to screen width -->
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/font-awesome/css/font-awesome.min.css">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="../../static/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="../../static/AdminLTE/dist/css/AdminLTE.min.css">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../static/AdminLTE/dist/css/skins/_all-skins.min.css">
-  <!-- Google Font -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-</head>
-<!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
-<!-- the fixed layout is not compatible with sidebar-mini -->
-<body class="hold-transition skin-blue-light fixed sidebar-mini">
-<!-- Site wrapper -->
-<div class="wrapper">
-
-  <header class="main-header">
-    <!-- Logo -->
-    <a href="../../index2.html" class="logo">
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini">
-          <img src="../../static/image/mt_white.png" style="width:30px;height:30px"></span>
-      </span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg">
-          <img src="../../static/image/logo_200x75.png" style="width:120px;height:50px">
-      </span>
-    </a>
-    <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top">
-      <!-- Sidebar toggle button-->
-      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-    </nav>
-  </header>
-
-  <!-- =============================================== -->
-
-  <!-- Left side column. contains the sidebar -->
-  <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
-      <!-- sidebar menu: : style can be found in sidebar.less -->
-      <ul class="sidebar-menu" data-widget="tree">
-        <li style="padding-top: 10px">
-            <a href="/models/dashboard">
-                <i class="fa fa-home"></i> <span>主页</span>
-            </a>
-        </li>
-        <li>
-            <a href="/some/url">
-                <i class="fa fa-user"></i> <span>训练模型</span>
-            </a>
-        </li>
-        <li class="treeview active">
-            <a href="#">
-                <i class="fa fa-bar-chart"></i> <span>模型信息</span>
-                <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                </span>
-            </a>            <ul class="treeview-menu" style="display: block">
-                <li>
-                    <a class="pointer" href="/models/xgboost_model_info">
-                        <i class="fa fa-circle-o"></i>异常检测模型信息
-                    </a>
-                </li>
-                <li>
-                    <a class="pointer">
-                        <i class="fa fa-circle-o"> </i>趋势预测模型信息
-                    </a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a href="/some/url">
-                <i class="fa fa-dashboard"></i> <span>趋势预测</span>
-            </a>
-        </li>
-        <li>
-            <a href="/some/url">
-                <i class="fa fa-database"></i> <span>数据标记</span>
-            </a>
-        </li>
-      </ul>
-    </section>
-    <!-- /.sidebar -->
-  </aside>
-</div>
-
-
-
-  <!-- =============================================== -->
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"></div>
-  <!-- /.content-wrapper -->
-
-  <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>版本：</b> 1.0.0
+{% extends 'models/fixed.html' %}
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1 class="box-title">
+                异常检测模型信息
+            </h1>
+        </section>
+        <section class="content container-fluid">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example2_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Rendering engine: activate to sort column descending"
+                                            style="position: relative">
+                                            模型名称
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending"
+                                            style="position: relative">
+                                            精确率
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                            style="position: relative">
+                                            召回率
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                            style="position: relative">
+                                            f1
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="CSS grade: activate to sort column ascending"
+                                            style="position: relative">
+                                            训练数据量
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="create time: activate to sort column ascending"
+                                            style="position: relative">
+                                            创建时间
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1"
+                                            aria-label="lasted update time: activate to sort column ascending"
+                                            style="position: relative">
+                                            最后更新
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="reset: activate to sort column ascending"
+                                            style="position: relative">
+                                            是否需要重新训练
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    {% for data in datas %}
+                                        <tr role="row" class="odd">
+                                            <td width="20%">
+                                                {{ data.0 }}
+                                            </td>
+                                            <td width="5%">
+                                                {{ data.1 }}
+                                            </td>
+                                            <td width="5%">
+                                                {{ data.2 }}
+                                            </td>
+                                            <td width="5%">
+                                                {{ data.3 }}
+                                            </td>
+                                            <td width="8%">
+                                                {{ data.4 }}
+                                            </td>
+                                            <td width="10%">
+                                                {{ data.7|date:"Y-m-d H:i:s" }}
+                                            </td>
+                                            <td width="10%">
+                                                {{ data.8|date:"Y-m-d H:i:s" }}
+                                            </td>
+                                            <td width="10%">
+                                                {{ data.5 }}
+                                                <button class="btn btn-default btn-sm pull-right">
+                                                    重置模型
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
-   <strong>版权所有：
-    </strong> 南京慕测信息科技有限公司
-  </footer>
+{% endblock %}
+{% block js %}
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var table = $('#example1').DataTable({
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                'rowCallback': function (row, data, index) {
+                    if (data[3] < 0.5) {
+                        $(row).find('td:eq(3)').css('color', 'red');
+                    }
+                    else if (data[3]<0.7) {
+                        $(row).find('td:eq(3)').css('color', 'orange');
+                    }
+                    else  {
+                        $(row).find('td:eq(3)').css('color', 'green');
+                    }
+                }
+            });
+            $('#example1 tbody').on('click', 'button', function () {
+                var data = table.row($(this).parents('tr')).data();
+                alert(data[0] + "'s salary is: " + data[5]);
+            });
 
-<!-- jQuery 3 -->
-<script src="../../static/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="../../static/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../../static/AdminLTE/dist/js/adminlte.min.js"></script>
+        });
+    </script>
+{% endblock %}
 
-</body>
-</html>

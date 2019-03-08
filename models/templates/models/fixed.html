@@ -13,12 +13,16 @@
   <!-- Ionicons -->
   <link rel="stylesheet" href="../../static/AdminLTE/bower_components/Ionicons/css/ionicons.min.css">
   <!-- Theme style -->
+    <link rel="stylesheet" href="../../static/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+
   <link rel="stylesheet" href="../../static/AdminLTE/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
        folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../static/AdminLTE/dist/css/skins/_all-skins.min.css">
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <link rel="stylesheet" href="../../static/style/index.css">
+
 </head>
 <!-- ADD THE CLASS fixed TO GET A FIXED HEADER AND SIDEBAR LAYOUT -->
 <!-- the fixed layout is not compatible with sidebar-mini -->
@@ -110,8 +114,6 @@
   <!-- =============================================== -->
 
   <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper"></div>
-  <!-- /.content-wrapper -->
 
   <footer class="main-footer">
     <div class="pull-right hidden-xs">
@@ -125,7 +127,14 @@
 <script src="../../static/AdminLTE/bower_components/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap 3.3.7 -->
 <script src="../../static/AdminLTE/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../../static/AdminLTE/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../../static/AdminLTE/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../../static/AdminLTE/bower_components/select2/dist/js/select2.min.js"></script>
+<!-- page script -->
 <script src="../../static/AdminLTE/dist/js/adminlte.min.js"></script>
-
+{#<script src="../../static/js/app_info.js"></script>#}
+{% block js %}
+        123
+{% endblock %}
 </body>
 </html>
