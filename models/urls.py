@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^model_info/$', views.model_info, name = 'model_info'),
     url(r'^dashboard/$', views.dashboard),
     url(r'^xgboost_model_info/$', views.xgboost_model_info),
+    url(r'^lstm_model_info/$', views.lstm_model_info),
     url(r'^test/$', views.test),
     url(r'^fixed/$', views.fixed),
 ]

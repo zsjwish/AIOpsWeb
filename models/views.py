@@ -80,6 +80,12 @@ def xgboost_model_info(request):
     # return render(request, 'models/test.html', {"datas": res})
 
 
+def lstm_model_info(request):
+    # if request.method == 'POST':
+    res = query_model_info("LSTM")
+    return render(request, 'models/lstm_model_info.html', {"datas": res})
+
+
 def tag(request):
     """
     对数据标注

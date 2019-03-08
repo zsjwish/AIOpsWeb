@@ -4,7 +4,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="box-title">
-                异常检测模型信息
+                趋势预测模型信息
             </h1>
         </section>
         <section class="content container-fluid">
@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-                                       aria-describedby="example2_info">
+                                       aria-describedby="example2_info" >
                                     <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
@@ -27,71 +27,49 @@
                                             模型名称
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Browser: activate to sort column ascending"
+                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                             style="position: relative">
-                                            精确率
+                                            模型创建时间
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                             style="position: relative">
-                                            召回率
+                                            模型最后更新时间
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="Engine version: activate to sort column ascending"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending"
                                             style="position: relative">
-                                            f1
+                                            均方根误差
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                             style="position: relative">
-                                            训练数据量
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="create time: activate to sort column ascending"
-                                            style="position: relative">
-                                            创建时间
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1"
-                                            aria-label="lasted update time: activate to sort column ascending"
-                                            style="position: relative">
-                                            最后更新
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="reset: activate to sort column ascending"
-                                            style="position: relative">
-                                            是否需要重新训练
+                                             最后预测时间
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for data in datas %}
                                         <tr role="row" class="odd">
-                                            <td width="20%">
+                                            <td >
                                                 {{ data.0 }}
                                             </td>
-                                            <td width="5%">
+                                            <td>
+                                                {{ data.4|date:"Y-m-d H:i:s" }}
+                                            </td>
+                                            <td>
+                                                {{ data.5|date:"Y-m-d H:i:s" }}
+                                            </td>
+                                            <td >
                                                 {{ data.1 }}
-                                            </td>
-                                            <td width="5%">
-                                                {{ data.2 }}
-                                            </td>
-                                            <td width="5%">
-                                                {{ data.3 }}
-                                            </td>
-                                            <td width="8%">
-                                                {{ data.4 }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.7|date:"Y-m-d H:i:s" }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.8|date:"Y-m-d H:i:s" }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.5 }}
-                                                <button class="btn btn-default btn-sm pull-right">
+                                                <button id="btn1" class="btn btn-default btn-sm pull-right">
                                                     重置模型
+                                                </button>
+                                            </td>
+                                            <td>
+                                                {{ data.2|date:"Y-m-d H:i:s" }}
+                                                <button id="btn2" class="btn btn-default btn-sm pull-right">
+                                                    预测趋势
                                                 </button>
                                             </td>
                                         </tr>
@@ -117,20 +95,24 @@
                 'info': true,
                 'autoWidth': true,
                 'rowCallback': function (row, data, index) {
-                    if (data[3] < 0.5) {
+                    number = data[3].split(" ");
+                    rms = parseFloat(number[0]);
+                    if (rms> 100) {
                         $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
                     }
-                    else if (data[3]<0.7) {
+                    else if(rms >50){
                         $(row).find('td:eq(3)').css('background-color', 'orange');
                     }
                     else  {
                         $(row).find('td:eq(3)').css('background-color', '#32cd32');
                     }
+
                 }
             });
             $('#example1 tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
-                alert(data[0] + "'s salary is: " + data[5]);
+                var id = $(this).attr('id');
+                alert(data[0] + "'s salary is: " + data[1] + "button is " + id);
             });
 
         });

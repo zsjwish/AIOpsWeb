@@ -2,289 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aeb06daa-e669-460a-8d1c-27d73ace0191" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/models/static/js/app_info.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/static/style/index.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/templates/models/lstm_model_info.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AIOps_pro/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/AIOps_pro/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/static/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/models/static/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/static/AdminLTE/dist/css/AdminLTE.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/models/static/AdminLTE/dist/css/AdminLTE.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates/adminlte/lib/_main_header.html" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates/adminlte/lib/_main_header.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates/adminlte/lib/_main_sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates/adminlte/lib/_main_sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates/models/fixed.html" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates/models/fixed.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/templates/models/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates/models/test.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/templates/models/xgboost_model_info.html" beforeDir="false" afterPath="$PROJECT_DIR$/models/templates/models/xgboost_model_info.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/models/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/compat.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/defaults.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/AdminLTE.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/AdminLTE.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/_all-skins.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/_all-skins.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-black-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-black-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-black.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-black.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-blue-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-blue-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-blue.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-green-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-green-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-green.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-purple-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-purple-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-purple.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-red-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-red-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-red.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-yellow-light.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-yellow-light.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/css/skins/skin-yellow.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/avatar.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/avatar04.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/avatar2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/avatar3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/avatar5.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/boxed-bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/boxed-bg.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/american-express.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/cirrus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/mastercard.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/mestro.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/paypal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/paypal2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/credit/visa.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/default-50x50.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/icons.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/photo1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/photo2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/photo3.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/photo4.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user1-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user2-160x160.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user3-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user4-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user5-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user6-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user7-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/img/user8-128x128.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/js/app.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/js/app.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/js/demo.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/js/pages/dashboard.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/admin-lte/dist/js/pages/dashboard2.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap-theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap-theme.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap-theme.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/css/bootstrap.min.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/fonts/glyphicons-halflings-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/bootstrap/dist/js/npm.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/conflicts/conflicts.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/css/font-awesome.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/css/font-awesome.css.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/css/font-awesome.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/font-awesome/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/icheck.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/icheck.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/_all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/aero.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/aero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/aero@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/blue@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/flat.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/flat.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/flat@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/green@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/grey.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/grey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/grey@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/orange.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/orange@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/pink.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/pink.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/pink@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/purple@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/red@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/flat/yellow@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/futurico/futurico.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/futurico/futurico.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/futurico/futurico@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/_all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/aero.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/grey.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/line.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/line.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/line@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/orange.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/pink.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/line/yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/_all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/aero.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/aero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/aero@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/blue@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/green@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/grey.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/grey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/grey@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/minimal.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/minimal.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/minimal@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/orange.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/orange@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/pink.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/pink.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/pink@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/purple@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/red@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/minimal/yellow@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/polaris/polaris.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/polaris/polaris.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/polaris/polaris@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/_all.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/aero.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/aero.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/aero@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/blue.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/blue.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/blue@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/green.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/green.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/green@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/grey.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/grey.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/grey@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/orange.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/orange.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/orange@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/pink.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/pink.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/pink@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/purple.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/purple.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/purple@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/red.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/red.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/red@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/square.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/square.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/square@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/yellow.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/yellow.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/icheck/skins/square/yellow@2x.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/jquery/dist/jquery-ui.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/jquery/dist/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/jquery/dist/jquery.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/jquery/dist/jquery.min.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/components/info_box.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/example.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_main_footer.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_main_header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_main_sidebar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_messages.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_pagination.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_scripts.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/lib/_styles.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/pages/edit.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templates/adminlte/pages/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templatetags/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/templatetags/adminlte_helpers.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte2-0.4.1.dist-info/INSTALLER" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte2-0.4.1.dist-info/METADATA" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte2-0.4.1.dist-info/RECORD" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte2-0.4.1.dist-info/WHEEL" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte2-0.4.1.dist-info/top_level.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/app_index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/base.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/base_login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/base_site.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/change_form.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/change_list.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/change_list_results.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/lib/_main_header.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/lib/_main_sidebar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/login.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templates/admin/object_history.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templatetags/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/templatetags/admin_menu.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte_theme/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/admin.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/apps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/migrations/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/templates/adminlte/lib/_main_sidebar.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/app/views.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/settings.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/urls.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv/Lib/site-packages/example_project/wsgi.py" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -344,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="182">
-              <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
+            <state relative-caret-position="203">
+              <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -374,8 +96,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="437" column="35" lean-forward="true" selection-start-line="437" selection-start-column="35" selection-end-line="437" selection-end-column="35" />
+            <state relative-caret-position="-14">
+              <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
             </state>
           </provider>
         </entry>
@@ -383,8 +105,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="402">
-              <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
+            <state relative-caret-position="315">
+              <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
               <folding>
                 <element signature="e#130#162#0" expanded="true" />
               </folding>
@@ -411,11 +133,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/templates/models/xgboost_model_info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="205">
-              <caret line="87" column="60" lean-forward="true" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+            <state relative-caret-position="224">
+              <caret line="124" column="21" lean-forward="true" selection-start-line="124" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
@@ -430,20 +152,27 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/models/static/js/app_info.js">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/models/templates/models/lstm_model_info.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
+            <state relative-caret-position="1071">
+              <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+              <folding>
+                <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/template/defaultfilters.py">
+        <entry file="file://$PROJECT_DIR$/models/static/js/app_info.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="695" column="4" selection-start-line="695" selection-start-column="4" selection-end-line="695" selection-end-column="4" />
+            <state relative-caret-position="105">
+              <caret line="5" column="25" lean-forward="true" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -454,9 +183,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Python Script" />
-        <option value="HTML File" />
         <option value="JavaScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -490,8 +219,8 @@
       <find>example1_info</find>
       <find>info</find>
       <find>content-w</find>
-      <find>test</find>
       <find>example1</find>
+      <find>test</find>
     </findStrings>
     <dirStrings>
       <dir>E:\python_project\AIOps_pro\models\static\AdminLTE</dir>
@@ -505,7 +234,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/test/xgb_func_test.py" />
         <option value="$PROJECT_DIR$/db/mysql_operation.py" />
         <option value="$PROJECT_DIR$/AIOps_pro/__init__.py" />
         <option value="$PROJECT_DIR$/test/1.py" />
@@ -541,7 +269,6 @@
         <option value="$PROJECT_DIR$/models/templates/top-nav.html" />
         <option value="$PROJECT_DIR$/models/templates/adminlte/lib/_main_footer.html" />
         <option value="$PROJECT_DIR$/models/templates/fixed.html" />
-        <option value="$PROJECT_DIR$/models/urls.py" />
         <option value="$PROJECT_DIR$/models/templates/models/main.html" />
         <option value="$PROJECT_DIR$/models/templates/models/index.html" />
         <option value="$PROJECT_DIR$/models/templates/adminlte/lib/_main_header.html" />
@@ -551,11 +278,13 @@
         <option value="$PROJECT_DIR$/models/static/AdminLTE/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css" />
         <option value="$PROJECT_DIR$/models/static/style/index.css" />
         <option value="$PROJECT_DIR$/models/static/AdminLTE/dist/css/AdminLTE.min.css" />
-        <option value="$PROJECT_DIR$/models/views.py" />
         <option value="$PROJECT_DIR$/models/static/js/app_info.js" />
         <option value="$PROJECT_DIR$/models/templates/models/fixed.html" />
         <option value="$PROJECT_DIR$/models/templates/models/test.html" />
         <option value="$PROJECT_DIR$/models/templates/models/xgboost_model_info.html" />
+        <option value="$PROJECT_DIR$/models/views.py" />
+        <option value="$PROJECT_DIR$/models/urls.py" />
+        <option value="$PROJECT_DIR$/models/templates/models/lstm_model_info.html" />
       </list>
     </option>
   </component>
@@ -1117,7 +846,7 @@
       <workItem from="1551939425931" duration="19490000" />
       <workItem from="1551964742192" duration="1761000" />
       <workItem from="1551967132105" duration="3499000" />
-      <workItem from="1552010203847" duration="25146000" />
+      <workItem from="1552010203847" duration="29556000" />
     </task>
     <servers />
   </component>
@@ -1154,7 +883,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="339689000" />
+    <option name="totallyTimeSpent" value="344099000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1167,9 +896,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="2062" height="1126" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.13572854" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49557522" visible="true" weight="0.18463074" />
       <window_info id="Structure" order="1" sideWeight="0.50442475" side_tool="true" weight="0.27949062" />
       <window_info id="Favorites" order="2" sideWeight="0.5012658" side_tool="true" weight="0.26876676" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -1182,7 +910,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.5042493" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.4036827" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.40543258" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.30885312" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.35977337" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3286119" />
@@ -1273,7 +1001,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>156</line>
+          <line>162</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1413,12 +1141,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>132</line>
+          <line>138</line>
           <option name="timeStamp" value="111" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
-          <line>137</line>
+          <line>143</line>
           <option name="timeStamp" value="112" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
@@ -1499,7 +1227,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/models/static/AdminLTE/jquery/dist/jquery.js" />
     <entry file="file://$PROJECT_DIR$/models/static/AdminLTE/jquery/dist/jquery.min.js" />
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django_adminlte/static/jquery/dist/jquery.min.js">
       <provider selected="true" editor-type-id="text-editor">
@@ -1724,37 +1451,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="437" column="35" lean-forward="true" selection-start-line="437" selection-start-column="35" selection-end-line="437" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv/Lib/site-packages/django/core/handlers/base.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="79">
           <caret line="123" selection-start-line="123" selection-end-line="123" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="23" column="49" selection-start-line="23" selection-start-column="49" selection-end-line="23" selection-end-column="49" />
-          <folding>
-            <element signature="e#130#162#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="84" column="9" lean-forward="true" selection-start-line="84" selection-start-column="9" selection-end-line="84" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1789,10 +1489,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="425" column="4" selection-start-line="425" selection-start-column="4" selection-end-line="425" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="82" column="14" selection-start-line="82" selection-start-column="14" selection-end-line="82" selection-end-column="14" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="52" selection-start-line="24" selection-start-column="52" selection-end-line="24" selection-end-column="52" />
+          <folding>
+            <element signature="e#130#162#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/models/templates/models/xgboost_model_info.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="87" column="60" lean-forward="true" selection-start-line="87" selection-start-column="60" selection-end-line="87" selection-end-column="60" />
+        <state relative-caret-position="224">
+          <caret line="124" column="21" lean-forward="true" selection-start-line="124" selection-start-column="21" selection-end-line="127" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
@@ -1802,6 +1529,20 @@
             <element signature="n#style#0;n#th#5;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#6;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#th#7;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/templates/models/lstm_model_info.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1071">
+          <caret line="90" column="31" lean-forward="true" selection-start-line="90" selection-start-column="31" selection-end-line="90" selection-end-column="31" />
+          <folding>
+            <element signature="n#style#0;n#th#0;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#2;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#1;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#th#4;n#tr#0;n#thead#0;n#table#0;n#div#0;n#div#1;n#div#0;n#div#0;n#div#0;n#section#1;n#div#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
