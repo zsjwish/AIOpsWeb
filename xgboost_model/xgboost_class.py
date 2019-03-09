@@ -12,8 +12,9 @@ from db.mysql_operation import insert_xgboost_model, update_xgboost_model
 from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_xgboost_class
 
 class XGBoost:
-    def __init__(self, model_name):
+    def __init__(self, file_name, model_name):
         print("xgboost init --------------------------------------")
+        self.file_name = file_name
         self.name = model_name
         self.param = {
             'booster': 'gbtree',  # 助推器，默认为gbtree，可不写
@@ -100,8 +101,14 @@ class XGBoost:
         print("FP", FP)
         print("TN", TN)
         # 得出精确率、召回率和F1
-        self.precision = TP / float(TP + FP)
-        self.recall = TP / float(TP + FN)
+        if TP + FP == 0:
+            self.precision = 1
+        else:
+            self.precision = TP / float(TP + FP)
+        if TP + FN == 0:
+            self.recall = 1
+        else:
+            self.recall = TP / float(TP + FN)
         self.f1 = self.precision * self.recall * 2 / float(self.precision + self.recall)
         self.lasted_update = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         # 更新模型
@@ -125,7 +132,7 @@ class XGBoost:
         插入数据到model表中，初始化的时候会插入数据，后续都是update
         :return:插入成功，返回True,失败返回False
         """
-        if insert_xgboost_model(self.name, self.precision, self.recall,
+        if insert_xgboost_model(self.file_name, self.name, self.precision, self.recall,
                                 self.f1, self.trained_number, self.finished,
                                 self.changed, self.create_time, self.lasted_update):
             print("插入成功")

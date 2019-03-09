@@ -13,7 +13,7 @@ import matplotlib.pyplot as plt
 from django_redis import get_redis_connection
 
 from db.mysql_operation import connectdb, query_datas, closedb, query_table, create_table, insert_train_datas, \
-    update_datas, query_model_info
+    update_datas, query_model_info, insert_file2uuid, query_uuid_from_file2uuid_by_filename
 from isolate_model.isolate_class import Isolate
 
 
@@ -24,7 +24,8 @@ def load_csv(file_name):
     :param file_name: 要解析的csv文件名
     :return:
     """
-    array = np.loadtxt(file_name, dtype = str, delimiter = ",", encoding = 'utf-8')
+    array = np.loadtxt(file_name, dtype = str, delimiter = ",")
+    # array = np.loadtxt(file_name, dtype = str, delimiter = ",", encoding = 'utf-8')
     print(type(array))
     return array
 
@@ -134,7 +135,9 @@ def save_datas_with_labels(file_name, abnormal_rate):
     :return:True or False
     """
     cases = load_csv(file_name)
+    # file_name是文件路径名
     print("file name", file_name)
+    # 文件名
     title = file_name.split("/")[-1]
     print(type(title), title)
     isolate1 = Isolate('isolate', cases, rate = abnormal_rate)
@@ -143,6 +146,7 @@ def save_datas_with_labels(file_name, abnormal_rate):
     db = connectdb()
     if not query_table(db, table_name):
         create_table(db, np_array[0], table_name)
+    # 插入数据，表名为uuid
     if insert_train_datas(db, table_name, np_array[1:]):
         # 数据集列表存储表名（redis存储），断电就清空
         redis_conn = get_redis_connection("default")
@@ -150,6 +154,8 @@ def save_datas_with_labels(file_name, abnormal_rate):
         # sv.data_set.append(title)
         # 存储数据集表名（磁盘存储），断电可恢复
         save_dataset_name_to_file(title)
+        # 存储文件与UUID对应关系到file2uuid表中
+        insert_file2uuid(title, table_name)
         return True
     return False
 
@@ -427,13 +433,15 @@ def train_model(model_kind, data_name):
     redis_conn = get_redis_connection("default")
     print("类型", type(data_name))
     print(data_name)
+    uuid = query_uuid_from_file2uuid_by_filename(data_name)
+    print(type(uuid), uuid)
     if model_kind == "XGBoost":
         # 多进程训练模型
         if redis_conn.sismember("xgboost_name", data_name):
             return 0
         else:
             from xgboost_model.xgboost_class import XGBoost
-            xgboost_train = XGBoost(data_name)
+            xgboost_train = XGBoost(data_name, uuid)
             # 存储到redis中
             redis_conn.hset('xgboost_model', data_name, pickle.dumps(xgboost_train))
             redis_conn.sadd('xgboost_name', data_name)
@@ -451,7 +459,8 @@ def train_model(model_kind, data_name):
             print("训练过程0000000")
             print("类型", type(data_name))
             from lstm_model.lstm_class import LSTMModel
-            lstm_train = LSTMModel(data_name)
+            # data_name是文件名，uuid是文件唯一标识
+            lstm_train = LSTMModel(data_name, uuid)
             print("lasted", lstm_train.lasted_update)
             # 存储到redis中
             redis_conn.hset('lstm_model', data_name, pickle.dumps(lstm_train))

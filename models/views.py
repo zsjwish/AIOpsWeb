@@ -63,6 +63,7 @@ def train(request):
     if request.method == "POST":
         kind = request.POST["kind"]
         data_name = request.POST["data_name"]
+        # data_name是文件名
         info = {"kind": kind, "data_name": data_name}
         sv.executor5.submit(train_model, kind, data_name)
         # executor5.shutdown(wait = False)
@@ -201,3 +202,7 @@ def test(request):
 
 def fixed(request):
     return render(request, 'models/fixed.html')
+
+
+def data_tag(request):
+    return render(request, 'models/data_tag.html')

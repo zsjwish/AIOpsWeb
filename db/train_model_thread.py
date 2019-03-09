@@ -8,34 +8,34 @@ from concurrent.futures import ThreadPoolExecutor, ProcessPoolExecutor
 
 from models.models import xgboost_name, lstm_name
 
-
-def print_name(kind, model_name):
-    print("kind", kind)
-    print("model_name", model_name)
-
-
-def train_model(model_kind, data_name):
-    """训练模型"""
-    from xgboost_model.xgboost_class import XGBoost
-    from lstm_model.lstm_class import LSTMModel
-    print("类型", type(data_name))
-    print(data_name)
-    if model_kind == "XGBoost":
-        if data_name in xgboost_name:
-            return 0
-        else:
-            XGBoost(data_name)
-            return 1
-
-    elif model_kind == 'LSTM':
-        if data_name in lstm_name:
-            return 0
-        else:
-            print(data_name)
-            print("类型", type(data_name))
-            tmp = LSTMModel(data_name)
-            # tmp.train()
-            return 1
+#
+# def print_name(kind, model_name):
+#     print("kind", kind)
+#     print("model_name", model_name)
+#
+#
+# def train_model(model_kind, data_name):
+#     """训练模型"""
+#     from xgboost_model.xgboost_class import XGBoost
+#     from lstm_model.lstm_class import LSTMModel
+#     print("类型", type(data_name))
+#     print(data_name)
+#     if model_kind == "XGBoost":
+#         if data_name in xgboost_name:
+#             return 0
+#         else:
+#             XGBoost(data_name)
+#             return 1
+#
+#     elif model_kind == 'LSTM':
+#         if data_name in lstm_name:
+#             return 0
+#         else:
+#             print(data_name)
+#             print("类型", type(data_name))
+#             tmp = LSTMModel(data_name)
+#             # tmp.train()
+#             return 1
 
 
 # class TrainModelThreadPool:
@@ -57,11 +57,11 @@ def train_model(model_kind, data_name):
 #             print("train lstm++++++++++++++++++++++++++++")
 
 
-def start_train(kind, model_name):
-    if kind == "XGBoost":
-        train_model(kind, model_name)
-        print("train xgboost------------------------")
-    elif kind == "LSTM":
-        future = executor.submit(train_model, kind, model_name)
-        print("train lstm++++++++++++++++++++++++++++")
-        executor.shutdown(wait = False)
+# def start_train(kind, model_name):
+#     if kind == "XGBoost":
+#         train_model(kind, model_name)
+#         print("train xgboost------------------------")
+#     elif kind == "LSTM":
+#         future = executor.submit(train_model, kind, model_name)
+#         print("train lstm++++++++++++++++++++++++++++")
+#         executor.shutdown(wait = False)

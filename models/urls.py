@@ -20,9 +20,16 @@ urlpatterns = [
     url(r'^tag/$', views.tag, name = 'tag'),
     url(r'^predict/$', views.predict, name = 'predict'),
     url(r'^model_info/$', views.model_info, name = 'model_info'),
+    # 主页
     url(r'^dashboard/$', views.dashboard),
+    # xgboost_model信息
     url(r'^xgboost_model_info/$', views.xgboost_model_info),
+    # lstm_model信息
     url(r'^lstm_model_info/$', views.lstm_model_info),
     url(r'^test/$', views.test),
+    # 主base
     url(r'^fixed/$', views.fixed),
+    #
+    url(r'^data_tag/$', views.data_tag),
+
 ]

@@ -92,7 +92,7 @@ def insert_train_datas(db, table_name, np_array):
 
     # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
     sql = "INSERT INTO `%s` VALUES %s" % (table_name, datas_sql)
-    print(sql)
+    # print(sql)
 
     try:
         # 执行sql语句
@@ -243,10 +243,11 @@ def delete_datas(db, table_name, start_time=0, end_time=0):
         return False
 
 
-def insert_xgboost_model(model_name, precision=0., recall=0., f1=0., trained=0, finished=0, changed=0, created_time=0,
+def insert_xgboost_model(file_name, model_name, precision=0., recall=0., f1=0., trained=0, finished=0, changed=0, created_time=0,
                          lasted_update=0):
     """
     插入xgboost训练数据到数据库表中
+    :param file_name:文件名，数据来源
     :param db:
     :param model_name: 模型名称
     :param precision: 精确率
@@ -262,9 +263,9 @@ def insert_xgboost_model(model_name, precision=0., recall=0., f1=0., trained=0, 
     db = connectdb()
     cursor = db.cursor()
     # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
-    sql = "INSERT INTO `model`(`model_name`, `precision`, `recall`, `f1`, `trained`, `finished`, `changed`, `created_time`, `lasted_update`) " \
-          "VALUES('%s',%f,%f,%f,%d,%d,%d,'%s','%s')" % (
-              model_name, precision, recall, f1, trained, finished, changed, created_time, lasted_update)
+    sql = "INSERT INTO `model`(`file_name`, `model_name`, `precision`, `recall`, `f1`, `trained`, `finished`, `changed`, `created_time`, `lasted_update`) " \
+          "VALUES('%s','%s',%f,%f,%f,%d,%d,%d,'%s','%s')" % (
+              file_name, model_name, precision, recall, f1, trained, finished, changed, created_time, lasted_update)
     print(sql)
     try:
         # 执行sql语句
@@ -329,7 +330,7 @@ def update_xgboost_model(model_name, precision=0., recall=0., f1=0., trained=0, 
         return False
 
 
-def insert_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0., created_time=0, lasted_update=0):
+def insert_lstm_model(file_name, model_name, rmse=0., lasted_predict=0, predict_value=0., created_time=0, lasted_update=0):
     """
     插入lstm训练数据到数据库表中
     :param model_name: 模型名称
@@ -343,9 +344,9 @@ def insert_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0., c
     db = connectdb()
     cursor = db.cursor()
     # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
-    sql = "INSERT INTO `lstm_model`(`model_name`, `rmse`, `lasted_predict`, `predict_value`, `created_time`, `lasted_update`) " \
-          "VALUES('%s',%f,'%s','%s','%s','%s')" % \
-          (model_name, rmse, lasted_predict, predict_value, created_time, lasted_update)
+    sql = "INSERT INTO `lstm_model`(`file_name`, `model_name`, `rmse`, `lasted_predict`, `predict_value`, `created_time`, `lasted_update`) " \
+          "VALUES('%s','%s',%f,'%s','%s','%s','%s')" % \
+          (file_name, model_name, rmse, lasted_predict, predict_value, created_time, lasted_update)
     print(sql)
     try:
         # 执行sql语句
@@ -424,6 +425,11 @@ def query_lstm_predict_30(table_name):
 
 
 def query_model_info(kind):
+    """
+    根据类型查询模型信息
+    :param kind:
+    :return:
+    """
     db = connectdb()
     cursor = db.cursor()
     if kind == 'XGBoost':
@@ -443,6 +449,44 @@ def query_model_info(kind):
         db.rollback()
         return False
 
+
+def insert_file2uuid(file_name, uuid):
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "insert into `file2uuid` values ('%s','%s')" % (file_name, uuid)
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        db.commit()
+        return True
+    except:
+        # 如果失败则回滚
+        print('插入file2uuid失败')
+        db.rollback()
+        return False
+
+
+def query_uuid_from_file2uuid_by_filename(file_name):
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "select `uuid` from `file2uuid` where file_name='%s'" % file_name
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        print(results[0][0])
+        return results[0][0]
+    except:
+        # 如果失败则回滚
+        print('获取文件uuid失败')
+        db.rollback()
+        return False
+
+
 def closedb(db):
     """
     关闭数据库连接
@@ -450,5 +494,4 @@ def closedb(db):
     :return:
     """
     db.close()
-
 

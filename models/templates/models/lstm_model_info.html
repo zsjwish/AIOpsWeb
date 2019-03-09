@@ -62,13 +62,13 @@
                                             </td>
                                             <td >
                                                 {{ data.1 }}
-                                                <button id="btn1" class="btn btn-default btn-sm pull-right">
+                                                <button id="btn1" class="btn  btn-default pull-right">
                                                     重置模型
                                                 </button>
                                             </td>
                                             <td>
                                                 {{ data.2|date:"Y-m-d H:i:s" }}
-                                                <button id="btn2" class="btn btn-default btn-sm pull-right">
+                                                <button id="btn2" class="btn btn-default pull-right">
                                                     预测趋势
                                                 </button>
                                             </td>
@@ -99,6 +99,9 @@
                     rms = parseFloat(number[0]);
                     if (rms> 100) {
                         $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
+                        $(row).find('td:eq(3)').css('class', 'btn-danger');
+                        {#$(row).find('td:eq(3)').css('button', 'rgb(233, 104, 107)');#}
+                        $(row).find(btn1).css('class', 'btn-danger');
                     }
                     else if(rms >50){
                         $(row).find('td:eq(3)').css('background-color', 'orange');

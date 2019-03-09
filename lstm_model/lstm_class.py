@@ -19,8 +19,9 @@ from isolate_model.base_function import load_data_for_lstm_from_mysql
 
 
 class LSTMModel:
-    def __init__(self, model_name):
+    def __init__(self, file_name, model_name):
         print("LSTM init`````````````````````````````````````````````````````````")
+        self.file_name = file_name
         self.name = model_name
         # 预测需要前面多少值
         self.look_back = 50
@@ -187,7 +188,7 @@ class LSTMModel:
         插入数据到model表中，初始化的时候会插入数据，后续都是update
         :return:插入成功，返回True,失败返回False
         """
-        if insert_lstm_model(self.name, self.rmse, self.lasted_predict,
+        if insert_lstm_model(self.file_name, self.name, self.rmse, self.lasted_predict,
                              self.predict_str_value, self.create_time, self.lasted_update):
             print("插入成功")
             return True
