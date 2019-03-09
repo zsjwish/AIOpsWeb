@@ -375,7 +375,7 @@ def save_xgboost_class(model):
     # 存储名称
     file_model_name = "./models_file/xgboost_name"
     with open(file_model_name, 'a+') as name_obj:
-        name_obj.write(model.name + "\n")
+        name_obj.write(model.file_name + "\n")
 
 
 def load_xgboost_class(model_name):
@@ -407,7 +407,7 @@ def save_lstm_class(LSTM_model):
     # 存储名称
     file_model_name = "./models_file/lstm_name"
     with open(file_model_name, 'a+') as name_obj:
-        name_obj.write(LSTM_model.name + "\n")
+        name_obj.write(LSTM_model.file_name + "\n")
 
 
 def load_lstm_class(model_name):
@@ -507,15 +507,16 @@ def predict_future_30(table_name):
     :return:
     """
     # redis连接池
+    uuid = query_uuid_from_file2uuid_by_filename(table_name)
     redis_conn = get_redis_connection("default")
     # 如果模型不存在于redis的lstm_model hash中就加载，如果在就直接从redis中获取模型进行判断
     if not redis_conn.hexists('lstm_model', table_name):
         # 从磁盘中加载LSTM模型对象
-        lstm_model_tmp = load_lstm_class(table_name)
+        lstm_model_tmp = load_lstm_class(uuid)
         # 初始化时就预测，避免因为graph冲突
         lstm_model_tmp.model.predict(np.zeros((1, 1, 50)))
         # 将模型加到redis中
-        redis_conn.hset('lstm_model', table_name, pickle.dumps(lstm_model_tmp))
+        redis_conn.hset('lstm_model', uuid, pickle.dumps(lstm_model_tmp))
         model_tmp = lstm_model_tmp
     else:
         # 从redis中获取模型对象

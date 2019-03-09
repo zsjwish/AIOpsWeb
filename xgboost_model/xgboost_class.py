@@ -116,7 +116,6 @@ class XGBoost:
         # 更新数据库
         self.update_database_model()
         # 返回模型
-        time.sleep(10)
         return bst
 
     def predict(self, data):

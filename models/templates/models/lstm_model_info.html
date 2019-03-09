@@ -104,19 +104,19 @@
                 'info': true,
                 'autoWidth': true,
                 'rowCallback': function (row, data, index) {
-                    number = data[3].split(" ");
+                    number = data[4].split(" ");
                     rms = parseFloat(number[0]);
                     if (rms> 100) {
-                        $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
-                        $(row).find('td:eq(3)').css('class', 'btn-danger');
+                        $(row).find('td:eq(4)').css('background-color', 'rgb(233, 104, 107)');
+                        $(row).find('td:eq(4)').css('class', 'btn-danger');
                         {#$(row).find('td:eq(3)').css('button', 'rgb(233, 104, 107)');#}
                         $(row).find(btn1).css('class', 'btn-danger');
                     }
                     else if(rms >50){
-                        $(row).find('td:eq(3)').css('background-color', 'orange');
+                        $(row).find('td:eq(4)').css('background-color', 'orange');
                     }
                     else  {
-                        $(row).find('td:eq(3)').css('background-color', '#32cd32');
+                        $(row).find('td:eq(4)').css('background-color', '#32cd32');
                     }
 
                 }

@@ -127,9 +127,6 @@ def model_info(request):
     return render(request, 'models/models_list.html', context = info)
 
 
-
-
-
 def predict(request):
     """
     对数据标注

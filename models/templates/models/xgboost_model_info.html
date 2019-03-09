@@ -124,10 +124,10 @@
                 'info': true,
                 'autoWidth': true,
                 'rowCallback': function (row, data, index) {
-                    if (data[3] < 0.5) {
+                    if (data[4] < 0.5) {
                         $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
                     }
-                    else if (data[3]<0.7) {
+                    else if (data[4]<0.7) {
                         $(row).find('td:eq(3)').css('background-color', 'orange');
                     }
                     else  {
