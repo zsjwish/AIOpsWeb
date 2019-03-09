@@ -24,6 +24,12 @@
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending"
                                             style="position: relative">
+                                            数据来源
+                                        </th>
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-sort="ascending"
+                                            aria-label="Rendering engine: activate to sort column descending"
+                                            style="position: relative">
                                             模型名称
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -54,20 +60,23 @@
                                             <td >
                                                 {{ data.0 }}
                                             </td>
-                                            <td>
-                                                {{ data.4|date:"Y-m-d H:i:s" }}
+                                            <td >
+                                                {{ data.1 }}
                                             </td>
                                             <td>
                                                 {{ data.5|date:"Y-m-d H:i:s" }}
                                             </td>
+                                            <td>
+                                                {{ data.6|date:"Y-m-d H:i:s" }}
+                                            </td>
                                             <td >
-                                                {{ data.1 }}
+                                                {{ data.2 }}
                                                 <button id="btn1" class="btn  btn-default pull-right">
                                                     重置模型
                                                 </button>
                                             </td>
                                             <td>
-                                                {{ data.2|date:"Y-m-d H:i:s" }}
+                                                {{ data.3|date:"Y-m-d H:i:s" }}
                                                 <button id="btn2" class="btn btn-default pull-right">
                                                     预测趋势
                                                 </button>
