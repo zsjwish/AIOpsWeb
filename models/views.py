@@ -1,11 +1,12 @@
 import csv
+import datetime
 import json
 import os
 
 # Create your views here.
 
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django_redis import get_redis_connection
@@ -96,7 +97,12 @@ def tag(request):
     # 判断接收的值是否为POST
     redis_conn = get_redis_connection("default")
     data_name = redis_conn.smembers("data_set_name")
-    info = {"data_names": [i.decode for i in data_name]}
+    info = dict(data_names = [i.decode for i in data_name])
+    time_now = datetime.datetime.now()
+    timeformat = '%Y-%m-%d %H:%M'
+    info["start_time"] = (time_now - datetime.timedelta(hours = 1)).strftime(timeformat)
+    info["end_time"] = time_now.strftime(timeformat)
+    print(info)
     if request.method == "POST":
         info["table_name"] = request.POST["data_name"]
         info["start_time"] = request.POST["start_time"]
@@ -138,16 +144,13 @@ def predict(request):
     lstm_name = redis_conn.smembers("lstm_name")
     info = {"data_names": [i.decode for i in lstm_name]}
     if request.method == "POST":
-        data_name = request.POST["data_name"]
+        data_name = request.POST.get("model_name")
         predict_xAxis, predict_value = predict_future_30(data_name)
-        info["predict_table"] = data_name
-        info["predict_xAxis"] = predict_xAxis
-        info["predict_value"] = predict_value
-        return render(request, 'models/lstm_predict.html', {'predict_value': json.dumps(info["predict_value"]),
-                                                            'predict_table': json.dumps(info["predict_table"]),
-                                                            'predict_xAxis': json.dumps(info["predict_xAxis"]),
-                                                            'data_names': info["data_names"]})
-    return render(request, 'models/lstm_predict.html', context = info)
+        datas = {"predict_table": data_name, "predict_xAxis": predict_xAxis, "predict_value": predict_value}
+        datas = JsonResponse(datas)
+        print("infofffff", datas.getvalue())
+        return HttpResponse(datas)
+    return render(request, 'models/predict.html', context = info)
 
 
 @csrf_exempt
@@ -202,4 +205,24 @@ def fixed(request):
 
 
 def data_tag(request):
-    return render(request, 'models/data_tag.html')
+    # 判断接收的值是否为POST
+    redis_conn = get_redis_connection("default")
+    data_name = redis_conn.smembers("data_set_name")
+    info = dict(data_names = [i.decode for i in data_name])
+    time_now = datetime.datetime.now()
+    time_format = '%Y-%m-%dT%H:%M'
+    info["start_time"] = (time_now - datetime.timedelta(hours = 1)).strftime(time_format)
+    info["end_time"] = time_now.strftime(time_format)
+    if request.method == "POST":
+        print("1111111111111", request.POST)
+        info["table_name"] = request.POST.get("table_name")
+        info["start_time"] = request.POST.get("start_time")
+        info["end_time"] = request.POST.get("end_time")
+        print("info", info)
+        datas = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+                                          end_time = info["end_time"])
+        print("infoffffffffffffff", datas)
+        datas = JsonResponse(datas, safe=False)
+        print("infofffff", datas.getvalue())
+        return HttpResponse(datas)
+    return render(request, 'models/data_tag.html', context = info)

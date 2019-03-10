@@ -1,0 +1,134 @@
+{% extends 'models/fixed.html' %}
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1 class="box-title">
+                趋势预测
+            </h1>
+            <br>
+            <select id="lstm_name" style="margin-left: 0px" name="data_name">
+                <option data-tokens="nobody">{{ table_name }}</option>
+                {% for name in data_names %}
+                    <option value="{{ name }}">
+                        {{ name }}
+                    </option>
+                {% endfor %}
+            </select>
+            <button id="predict" class="btn btn-sm btn-default" style="margin-left: 15px">预测</button>
+        </section>
+        <br>
+
+        <section class="content container-fluid">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    {{ predict_table }}
+                    {{ predict_xAxis }}
+                    {{ predict_value }}
+                    <div id="main" style="width: 1000px;height:600px; margin: 3% 20% 0 20%"></div>
+
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% block js %}
+    <script src="../../static/js/echarts.min.js"></script>
+
+    <script type="text/javascript">
+        function p(predict_table, predict_xAxis, predict_value) {
+
+            // 基于准备好的dom，初始化echarts实例
+            var myChart = echarts.init(document.getElementById('main'));
+            // 指定图表的配置项和数据
+            var option = {
+                title : {
+                text: '未来半小时趋势预测',
+                subtext: "数据集:" + predict_table
+            },
+            tooltip : {
+                trigger: 'axis'
+            },
+            legend: {
+                data:['预测值']
+            },
+            toolbox: {
+                show : true,
+                feature : {
+                    mark : {show: true},
+                    dataView : {show: true, readOnly: false},
+                    magicType : {show: true, type: ['line', 'bar']},
+                    restore : {show: true},
+                    saveAsImage : {show: true}
+                }
+            },
+            calculable : true,
+            xAxis : [
+                {
+                    type : 'category',
+                    boundaryGap : false,
+                    data : predict_xAxis
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        formatter: predict_value
+                    }
+                }
+            ],
+            series : [
+                {
+                    name:'KPI值',
+                    type:'line',
+                    data: predict_value ,
+                    smooth:true,
+                    markPoint : {
+                        data : [
+                            {type : 'max', name: '最大值'},
+                            {type : 'min', name: '最小值'}
+                        ]
+                    },
+                    markLine : {
+                        data : [
+                            {type : 'average', name: '平均值'}
+                        ]
+                    }
+                }
+            ]};
+            myChart.setOption(option);
+        }
+
+        $(document).ready(function () {
+            $("#predict").click(function () {
+                var datas = {
+                    "model_name": $("#lstm_name").val(),
+                };
+
+                alert(datas.model_name);
+                /**ajax的type,url,dataType,contentType,data属性*/
+                $.ajax({
+                    async: true,
+                    type: 'POST',
+                    url: '',
+                    data: datas,
+                    {#dataType: "json",#}
+                    {#contentType: 'Application/json',#}
+                    error: function () {
+                        alert('请求失败 ');
+                    },
+                    success: function (data) {
+                        datas = JSON.parse(data);
+                        var predict_table = datas["predict_table"];
+                        var predict_xAxis = datas["predict_xAxis"];
+                        var predict_value = datas["predict_value"];
+                        p(predict_table, predict_xAxis, predict_value);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+

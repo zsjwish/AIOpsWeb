@@ -480,10 +480,9 @@ def get_datas_for_tag(table_name, start_time=0, end_time=0, label=(0, 1)):
     :param label:
     :return:
     """
-    result = query_datas(connectdb(), table_name = table_name, label = label, start_time = start_time,
+    uuid = query_uuid_from_file2uuid_by_filename(table_name)
+    result = query_datas(connectdb(), table_name = uuid, label = label, start_time = start_time,
                          end_time = end_time)
-    print(type(result))
-    print(result)
     return result
 
 

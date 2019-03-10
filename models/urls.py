@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^test/$', views.test),
     # 主base
     url(r'^fixed/$', views.fixed),
-    #
+    # 数据标注
     url(r'^data_tag/$', views.data_tag),
 
 ]

@@ -6,7 +6,30 @@
             <h1 class="box-title">
                 数据标注
             </h1>
+            <br>
+            <div>
+                <label style="margin-left: 15px">选择数据集</label>
+                <select id="dataset" name="data_name">
+                    <option data-tokens="nobody">{{ table_name }}</option>
+                    {% for name in data_names %}
+                        <option value="{{ name }}">
+                            {{ name }}
+                        </option>
+                    {% endfor %}
+                </select>
+
+                <label style="margin-left: 15px">开始时间</label>
+                <input type="datetime-local" id="start_time" value={{ start_time }}>
+
+                <label style="margin-left: 15px">结束时间</label>
+                <input type="datetime-local" id="end_time" value={{ end_time }}>
+
+                {#            <input type="submit" class="btn btn-info btn-sm" value="查询"/>#}
+                <button id="query" type="button" class="btn btn-info btn-sm" style="margin-left: 15px" value="查询"> 查询
+                </button>
+            </div>
         </section>
+
         <section class="content container-fluid">
             <div class="box">
                 <!-- /.box-header -->
@@ -24,75 +47,39 @@
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending"
                                             style="position: relative">
-                                            模型名称
+                                            id
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Browser: activate to sort column ascending"
                                             style="position: relative">
-                                            精确率
+                                            时间
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                             style="position: relative">
-                                            召回率
+                                            kpi
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Engine version: activate to sort column ascending"
                                             style="position: relative">
-                                            f1
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="CSS grade: activate to sort column ascending"
-                                            style="position: relative">
-                                            训练数据量
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="create time: activate to sort column ascending"
-                                            style="position: relative">
-                                            创建时间
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1"
-                                            aria-label="lasted update time: activate to sort column ascending"
-                                            style="position: relative">
-                                            最后更新
-                                        </th>
-                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
-                                            colspan="1" aria-label="reset: activate to sort column ascending"
-                                            style="position: relative">
-                                            是否需要重新训练
+                                            标签
                                         </th>
                                     </tr>
                                     </thead>
-                                    <tbody>
-                                    {% for data in datas %}
+                                    <tbody id="otbody">
+                                    {% for data in table_row %}
                                         <tr role="row" class="odd">
-                                            <td width="20%">
+                                            <td>
                                                 {{ data.0 }}
                                             </td>
-                                            <td width="5%">
-                                                {{ data.1 }}
+                                            <td>
+                                                {{ data.1|date:"Y-m-d H:i:s" }}
                                             </td>
-                                            <td width="5%">
+                                            <td>
                                                 {{ data.2 }}
                                             </td>
-                                            <td width="5%">
+                                            <td>
                                                 {{ data.3 }}
-                                            </td>
-                                            <td width="8%">
-                                                {{ data.4 }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.7|date:"Y-m-d H:i:s" }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.8|date:"Y-m-d H:i:s" }}
-                                            </td>
-                                            <td width="10%">
-                                                {{ data.5 }}
-                                                <button class="btn btn-default btn-sm pull-right">
-                                                    重置模型
-                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -115,24 +102,61 @@
                 'searching': true,
                 'ordering': true,
                 'info': true,
-                'autoWidth': true,
-                'rowCallback': function (row, data, index) {
-                    if (data[3] < 0.5) {
-                        $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
-                    }
-                    else if (data[3]<0.7) {
-                        $(row).find('td:eq(3)').css('background-color', 'orange');
-                    }
-                    else  {
-                        $(row).find('td:eq(3)').css('background-color', '#32cd32');
-                    }
-                }
+                'autoWidth': true
             });
             $('#example1 tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
                 alert(data[0] + "'s salary is: " + data[5]);
             });
-
+            $("#query").click(function () {
+                {#alert("Handler for .click() called. ");#}
+                var dataset = $("#dataset").val();
+                var start_time = $("#start_time").val();
+                var end_time = $("#end_time").val();
+                {#alert(dataset + start_time + end_time);#}
+                var datas = {
+                    "table_name": dataset,
+                    "start_time": start_time,
+                    "end_time": end_time,
+                };
+                {#alert(datas.end_time + datas.start_time + datas.table_name);#}
+                /**ajax的type,url,dataType,contentType,data属性*/
+                $.ajax({
+                    async: true,
+                    type: 'POST',
+                    url: '',
+                    data: datas,
+                    {#dataType: 'json',#}
+                    {#contentType: 'Application/json',#}
+                    error: function () {
+                        alert('请求失败 ');
+                    },
+                    success: function (datas) {
+                        alert('请求失败 ');
+                        datas = JSON.parse(datas);
+                        datas = eval(datas);
+                        {#$("#table_row")=datas;#}
+                        console.log(typeof datas);
+                        var otbody = document.getElementById('otbody');
+                        var html = '';
+                        //清空table中的html
+                        $("#otbody").html("");
+                        for (var i = 0; i < datas.length; i++) {
+                            console.log(datas);
+                            str1 = "<tr>" +
+                                "<td>" + datas[i][0] + "</td>" +
+                                "<td>" + datas[i][1] + "</td>" +
+                                "<td>" + datas[i][2] + "</td>" +
+                                "<td>" + datas[i][3] + "</td>" +
+                                "</tr>";
+                            html+=str1;
+                        }
+                        console.log(html);
+                        otbody.innerHTML = html;
+                        alert("请求成功");
+                    }
+                });
+            });
         });
     </script>
 {% endblock %}
