@@ -480,6 +480,10 @@ def get_datas_for_tag(table_name, start_time=0, end_time=0, label=(0, 1)):
     :param label:
     :return:
     """
+    if len(label) > 1:
+        label = (0, 1)
+    else:
+        label = int(label)
     uuid = query_uuid_from_file2uuid_by_filename(table_name)
     result = query_datas(connectdb(), table_name = uuid, label = label, start_time = start_time,
                          end_time = end_time)
@@ -495,7 +499,8 @@ def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
     :param label:
     :return:
     """
-    if update_datas(connectdb(), table_name = table_name, label = label, start_time = start_time, end_time = end_time):
+    uuid = query_uuid_from_file2uuid_by_filename(table_name)
+    if update_datas(connectdb(), table_name = uuid, label = int(label), start_time = start_time, end_time = end_time):
         return get_datas_for_tag(table_name = table_name, start_time = start_time, end_time = end_time, label = label)
 
 

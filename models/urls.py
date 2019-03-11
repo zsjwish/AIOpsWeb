@@ -31,5 +31,7 @@ urlpatterns = [
     url(r'^fixed/$', views.fixed),
     # 数据标注
     url(r'^data_tag/$', views.data_tag),
+    # 训练模型
+    url(r'^train_model/$', views.train)
 
 ]

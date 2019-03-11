@@ -123,7 +123,9 @@
                 'ordering': true,
                 'info': true,
                 'autoWidth': true,
+
                 'rowCallback': function (row, data, index) {
+
                     if (data[4] < 0.5) {
                         $(row).find('td:eq(3)').css('background-color', 'rgb(233, 104, 107)');
                     }

@@ -1,0 +1,38 @@
+{% extends 'models/fixed.html' %}
+{% block content %}
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1 class="box-title">
+                训练模型
+            </h1>
+        </section>
+        <section class="content container-fluid">
+            <div class="box">
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <form action="/models/train/" method="post">
+                        <label >
+                            模型类型:
+                        </label><select name="kind">
+                        <option value="XGBoost">异常检测</option>
+                        <option value="LSTM">趋势预测</option>
+                    </select>
+                    <label style="margin-left: 30px">
+                        数据集:
+                    </label>
+                        <select name="data_name">
+                        {% for name in names %}
+                            <option value={{ name }}>{{ name }}</option>
+                        {% endfor %}
+                    </select>
+                        <input type="submit" class="btn btn-info btn-sm"  value="提交"/>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+

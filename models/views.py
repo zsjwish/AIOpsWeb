@@ -72,7 +72,7 @@ def train(request):
         # if res == 0:
         #     return render(request, 'models/model_exists.html')
         return render(request, 'models/train_success.html', context = info)
-    return render(request, 'models/train.html', context = dataset)
+    return render(request, 'models/train_model.html', context = dataset)
 
 
 def xgboost_model_info(request):
@@ -204,6 +204,22 @@ def fixed(request):
     return render(request, 'models/fixed.html')
 
 
+def data_tag_helper(request):
+    pass
+    # 判断接收的值是否为POST
+    # if request.method == "POST":
+    #     print("1111111111111", request.POST)
+    #     tag = {"table_name": request.POST["table_name"], "start_time": request.POST["start_time"],
+    #            "end_time": request.POST["end_time"], "label": request.POST["label"]}
+    #     print(tag)
+    #     info.update(tag)
+    #     print("info", info)
+    #     info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+    #                                       end_time = info["end_time"], label = info["label"])
+    #     return render(request, 'models/data_tag.html', context = info)
+    # return render(request, 'models/data_tag.html', context = info)
+
+
 def data_tag(request):
     # 判断接收的值是否为POST
     redis_conn = get_redis_connection("default")
@@ -211,18 +227,34 @@ def data_tag(request):
     info = dict(data_names = [i.decode for i in data_name])
     time_now = datetime.datetime.now()
     time_format = '%Y-%m-%dT%H:%M'
-    info["start_time"] = (time_now - datetime.timedelta(hours = 1)).strftime(time_format)
-    info["end_time"] = time_now.strftime(time_format)
+    # info["start_time"] = (time_now - datetime.timedelta(hours = 1)).strftime(time_format)
+    # info["end_time"] = time_now.strftime(time_format)
+    info["start_time"] = "2019-02-25T14:10"
+    info["end_time"] = "2019-02-25T14:40"
     if request.method == "POST":
         print("1111111111111", request.POST)
-        info["table_name"] = request.POST.get("table_name")
-        info["start_time"] = request.POST.get("start_time")
-        info["end_time"] = request.POST.get("end_time")
+        tag = {"table_name": request.POST["table_name"], "start_time": request.POST["start_time"],
+               "end_time": request.POST["end_time"], "label": request.POST["label"]}
+        print(tag)
+        info.update(tag)
         print("info", info)
-        datas = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
-                                          end_time = info["end_time"])
-        print("infoffffffffffffff", datas)
-        datas = JsonResponse(datas, safe=False)
-        print("infofffff", datas.getvalue())
-        return HttpResponse(datas)
+        if request.POST["kind"] == "change":
+            info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+                                              end_time = info["end_time"], label = info["label"])
+        else:
+            info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+                                          end_time = info["end_time"], label = info["label"])
+        return render(request, 'models/data_tag.html', context = info)
+
+        # print("1111111111111", request.POST)
+        # info["table_name"] = request.POST["table_name"]
+        # info["start_time"] = request.POST["start_time"]
+        # info["end_time"] = request.POST["end_time"]
+        # print("info", info)
+        # datas = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+        #                                   end_time = info["end_time"])
+        # print("infoffffffffffffff", datas)
+        # datas = JsonResponse(datas, safe=False)
+        # print("infofffff", datas.getvalue())
+        # return HttpResponse(datas)
     return render(request, 'models/data_tag.html', context = info)

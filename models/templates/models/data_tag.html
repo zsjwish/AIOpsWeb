@@ -8,25 +8,47 @@
             </h1>
             <br>
             <div>
-                <label style="margin-left: 15px">选择数据集</label>
-                <select id="dataset" name="data_name">
-                    <option data-tokens="nobody">{{ table_name }}</option>
-                    {% for name in data_names %}
-                        <option value="{{ name }}">
-                            {{ name }}
-                        </option>
-                    {% endfor %}
-                </select>
+                <form action="" method="POST">
+                    <label>选择数据集</label>
+                    <select name="table_name" id="dataset">
+                        <option data-tokens="nobody">{{ table_name }}</option>
+                        {% for name in data_names %}
+                            <option value="{{ name }}">
+                                {{ name }}
+                            </option>
+                        {% endfor %}
+                    </select>
 
-                <label style="margin-left: 15px">开始时间</label>
-                <input type="datetime-local" id="start_time" value={{ start_time }}>
+                    <label style="margin-left: 10px;">开始时间</label>
 
-                <label style="margin-left: 15px">结束时间</label>
-                <input type="datetime-local" id="end_time" value={{ end_time }}>
+                    <input type="datetime-local" name="start_time" value={{ start_time }}>
 
-                {#            <input type="submit" class="btn btn-info btn-sm" value="查询"/>#}
-                <button id="query" type="button" class="btn btn-info btn-sm" style="margin-left: 15px" value="查询"> 查询
-                </button>
+                    <label style="margin-left: 10px">结束时间</label>
+                    <input type="datetime-local" name="end_time" value={{ end_time }}>
+
+                    <label style="margin-left: 10px;">选择标签</label>
+                    <select name="label">
+                        <option value="0">0</option>
+                        <option value="1">1</option>
+                        <option value="所有" selected>所有</option>
+                    </select>
+                    {#                <button type="button" id="query" class="btn btn-info btn-sm" value="查询">查询</button>#}
+                    <button type="submit" name="kind" style="margin-left: 20px;" id="label2zero" class="btn btn-info btn-sm"
+                            value="query">查询
+                    </button>
+                    <button type="submit" name="kind" style="margin-left: 20px;" id="label2zero" class="btn btn-danger btn-sm"
+                            value="change">全部更改
+                    </button>
+                    <label style="margin-left: 30px">复选框操作：</label>
+                    <button type="button" id="label2zero" class="btn btn-warning btn-sm"
+                            value="" onclick="clickLabel2One()">标签置为0
+                    </button>
+                    <button type="button" style="margin-left: 0px;" id="label2one" class="btn btn-warning btn-sm"
+                            value="" onclick="clickLabel2One()">标签置为1
+                    </button>
+                </form>
+
+
             </div>
         </section>
 
@@ -43,10 +65,12 @@
                                        aria-describedby="example2_info">
                                     <thead>
                                     <tr role="row">
+                                        <th width="5%"><input id="checkAll" class="checkAll" type="checkbox" value="">
+                                        </th>
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending"
-                                            style="position: relative">
+                                            style="display: none; position: relative">
                                             id
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
@@ -67,9 +91,10 @@
                                     </tr>
                                     </thead>
                                     <tbody id="otbody">
-                                    {% for data in table_row %}
+                                    {% for data in datas %}
                                         <tr role="row" class="odd">
-                                            <td>
+                                            <td><input type="checkbox" name="checkItem"/></td>
+                                            <td style="display: none;">
                                                 {{ data.0 }}
                                             </td>
                                             <td>
@@ -80,6 +105,9 @@
                                             </td>
                                             <td>
                                                 {{ data.3 }}
+                                                <button id="btn1" class="btn btn-info btn-sm pull-right">
+                                                    标记
+                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -95,69 +123,71 @@
 {% endblock %}
 {% block js %}
     <script type="text/javascript">
+
+
         $(document).ready(function () {
+
             var table = $('#example1').DataTable({
+
                 'paging': true,
                 'lengthChange': true,
                 'searching': true,
                 'ordering': true,
                 'info': true,
-                'autoWidth': true
+                'autoWidth': true,
+                "drawCallback": function (settings) {
+                    $("#th1").removeClass("sorting_asc");
+                },
+                "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
             });
             $('#example1 tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
                 alert(data[0] + "'s salary is: " + data[5]);
             });
-            $("#query").click(function () {
-                {#alert("Handler for .click() called. ");#}
-                var dataset = $("#dataset").val();
-                var start_time = $("#start_time").val();
-                var end_time = $("#end_time").val();
-                {#alert(dataset + start_time + end_time);#}
-                var datas = {
-                    "table_name": dataset,
-                    "start_time": start_time,
-                    "end_time": end_time,
-                };
-                {#alert(datas.end_time + datas.start_time + datas.table_name);#}
-                /**ajax的type,url,dataType,contentType,data属性*/
-                $.ajax({
-                    async: true,
-                    type: 'POST',
-                    url: '',
-                    data: datas,
-                    {#dataType: 'json',#}
-                    {#contentType: 'Application/json',#}
-                    error: function () {
-                        alert('请求失败 ');
-                    },
-                    success: function (datas) {
-                        alert('请求失败 ');
-                        datas = JSON.parse(datas);
-                        datas = eval(datas);
-                        {#$("#table_row")=datas;#}
-                        console.log(typeof datas);
-                        var otbody = document.getElementById('otbody');
-                        var html = '';
-                        //清空table中的html
-                        $("#otbody").html("");
-                        for (var i = 0; i < datas.length; i++) {
-                            console.log(datas);
-                            str1 = "<tr>" +
-                                "<td>" + datas[i][0] + "</td>" +
-                                "<td>" + datas[i][1] + "</td>" +
-                                "<td>" + datas[i][2] + "</td>" +
-                                "<td>" + datas[i][3] + "</td>" +
-                                "</tr>";
-                            html+=str1;
-                        }
-                        console.log(html);
-                        otbody.innerHTML = html;
-                        alert("请求成功");
-                    }
-                });
-            });
+
         });
+
+        function clickLabel2One() {
+
+        }
+
+        function clickChangeAll() {
+
+        }
+
+        {#全选和全不选#}
+        $('#checkAll').on('click', function () {
+            if (this.checked) {
+                $(this).attr('checked', 'checked');
+                $("input[name='checkItem']").each(function () {
+                    this.checked = true;
+                });
+            } else {
+                $(this).removeAttr('checked');
+                $("input[name='checkItem']").each(function () {
+                    this.checked = false;
+                });
+            }
+        });
+
+        function childclick() {
+            if ($(this).is(":checked") == false) {
+                $("#checkAll").prop("checked", false);
+            }
+        }
+
+        function checkbox() {
+            var uuid = '';
+            var uuids = eloancn.table.grid.rows(".selected").data();
+            if (uuids.length == 0) {
+                alert(eloancn.table.statusTitle);
+            } else {
+                for (var i = 0; i < uuids.length; i++) {
+                    uuid = uuid + uuids[i].extn + ",";
+                }
+                alert(uuid);
+            }
+        }
     </script>
 {% endblock %}
 
