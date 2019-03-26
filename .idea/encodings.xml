@@ -3,6 +3,8 @@
   <component name="Encoding" native2AsciiForPropertiesFiles="true" defaultCharsetForPropertiesFiles="UTF-8" addBOMForNewFiles="with NO BOM">
     <file url="file://$PROJECT_DIR$/file/H2000.csv" charset="GBK" />
     <file url="file://$PROJECT_DIR$/models_file/data_set_name" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/models_file/lstm_name" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/models_file/xgboost_name" charset="GBK" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>

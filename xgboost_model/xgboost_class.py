@@ -11,6 +11,7 @@ import xgboost as xgb
 from db.mysql_operation import insert_xgboost_model, update_xgboost_model
 from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_xgboost_class
 
+
 class XGBoost:
     def __init__(self, file_name, model_name):
         self.file_name = file_name
