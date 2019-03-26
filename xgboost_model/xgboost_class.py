@@ -13,7 +13,6 @@ from isolate_model.base_function import load_data_for_xgboost_from_mysql, save_x
 
 class XGBoost:
     def __init__(self, file_name, model_name):
-        print("xgboost init --------------------------------------")
         self.file_name = file_name
         self.name = model_name
         self.param = {

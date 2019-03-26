@@ -185,7 +185,7 @@ def upload(request):
         if save_datas_with_labels(f_name, float(abnormal_rate)):
             return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         return render(request, 'models/upload_failed.html')
-    return render(request, 'models/upload_csv.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
+    return render(request, 'models/upload_dataset.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
 
 
 def dashboard(request):
