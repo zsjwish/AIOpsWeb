@@ -102,8 +102,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="533" column="41" selection-start-line="533" selection-start-column="4" selection-end-line="533" selection-end-column="41" />
+            <state relative-caret-position="1547">
+              <caret line="542" column="11" lean-forward="true" selection-start-line="542" selection-start-column="11" selection-end-line="542" selection-end-column="11" />
               <folding>
                 <element signature="e#376#829#0" />
                 <element signature="e#886#1740#0" />
@@ -120,7 +120,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
+            <state relative-caret-position="5">
               <caret line="118" column="23" lean-forward="true" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
@@ -290,8 +290,8 @@
         <option value="$PROJECT_DIR$/models/templates/models/data_tag.html" />
         <option value="$PROJECT_DIR$/models/templates/models/abnormal_list.html" />
         <option value="$PROJECT_DIR$/models/views.py" />
-        <option value="$PROJECT_DIR$/db/mysql_operation.py" />
         <option value="$PROJECT_DIR$/test/test_mysql_operation.py" />
+        <option value="$PROJECT_DIR$/db/mysql_operation.py" />
       </list>
     </option>
   </component>
@@ -804,7 +804,7 @@
       <workItem from="1555674640877" duration="14146000" />
       <workItem from="1555899439162" duration="1408000" />
       <workItem from="1556005836139" duration="3066000" />
-      <workItem from="1556072407722" duration="2248000" />
+      <workItem from="1556072407722" duration="2667000" />
     </task>
     <task id="LOCAL-00001" summary="lstm and xgboost model info page">
       <created>1552048532339</created>
@@ -884,7 +884,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="521464000" />
+    <option name="totallyTimeSpent" value="521883000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -903,7 +903,7 @@
       <window_info id="Favorites" order="2" sideWeight="0.5012658" side_tool="true" weight="0.26876676" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.6911469" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3847242" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3847242" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.3069307" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -911,7 +911,7 @@
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.26760563" />
       <window_info anchor="bottom" id="Python Console" order="9" weight="0.40311173" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.4596888" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.6308345" />
       <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="12" weight="0.35977337" />
       <window_info anchor="bottom" id="Concurrent Activities Diagram" order="13" weight="0.3286119" />
@@ -1193,11 +1193,6 @@
           <option name="timeStamp" value="158" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db/mysql_operation.py</url>
-          <line>476</line>
-          <option name="timeStamp" value="166" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/models/views.py</url>
           <line>47</line>
           <option name="timeStamp" value="167" />
@@ -1211,11 +1206,6 @@
           <url>file://$PROJECT_DIR$/models/views.py</url>
           <line>52</line>
           <option name="timeStamp" value="169" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/db/mysql_operation.py</url>
-          <line>522</line>
-          <option name="timeStamp" value="170" />
         </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
@@ -1640,8 +1630,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/db/mysql_operation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="533" column="41" selection-start-line="533" selection-start-column="4" selection-end-line="533" selection-end-column="41" />
+        <state relative-caret-position="1547">
+          <caret line="542" column="11" lean-forward="true" selection-start-line="542" selection-start-column="11" selection-end-line="542" selection-end-column="11" />
           <folding>
             <element signature="e#376#829#0" />
             <element signature="e#886#1740#0" />
@@ -1656,7 +1646,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/test/test_mysql_operation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="317">
+        <state relative-caret-position="5">
           <caret line="118" column="23" lean-forward="true" selection-start-line="118" selection-start-column="23" selection-end-line="118" selection-end-column="23" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
