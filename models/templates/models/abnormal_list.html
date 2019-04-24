@@ -9,20 +9,8 @@
             <br>
             <div>
                 <form action="" method="POST">
-{#                    <label>选择数据集</label>#}
-{#                    <select name="table_name" id="dataset">#}
-{#                        <option data-tokens="nobody">{{ table_name }}</option>#}
-{#                        {% for name in data_names %}#}
-{#                            <option value="{{ name }}">#}
-{#                                {{ name }}#}
-{#                            </option>#}
-{#                        {% endfor %}#}
-{#                    </select>#}
-
                     <label style="margin-left: 10px;">开始时间</label>
-
                     <input type="datetime-local" name="start_time" value={{ start_time }}>
-
                     <label style="margin-left: 10px">结束时间</label>
                     <input type="datetime-local" name="end_time" value={{ end_time }}>
 
@@ -48,8 +36,6 @@
                                        aria-describedby="example2_info">
                                     <thead>
                                     <tr role="row">
-{#                                        <th width="5%"><input id="checkAll" class="checkAll" type="checkbox" value="">#}
-{#                                        </th>#}
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending"
@@ -76,7 +62,6 @@
                                     <tbody id="otbody">
                                     {% for data in datas %}
                                         <tr role="row" class="odd">
-{#                                            <td><input type="checkbox" name="checkItem"/></td>#}
                                             <td style="display: none;">
                                                 {{ data.0 }}
                                             </td>
@@ -120,59 +105,7 @@
                 },
                 "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
             });
-            $('#example1 tbody').on('click', 'button', function () {
-                var data = table.row($(this).parents('tr')).data();
-                alert(data[0] + "'s salary is: " + data[5]);
-            });
-
         });
-
-        {#function clickLabel2One() {#}
-        {#    const Http = new XMLHttpRequest();#}
-        {#    const url = 'http://127.0.0.1:8000/models/upload/';#}
-        {#    Http.open("POST", url);#}
-        {#    #}
-        {#    Http.send();#}
-        {#    window.location.href = url;#}
-        {#}#}
-        {##}
-        {#function clickChangeAll() {#}
-        {##}
-        {#}#}
-        {##}
-        {#全选和全不选#}
-        {#$('#checkAll').on('click', function () {#}
-        {#    if (this.checked) {#}
-        {#        $(this).attr('checked', 'checked');#}
-        {#        $("input[name='checkItem']").each(function () {#}
-        {#            this.checked = true;#}
-        {#        });#}
-        {#    } else {#}
-        {#        $(this).removeAttr('checked');#}
-        {#        $("input[name='checkItem']").each(function () {#}
-        {#            this.checked = false;#}
-        {#        });#}
-        {#    }#}
-        {#});#}
-        {##}
-        {#function childclick() {#}
-        {#    if ($(this).is(":checked") == false) {#}
-        {#        $("#checkAll").prop("checked", false);#}
-        {#    }#}
-        {#}#}
-        {##}
-        {#function checkbox() {#}
-        {#    var uuid = '';#}
-        {#    var uuids = eloancn.table.grid.rows(".selected").data();#}
-        {#    if (uuids.length == 0) {#}
-        {#        alert(eloancn.table.statusTitle);#}
-        {#    } else {#}
-        {#        for (var i = 0; i < uuids.length; i++) {#}
-        {#            uuid = uuid + uuids[i].extn + ",";#}
-        {#        }#}
-        {#        alert(uuid);#}
-        {#    }#}
-        {#}#}
     </script>
 {% endblock %}
 

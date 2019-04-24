@@ -450,15 +450,23 @@ def query_model_info(kind):
         return False
 
 
-def query_abnormal_list():
+def query_abnormal_list(start_time = 0, end_time = 0):
     """
-    根据类型查询模型信息
-    :param kind:
-    :return:
+    根据时间区间查询异常信息列表
+    :param start_time: 开始时间
+    :param end_time: 结束时间
+    :return: 查询列表
     """
     db = connectdb()
     cursor = db.cursor()
-    sql = "select * from `abnormal_list`"
+    condition = ""
+    if start_time != 0 and end_time != 0:
+        condition = "and `time` between '%s' and '%s'" % (start_time, end_time)
+    elif start_time != 0:
+        condition = "and `time` >= '%s'" % start_time
+    elif end_time != 0:
+        condition = "and `time` <= '%s'" % end_time
+    sql = "select * from `abnormal_list` where 1=1 %s"%condition
     print(sql)
     try:
         # 执行SQL语句
@@ -474,6 +482,13 @@ def query_abnormal_list():
 
 
 def insert_abnormal_list(model_name, time, value):
+    """
+    将异常信息插入abnormal_list表中
+    :param model_name: uuid,将其转为file_name 后存储
+    :param time: 时间戳
+    :param value: kpi值
+    :return: bool
+    """
     db = connectdb()
     cursor = db.cursor()
     # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
@@ -494,6 +509,12 @@ def insert_abnormal_list(model_name, time, value):
 
 
 def insert_file2uuid(file_name, uuid):
+    """
+    将file_name和uuid对应关系插入file2uuid表中
+    :param file_name:
+    :param uuid:
+    :return: bool
+    """
     db = connectdb()
     cursor = db.cursor()
     sql = "insert into `file2uuid` values ('%s','%s')" % (file_name, uuid)
@@ -512,6 +533,11 @@ def insert_file2uuid(file_name, uuid):
 
 
 def query_uuid_from_file2uuid_by_filename(file_name):
+    """
+    在file2uuid表中通过file_name查询对应的uuid
+    :param file_name:
+    :return: uuid str
+    """
     db = connectdb()
     cursor = db.cursor()
     sql = "select `uuid` from `file2uuid` where file_name='%s'" % file_name
@@ -530,6 +556,11 @@ def query_uuid_from_file2uuid_by_filename(file_name):
 
 
 def query_filename_from_file2uuid_by_uuid(uuid):
+    """
+    在file2uuid表中通过uuid查询对应的file_name
+    :param uuid:
+    :return: file_name str
+    """
     db = connectdb()
     cursor = db.cursor()
     sql = "select `file_name` from `file2uuid` where uuid='%s'" % uuid

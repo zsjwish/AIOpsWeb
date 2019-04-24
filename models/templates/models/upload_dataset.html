@@ -14,7 +14,7 @@
                     {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
                     <form action="/models/upload/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <p><input type="file" name="f1"></p>
+                        <p><input type="file" name="f1" id="myfile"></p>
                         <p>请选择数据集异常比例<select name="abnormal_rate">
                             <option value="0.1" selected>0.1</option>
                             <option value="0.2">0.2</option>
@@ -26,40 +26,72 @@
                             <option value="0.8">0.8</option>
                             <option value="0.9">0.9</option>
                         </select></p>
-                        <input type="submit" value="上传" data-toggle="modal" data-target="#myModal1"
-                               data-backdrop="static">
+                        <input type="submit" value="上传" onclick="modals()" class="btn btn-info btn-sm"
+                                {#                               data-toggle="modal"#}
+                                {#                               data-target="#myModal1"#}
+                                {#                               data-backdrop="static"#}
+                        >
                     </form>
                 </div>
             </div>
         </section>
 
         <div class="modal" id="myModal1">
-          <div class="modal-dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">上传数据集</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>数据集上传成功，可以开始训练啦！</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary " data-dismiss="modal"
+                                href="/models/upload">继续上传
+                        </button>
+                        <button type="button" class="btn btn-primary" href="/models/train_model">开始训练</button>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+    </div>
+
+    <div class="modal" id="myModal2">
+        <div class="modal-dialog">
             <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">×</span></button>
-                <h4 class="modal-title">上传数据集</h4>
-              </div>
-              <div class="modal-body">
-                <p>数据集上传成功，可以开始训练啦！</p>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary pull-left" data-dismiss="modal" href="/models/upload">继续上传</button>
-                <button type="button" class="btn btn-primary" href="/models/train_model">开始训练</button>
-              </div>
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title">上传数据集</h4>
+                </div>
+                <div class="modal-body">
+                    <p>请选择数据集后再上传</p>
+                </div>
             </div>
             <!-- /.modal-content -->
-          </div>
-          <!-- /.modal-dialog -->
         </div>
+        <!-- /.modal-dialog -->
+    </div>
     </div>
 
 {% endblock %}
 {% block js %}
     <script type="text/javascript">
+        function modals() {
+            var myfile = document.getElementById("myfile");
+            console.log(myfile);
+            if (myfile.files[0] === undefined) {
+                $("#myModal2").modal();
+            }
+            else {
+                $("#myModal1").modal();
+            }
 
+        }
     </script>
-    {#    <script>$('#myModal1').modal(show)</script>#}
 {% endblock %}
 

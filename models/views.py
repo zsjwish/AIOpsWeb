@@ -40,16 +40,11 @@ def submit(request):
     print(type(request.body.decode()))
     if request.method == "POST":
         body = json.loads(request.body.decode())
-        # print(type(body))
-        # print("host_id", body["host_id"])
-        # print("time", body["time"])
-        # print("kpi", body["CPU"])
         result = use_XGBoost_predict(body)
         if result == 1:
             model_name = body["host_id"]
             times = datet.strptime(body["time"], '%Y-%m-%d %H:%M:%S')
             value = float(body["kpi"])
-            print(model_name, times, value)
             insert_abnormal_list(model_name, times, value)
         print(result)
         return HttpResponse(result, content_type = "application/json")
@@ -154,15 +149,15 @@ def abnormal(request):
     # timeformat = '%Y-%m-%d %H:%M'
     # info["start_time"] = (time_now - datetime.timedelta(days = 30)).strftime(timeformat)
     # info["end_time"] = time_now.strftime(timeformat)
-    info["start_time"] = "2019-03-19T22:10"
-    info["end_time"] = "2019-04-19T22:10"
-    res = query_abnormal_list()
+    # info["start_time"] = "2019-03-19T22:10"
+    # info["end_time"] = "2019-04-19T22:10"
+    info["start_time"] = request.POST["start_time"]
+    info["end_time"] = request.POST["end_time"]
+    res = query_abnormal_list(info["start_time"], info["end_time"])
     print(type(res))
     info["datas"] = res
     print(info)
     return render(request, 'models/abnormal_list.html', context = info)
-
-
 
 def predict(request):
     """
@@ -199,8 +194,10 @@ def upload(request):
         inp_files = request.FILES
         # 通过get方法获取upload.html页面提交过来的文件
         file_obj = inp_files.get('f1')
-        # if file_obj is None:
-        #     return render(request, 'models/upload_csv.html', context = {"error_message": "请选择文件后再上传！"})
+        if file_obj is None:
+            time.sleep(200)
+            return render(request, 'models/upload_dataset.html')
+            # return render(request, 'models/upload_csv.html', context = {"error_message": "请选择文件后再上传！"})
         # 文件存储路径
         file_path = os.path.abspath(os.path.dirname(os.path.dirname(__file__))) + '/file/' + file_obj.name
         print(file_path)
@@ -213,10 +210,12 @@ def upload(request):
         for line in file_obj.chunks():
             f.write(line)
         f.close()
+
         if save_datas_with_labels(f_name, float(abnormal_rate)):
             pass
             # return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         # return render(request, 'models/upload_failed.html')
+        time.sleep(200)
     return render(request, 'models/upload_dataset.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
 
 
