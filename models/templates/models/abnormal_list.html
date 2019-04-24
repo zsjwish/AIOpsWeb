@@ -4,20 +4,20 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1 class="box-title">
-                数据标注
+                异常信息列表
             </h1>
             <br>
             <div>
                 <form action="" method="POST">
-                    <label>选择数据集</label>
-                    <select name="table_name" id="dataset">
-                        <option data-tokens="nobody">{{ table_name }}</option>
-                        {% for name in data_names %}
-                            <option value="{{ name }}">
-                                {{ name }}
-                            </option>
-                        {% endfor %}
-                    </select>
+{#                    <label>选择数据集</label>#}
+{#                    <select name="table_name" id="dataset">#}
+{#                        <option data-tokens="nobody">{{ table_name }}</option>#}
+{#                        {% for name in data_names %}#}
+{#                            <option value="{{ name }}">#}
+{#                                {{ name }}#}
+{#                            </option>#}
+{#                        {% endfor %}#}
+{#                    </select>#}
 
                     <label style="margin-left: 10px;">开始时间</label>
 
@@ -26,25 +26,8 @@
                     <label style="margin-left: 10px">结束时间</label>
                     <input type="datetime-local" name="end_time" value={{ end_time }}>
 
-                    <label style="margin-left: 10px;">选择标签</label>
-                    <select name="label">
-                        <option value="0">0</option>
-                        <option value="1">1</option>
-                        <option value="所有" selected>所有</option>
-                    </select>
-                    {#                <button type="button" id="query" class="btn btn-info btn-sm" value="查询">查询</button>#}
                     <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero" class="btn btn-info btn-sm"
                             value="query">查询
-                    </button>
-                    <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero" class="btn btn-danger btn-sm"
-                            value="change">全部更改
-                    </button>
-                    <label style="margin-left: 10px">复选框操作：</label>
-                    <button type="button" id="label2zero" class="btn btn-warning btn-sm"
-                            value="" onclick="clickLabel2One()">标签置为0
-                    </button>
-                    <button type="button" style="margin-left: 0px;" id="label2one" class="btn btn-warning btn-sm"
-                            value="" onclick="clickLabel2One()">标签置为1
                     </button>
                 </form>
 
@@ -65,8 +48,8 @@
                                        aria-describedby="example2_info">
                                     <thead>
                                     <tr role="row">
-                                        <th width="5%"><input id="checkAll" class="checkAll" type="checkbox" value="">
-                                        </th>
+{#                                        <th width="5%"><input id="checkAll" class="checkAll" type="checkbox" value="">#}
+{#                                        </th>#}
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-sort="ascending"
                                             aria-label="Rendering engine: activate to sort column descending"
@@ -76,38 +59,35 @@
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Browser: activate to sort column ascending"
                                             style="position: relative">
-                                            时间
+                                            数据来源
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                             style="position: relative">
-                                            kpi
+                                            时间
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Engine version: activate to sort column ascending"
                                             style="position: relative">
-                                            标签
+                                            数据值
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody id="otbody">
                                     {% for data in datas %}
                                         <tr role="row" class="odd">
-                                            <td><input type="checkbox" name="checkItem"/></td>
+{#                                            <td><input type="checkbox" name="checkItem"/></td>#}
                                             <td style="display: none;">
                                                 {{ data.0 }}
                                             </td>
                                             <td>
-                                                {{ data.1|date:"Y-m-d H:i:s" }}
+                                                {{ data.1 }}
                                             </td>
                                             <td>
-                                                {{ data.2 }}
+                                                {{ data.2|date:"Y-m-d H:i:s" }}
                                             </td>
                                             <td>
                                                 {{ data.3 }}
-                                                <button id="btn1" class="btn btn-info btn-sm pull-right">
-                                                    标记
-                                                </button>
                                             </td>
                                         </tr>
                                     {% endfor %}
@@ -147,63 +127,52 @@
 
         });
 
-        function clickLabel2One() {
-            {#const Http = new XMLHttpRequest();#}
-            const url = 'http://127.0.0.1:8000/models/data_tag/';
-            {#Http.open("POST", url);#}
-            {##}
-            {#Http.send();#}
-            {#window.location.href = url;#}
-            {
-            {#var start_time = "";#}
-            var table_name = "A服务器内存使用量.csv";
-            var start_time = "2019-02-25T14:10";
-            var end_time = "2019-02-25T14:40";
-            var label = 1;
-            var kind = "change";
-
-            $.post(url, {table_name,start_time, end_time, label, kind});
-            }
-
-        }
-
-        function clickChangeAll() {
-
-        }
-
+        {#function clickLabel2One() {#}
+        {#    const Http = new XMLHttpRequest();#}
+        {#    const url = 'http://127.0.0.1:8000/models/upload/';#}
+        {#    Http.open("POST", url);#}
+        {#    #}
+        {#    Http.send();#}
+        {#    window.location.href = url;#}
+        {#}#}
+        {##}
+        {#function clickChangeAll() {#}
+        {##}
+        {#}#}
+        {##}
         {#全选和全不选#}
-        $('#checkAll').on('click', function () {
-            if (this.checked) {
-                $(this).attr('checked', 'checked');
-                $("input[name='checkItem']").each(function () {
-                    this.checked = true;
-                });
-            } else {
-                $(this).removeAttr('checked');
-                $("input[name='checkItem']").each(function () {
-                    this.checked = false;
-                });
-            }
-        });
-
-        function childclick() {
-            if ($(this).is(":checked") == false) {
-                $("#checkAll").prop("checked", false);
-            }
-        }
-
-        function checkbox() {
-            var uuid = '';
-            var uuids = eloancn.table.grid.rows(".selected").data();
-            if (uuids.length == 0) {
-                alert(eloancn.table.statusTitle);
-            } else {
-                for (var i = 0; i < uuids.length; i++) {
-                    uuid = uuid + uuids[i].extn + ",";
-                }
-                alert(uuid);
-            }
-        }
+        {#$('#checkAll').on('click', function () {#}
+        {#    if (this.checked) {#}
+        {#        $(this).attr('checked', 'checked');#}
+        {#        $("input[name='checkItem']").each(function () {#}
+        {#            this.checked = true;#}
+        {#        });#}
+        {#    } else {#}
+        {#        $(this).removeAttr('checked');#}
+        {#        $("input[name='checkItem']").each(function () {#}
+        {#            this.checked = false;#}
+        {#        });#}
+        {#    }#}
+        {#});#}
+        {##}
+        {#function childclick() {#}
+        {#    if ($(this).is(":checked") == false) {#}
+        {#        $("#checkAll").prop("checked", false);#}
+        {#    }#}
+        {#}#}
+        {##}
+        {#function checkbox() {#}
+        {#    var uuid = '';#}
+        {#    var uuids = eloancn.table.grid.rows(".selected").data();#}
+        {#    if (uuids.length == 0) {#}
+        {#        alert(eloancn.table.statusTitle);#}
+        {#    } else {#}
+        {#        for (var i = 0; i < uuids.length; i++) {#}
+        {#            uuid = uuid + uuids[i].extn + ",";#}
+        {#        }#}
+        {#        alert(uuid);#}
+        {#    }#}
+        {#}#}
     </script>
 {% endblock %}
 

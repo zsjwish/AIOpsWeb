@@ -44,7 +44,7 @@
             // 指定图表的配置项和数据
             var option = {
                 title : {
-                text: '未来半小时趋势预测',
+                text: '未来趋势预测',
                 subtext: "数据集:" + predict_table
             },
             tooltip : {
@@ -107,7 +107,7 @@
                     "model_name": $("#lstm_name").val(),
                 };
 
-                alert(datas.model_name);
+                {#alert(datas.model_name);#}
                 /**ajax的type,url,dataType,contentType,data属性*/
                 $.ajax({
                     async: true,

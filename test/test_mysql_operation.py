@@ -1,7 +1,8 @@
 import unittest
 
-from db.mysql_operation import connectdb, query_table, create_table, drop_table, query_datas, insert_train_datas, closedb, \
-    delete_datas, update_datas
+from db.mysql_operation import connectdb, query_table, create_table, drop_table, query_datas, insert_train_datas, \
+    closedb, \
+    delete_datas, update_datas, query_uuid_from_file2uuid_by_filename, query_filename_from_file2uuid_by_uuid
 from isolate_model.base_function import load_csv
 from isolate_model.isolate_class import Isolate
 
@@ -105,6 +106,15 @@ class MysqlTestCases(unittest.TestCase):
         query_with_label = query_datas(self.db, self.table_name, start_time = '2019/01/07 10:17', label = 0)
         query_without_label = query_datas(self.db, self.table_name, start_time = '2019/01/07 10:17')
         self.assertEqual(len(query_with_label), len(query_without_label))
+
+
+    def test_query_uuid_from_file2uuid_by_filename(self):
+        res = query_uuid_from_file2uuid_by_filename("A服务器内存使用量.csv")
+        self.assertEqual(res,"26035cd8-eff2-4802-82db-34674afe8fa9")
+
+    def test_query_filename_from_file2uuid_by_uuid(self):
+        res = query_filename_from_file2uuid_by_uuid("26035cd8-eff2-4802-82db-34674afe8fa9")
+        self.assertEqual(res,"A服务器内存使用量.csv")
 
     def tearDown(self):
         # 删除表

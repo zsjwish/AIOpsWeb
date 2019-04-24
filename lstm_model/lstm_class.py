@@ -66,8 +66,8 @@ class LSTMModel:
         data = scaler.fit_transform(data)
         # 确定训练集和测试集大小
         # train_size = int(sum(self.rate) * self.rate[0])
-        train_size = int(sum(self.rate) * self.rate[0] * 5)
-        # train_size = int(len(data) * self.rate[0] / sum(self.rate))
+        # train_size = int(sum(self.rate) * self.rate[0] * 5)
+        train_size = int(len(data) * self.rate[0] / sum(self.rate))
         train, test = data[0:train_size, :], data[train_size:len(data), :]
         # 确定特征和Y
         trainX, trainY = create_dataset(train)
@@ -91,16 +91,16 @@ class LSTMModel:
         #     lstm_model = self.model
         #     lstm_model.predict(trainX)
         # 预测测试数据
-        # testPredict = self.model.predict(testX)
+        testPredict = self.model.predict(testX)
         # 将标准化后是数据转换为原始数据
         trainPredict = scaler.inverse_transform(trainPredict)
         trainY = scaler.inverse_transform([trainY])
-        # testPredict = scaler.inverse_transform(testPredict)
+        testPredict = scaler.inverse_transform(testPredict)
         testY = scaler.inverse_transform([testY])
         trainScore = math.sqrt(mean_squared_error(trainY[0], trainPredict[:, 0]))
-        # testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
+        testScore = math.sqrt(mean_squared_error(testY[0], testPredict[:, 0]))
         # self.rmse = min(trainScore, testScore)
-        self.rmse = trainScore
+        self.rmse = testScore
         self.lasted_predict = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
         self.update_database_model()
         return self.model

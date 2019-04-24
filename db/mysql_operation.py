@@ -450,6 +450,49 @@ def query_model_info(kind):
         return False
 
 
+def query_abnormal_list():
+    """
+    根据类型查询模型信息
+    :param kind:
+    :return:
+    """
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "select * from `abnormal_list`"
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        return results
+    except:
+        # 如果失败则回滚
+        print('查询异常列表失败')
+        db.rollback()
+        return False
+
+
+def insert_abnormal_list(model_name, time, value):
+    db = connectdb()
+    cursor = db.cursor()
+    # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
+    file_name = query_filename_from_file2uuid_by_uuid(model_name)
+    sql = "INSERT INTO `abnormal_list`(`model_name`, `time`, `value`) VALUES('%s','%s',%f)" % (file_name, time, value)
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        # 提交到数据库执行
+        db.commit()
+        return True
+    except:
+        # 如果失败则回滚
+        print('插入异常数据失败')
+        db.rollback()
+        return False
+
+
 def insert_file2uuid(file_name, uuid):
     db = connectdb()
     cursor = db.cursor()
@@ -476,9 +519,8 @@ def query_uuid_from_file2uuid_by_filename(file_name):
     try:
         # 执行SQL语句
         cursor.execute(sql)
-        # 获取所有记录列表
+        # 获取所有记录列表,返回是二维数组，每个一维数组是一个结果，每个结果中有多条属性，第一个属性是uuid
         results = cursor.fetchall()
-        print(results[0][0])
         return results[0][0]
     except:
         # 如果失败则回滚
@@ -486,6 +528,23 @@ def query_uuid_from_file2uuid_by_filename(file_name):
         db.rollback()
         return False
 
+
+def query_filename_from_file2uuid_by_uuid(uuid):
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "select `file_name` from `file2uuid` where uuid='%s'" % uuid
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        return results[0][0]
+    except:
+        # 如果失败则回滚
+        print('获取文件uuid失败')
+        db.rollback()
+        return False
 
 def closedb(db):
     """

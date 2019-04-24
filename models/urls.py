@@ -32,6 +32,8 @@ urlpatterns = [
     # 数据标注
     url(r'^data_tag/$', views.data_tag),
     # 训练模型
-    url(r'^train_model/$', views.train)
+    url(r'^train_model/$', views.train),
+    # 异常列表
+    url(r'^abnormal_list/$', views.abnormal)
 
 ]

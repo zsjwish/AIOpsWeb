@@ -71,13 +71,13 @@
                                             </td>
                                             <td >
                                                 {{ data.2 }}
-                                                <button id="btn1" class="btn  btn-info pull-right">
+                                                <button id="btn1" class="btn  btn-info btn-default pull-right">
                                                     重置模型
                                                 </button>
                                             </td>
                                             <td>
                                                 {{ data.3|date:"Y-m-d H:i:s" }}
-                                                <button id="btn2" class="btn btn-info pull-right">
+                                                <button id="btn2" class="btn btn-info btn-default pull-right">
                                                     预测趋势
                                                 </button>
                                             </td>
@@ -122,9 +122,16 @@
                 }
             });
             $('#example1 tbody').on('click', 'button', function () {
-                var data = table.row($(this).parents('tr')).data();
-                var id = $(this).attr('id');
-                alert(data[0] + "'s salary is: " + data[1] + "button is " + id);
+                {#var data = table.row($(this).parents('tr')).data();#}
+                {#var id = $(this).attr('id');#}
+                {#alert(data[0] + "'s salary is: " + data[1] + "button is " + id + "11111111111");#}
+                {#const Http = new XMLHttpRequest();#}
+                {#const url = 'http://127.0.0.1:8000/models/predict/';#}
+                {#Http.open("GET", url);#}
+                {##}
+                {#Http.send();#}
+                {#window.location.href = url;#}
+                window.location.href = "http://127.0.0.1:8000/models/predict/"
             });
 
         });
