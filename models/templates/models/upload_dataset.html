@@ -26,11 +26,7 @@
                             <option value="0.8">0.8</option>
                             <option value="0.9">0.9</option>
                         </select></p>
-                        <input type="submit" value="上传" onclick="modals()" class="btn btn-info btn-sm"
-                                {#                               data-toggle="modal"#}
-                                {#                               data-target="#myModal1"#}
-                                {#                               data-backdrop="static"#}
-                        >
+                        <input type="submit" value="上传" onclick="modals()" class="btn btn-info btn-sm">
                     </form>
                 </div>
             </div>
@@ -48,10 +44,8 @@
                         <p>数据集上传成功，可以开始训练啦！</p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary " data-dismiss="modal"
-                                href="/models/upload">继续上传
-                        </button>
-                        <button type="button" class="btn btn-primary" href="/models/train_model">开始训练</button>
+                        <button type="button" class="btn btn-primary " data-dismiss="modal">继续上传</button>
+                        <a href="/models/train_model"><button type="button" class="btn btn-primary">开始训练</button></a>
                     </div>
                 </div>
                 <!-- /.modal-content -->

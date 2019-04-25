@@ -17,7 +17,7 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
-                                       aria-describedby="example2_info" >
+                                       aria-describedby="example2_info">
                                     <thead>
                                     <tr role="row">
                                         <th class="sorting_asc" tabindex="0" aria-controls="example2" rowspan="1"
@@ -50,17 +50,20 @@
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="CSS grade: activate to sort column ascending"
                                             style="position: relative">
-                                             最后预测时间
+                                            最后预测时间
+                                        </th>
+                                        <th>
+                                            操作
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     {% for data in datas %}
                                         <tr role="row" class="odd">
-                                            <td >
+                                            <td>
                                                 {{ data.0 }}
                                             </td>
-                                            <td >
+                                            <td>
                                                 {{ data.1 }}
                                             </td>
                                             <td>
@@ -69,15 +72,17 @@
                                             <td>
                                                 {{ data.6|date:"Y-m-d H:i:s" }}
                                             </td>
-                                            <td >
+                                            <td>
                                                 {{ data.2 }}
-                                                <button id="btn1" class="btn  btn-info btn-default pull-right">
-                                                    重置模型
-                                                </button>
                                             </td>
                                             <td>
                                                 {{ data.3|date:"Y-m-d H:i:s" }}
-                                                <button id="btn2" class="btn btn-info btn-default pull-right">
+                                            </td>
+                                            <td>
+                                                <button id="btn1" class="btn btn-info btn-sm ">
+                                                    重置模型
+                                                </button>
+                                                <button id="btn2" class="btn btn-info btn-sm">
                                                     预测趋势
                                                 </button>
                                             </td>
@@ -91,6 +96,22 @@
                 </div>
             </div>
         </section>
+        <div class="modal" id="myModal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span></button>
+                        <h4 class="modal-title">重置模型</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>模型后台重置训练中......</p>
+                    </div>
+                </div>
+                <!-- /.modal-content -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
     </div>
 {% endblock %}
 {% block js %}
@@ -106,34 +127,39 @@
                 'rowCallback': function (row, data, index) {
                     number = data[4].split(" ");
                     rms = parseFloat(number[0]);
-                    if (rms> 100) {
+                    if (rms > 100) {
                         $(row).find('td:eq(4)').css('background-color', 'rgb(233, 104, 107)');
                         $(row).find('td:eq(4)').css('class', 'btn-danger');
                         {#$(row).find('td:eq(3)').css('button', 'rgb(233, 104, 107)');#}
                         $(row).find(btn1).css('class', 'btn-danger');
-                    }
-                    else if(rms >50){
+                    } else if (rms > 50) {
                         $(row).find('td:eq(4)').css('background-color', 'orange');
-                    }
-                    else  {
+                    } else {
                         $(row).find('td:eq(4)').css('background-color', '#32cd32');
                     }
 
                 }
             });
             $('#example1 tbody').on('click', 'button', function () {
-                {#var data = table.row($(this).parents('tr')).data();#}
-                {#var id = $(this).attr('id');#}
-                {#alert(data[0] + "'s salary is: " + data[1] + "button is " + id + "11111111111");#}
+                var data = table.row($(this).parents('tr')).data();
+                var id = $(this).attr('id');
+                if (id == "btn1") {
+                    alert("重置模型");
+                    $("#myModal1").modal();
+
+                } else if (id == "btn2") {
+                    alert("趋势预测");
+                }
+                {#alert(data[0] + "'s salary is: " + data[1] + "button is " + id);#}
+
                 {#const Http = new XMLHttpRequest();#}
                 {#const url = 'http://127.0.0.1:8000/models/predict/';#}
                 {#Http.open("GET", url);#}
                 {##}
                 {#Http.send();#}
                 {#window.location.href = url;#}
-                window.location.href = "http://127.0.0.1:8000/models/predict/"
+                {#window.location.href = "http://127.0.0.1:8000/models/predict/"#}
             });
-
         });
     </script>
 {% endblock %}

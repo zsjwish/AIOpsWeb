@@ -51,8 +51,6 @@ def submit(request):
     return render(request, 'models/upload_one_data.html')
 
 
-
-
 def train(request):
     """
     用于训练数据
@@ -145,19 +143,23 @@ def abnormal(request):
     :return:
     """
     info = dict()
-    # time_now = datetime.datetime.now()
-    # timeformat = '%Y-%m-%d %H:%M'
-    # info["start_time"] = (time_now - datetime.timedelta(days = 30)).strftime(timeformat)
-    # info["end_time"] = time_now.strftime(timeformat)
+    time_now = datetime.datetime.now()
+    timeformat = '%Y-%m-%d %H:%M'
+    info["start_time"] = (time_now - datetime.timedelta(days = 60)).strftime(timeformat)
+    info["end_time"] = time_now.strftime(timeformat)
     # info["start_time"] = "2019-03-19T22:10"
     # info["end_time"] = "2019-04-19T22:10"
-    info["start_time"] = request.POST["start_time"]
-    info["end_time"] = request.POST["end_time"]
+    if request.method == "POST" and (max(len(request.POST["start_time"]),len(request.POST["end_time"])) != 0):
+        info["start_time"] = request.POST["start_time"]
+        info["end_time"] = request.POST["end_time"]
+    print(info["start_time"])
+    print(info["end_time"])
     res = query_abnormal_list(info["start_time"], info["end_time"])
     print(type(res))
     info["datas"] = res
     print(info)
     return render(request, 'models/abnormal_list.html', context = info)
+
 
 def predict(request):
     """
@@ -235,22 +237,6 @@ def fixed(request):
     return render(request, 'models/fixed.html')
 
 
-def data_tag_helper(request):
-    pass
-    # 判断接收的值是否为POST
-    # if request.method == "POST":
-    #     print("1111111111111", request.POST)
-    #     tag = {"table_name": request.POST["table_name"], "start_time": request.POST["start_time"],
-    #            "end_time": request.POST["end_time"], "label": request.POST["label"]}
-    #     print(tag)
-    #     info.update(tag)
-    #     print("info", info)
-    #     info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
-    #                                       end_time = info["end_time"], label = info["label"])
-    #     return render(request, 'models/data_tag.html', context = info)
-    # return render(request, 'models/data_tag.html', context = info)
-
-
 def data_tag(request):
     # 判断接收的值是否为POST
     redis_conn = get_redis_connection("default")
@@ -271,10 +257,10 @@ def data_tag(request):
         print("info", info)
         if request.POST["kind"] == "change":
             info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
-                                              end_time = info["end_time"], label = info["label"])
+                                                 end_time = info["end_time"], label = info["label"])
         else:
             info["datas"] = get_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
-                                          end_time = info["end_time"], label = info["label"])
+                                              end_time = info["end_time"], label = info["label"])
         return render(request, 'models/data_tag.html', context = info)
 
         # print("1111111111111", request.POST)

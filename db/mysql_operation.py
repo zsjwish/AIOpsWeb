@@ -450,7 +450,7 @@ def query_model_info(kind):
         return False
 
 
-def query_abnormal_list(start_time = 0, end_time = 0):
+def query_abnormal_list(start_time = '', end_time = ''):
     """
     根据时间区间查询异常信息列表
     :param start_time: 开始时间
@@ -460,11 +460,11 @@ def query_abnormal_list(start_time = 0, end_time = 0):
     db = connectdb()
     cursor = db.cursor()
     condition = ""
-    if start_time != 0 and end_time != 0:
+    if start_time != '' and end_time != '':
         condition = "and `time` between '%s' and '%s'" % (start_time, end_time)
-    elif start_time != 0:
+    elif start_time != '':
         condition = "and `time` >= '%s'" % start_time
-    elif end_time != 0:
+    elif end_time != '':
         condition = "and `time` <= '%s'" % end_time
     sql = "select * from `abnormal_list` where 1=1 %s"%condition
     print(sql)
