@@ -428,7 +428,7 @@ def print_model(model_kind, data_name):
     print("print_modelllllllllllllllllll", model_kind, data_name)
 
 
-def train_model(model_kind, data_name):
+def train_model(model_kind, data_name, force = 0):
     """训练模型"""
     redis_conn = get_redis_connection("default")
     print("类型", type(data_name))
@@ -437,7 +437,7 @@ def train_model(model_kind, data_name):
     print(type(uuid), uuid)
     if model_kind == "XGBoost":
         # 多进程训练模型
-        if redis_conn.sismember("xgboost_name", data_name):
+        if redis_conn.sismember("xgboost_name", data_name) and force != 1:
             return 0
         else:
             from xgboost_model.xgboost_class import XGBoost
@@ -452,7 +452,7 @@ def train_model(model_kind, data_name):
 
     elif model_kind == 'LSTM':
         # 多进程训练模型
-        if redis_conn.sismember("lstm_name", data_name):
+        if redis_conn.sismember("lstm_name", data_name) and force != 1:
             print("存在000000000", data_name)
             return 0
         else:

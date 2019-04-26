@@ -34,6 +34,10 @@ urlpatterns = [
     # 训练模型
     url(r'^train_model/$', views.train),
     # 异常列表
-    url(r'^abnormal_list/$', views.abnormal)
+    url(r'^abnormal_list/$', views.abnormal),
+    # 重置异常检测模型
+    url(r'^reset_xgboost_model/$', views.reset_xgboost_model),
+    # 重置趋势预测模型
+    url(r'^reset_lstm_model/$', views.reset_lstm_model)
 
 ]

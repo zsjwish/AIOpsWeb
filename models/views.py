@@ -51,6 +51,18 @@ def submit(request):
     return render(request, 'models/upload_one_data.html')
 
 
+def reset_xgboost_model(request):
+    kind = "XGBoost"
+    data_name = request.POST["data_name"]
+    sv.executor5.submit(train_model, kind, data_name, 1)
+
+
+def reset_lstm_model(request):
+    kind = "LSTM"
+    data_name = request.POST["data_name"]
+    sv.executor5.submit(train_model, kind, data_name, 1)
+
+
 def train(request):
     """
     用于训练数据
@@ -89,6 +101,8 @@ def lstm_model_info(request):
     # if request.method == 'POST':
     res = query_model_info("LSTM")
     return render(request, 'models/lstm_model_info.html', {"datas": res})
+
+
 
 
 def tag(request):
@@ -275,3 +289,4 @@ def data_tag(request):
         # print("infofffff", datas.getvalue())
         # return HttpResponse(datas)
     return render(request, 'models/data_tag.html', context = info)
+

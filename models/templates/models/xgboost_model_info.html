@@ -98,8 +98,7 @@
                                             <td width="11%">
                                                 {{ data.6 }}
                                                 <button type="button" id="crop"
-                                                        class="btn btn-info btn-sm pull-right" data-toggle="modal"
-                                                        data-target="#myModal1">
+                                                        class="btn btn-info btn-sm pull-right">
                                                     重置模型
                                                 </button>
                                             </td>
@@ -154,10 +153,17 @@
                 }
             });
             $('#example1 tbody').on('click', 'button', function () {
-                {#var data = table.row($(this).parents('tr')).data();#}
-                {#alert(data[0] + "'s salary is: " + data[5]);#}
-
-                document.getElementById("crop").setAttribute("disabled", true);
+                var data = table.row($(this).parents('tr')).data();
+                {#document.getElementById("crop").setAttribute("disabled", true);#}
+                $("#myModal1").modal('show');
+                setTimeout(function () {
+                    $("#myModal1").modal('hide');
+                }, 3000);
+                $.ajax({
+                    type: "POST",
+                    url: "/models/reset_xgboost_model/",
+                    data: {data_name: data[0]},
+                });
 
             });
 

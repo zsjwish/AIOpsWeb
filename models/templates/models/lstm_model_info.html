@@ -144,21 +144,28 @@
                 var data = table.row($(this).parents('tr')).data();
                 var id = $(this).attr('id');
                 if (id == "btn1") {
-                    alert("重置模型");
                     $("#myModal1").modal();
-
+                    setTimeout(function () {
+                        $("#myModal1").modal('hide');
+                    }, 3000);
+                    $.ajax({
+                        type: "POST",
+                        url: "/models/reset_lstm_model/",
+                        data: {data_name: data[0]},
+                    });
                 } else if (id == "btn2") {
-                    alert("趋势预测");
+                    window.location.href = "/models/predict/";
+                    /*
+                    $.ajax({
+                        type: "POST",
+                        url: "/models/predict/",
+                        data: {model_name: data[0]},
+                        success:function () {
+                            window.location.href = "/models/predict/";
+                        }
+                    });
+                    */
                 }
-                {#alert(data[0] + "'s salary is: " + data[1] + "button is " + id);#}
-
-                {#const Http = new XMLHttpRequest();#}
-                {#const url = 'http://127.0.0.1:8000/models/predict/';#}
-                {#Http.open("GET", url);#}
-                {##}
-                {#Http.send();#}
-                {#window.location.href = url;#}
-                {#window.location.href = "http://127.0.0.1:8000/models/predict/"#}
             });
         });
     </script>
