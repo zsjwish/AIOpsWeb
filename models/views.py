@@ -13,7 +13,8 @@ from django.views.decorators.csrf import csrf_exempt
 from django_redis import get_redis_connection
 
 from AIOps_pro.static_value import sv
-from db.mysql_operation import query_model_info, query_abnormal_list, insert_abnormal_list
+from db.mysql_operation import query_model_info, query_abnormal_list, insert_abnormal_list, \
+    update_one_label_for_dataset, update_batch_label_for_dataset
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
     update_datas_for_tag, predict_future_30, print_model
 
@@ -264,7 +265,7 @@ def data_tag(request):
     info["end_time"] = "2019-02-25T14:40"
     if request.method == "POST":
         print("1111111111111", request.POST)
-        tag = {"table_name": "A服务器内存使用量.csv", "start_time": request.POST["start_time"],
+        tag = {"table_name": request.POST["table_name"], "start_time": request.POST["start_time"],
                "end_time": request.POST["end_time"], "label": request.POST["label"]}
         print(tag)
         info.update(tag)
@@ -273,7 +274,7 @@ def data_tag(request):
             info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
                                                  end_time = info["end_time"], label = info["label"])
         else:
-            info["datas"] = get_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
+            info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
                                               end_time = info["end_time"], label = info["label"])
         return render(request, 'models/data_tag.html', context = info)
 
@@ -290,3 +291,28 @@ def data_tag(request):
         # return HttpResponse(datas)
     return render(request, 'models/data_tag.html', context = info)
 
+
+def update_one_label(request):
+    """
+    单个数据标签重置
+    :param request:
+    :return:
+    """
+    data_set_name = request.POST["data_set_name"]
+    id = request.POST["id"]
+    label_value = request.POST["label_value"]
+    result = update_one_label_for_dataset(data_set_name, id, label_value)
+    return HttpResponse(result, content_type = "application/json")
+
+
+def update_batch_label(request):
+    """
+    批量数据标签重置
+    :param request:
+    :return:
+    """
+    data_set_name = request.POST["data_set_name"]
+    id = request.POST["id"]
+    label_value = request.POST["label_value"]
+    result = update_batch_label_for_dataset(data_set_name, id, label_value)
+    return HttpResponse(result, content_type = "application/json")

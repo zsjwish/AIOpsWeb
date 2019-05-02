@@ -33,15 +33,17 @@
                         <option value="所有" selected>所有</option>
                     </select>
                     {#                <button type="button" id="query" class="btn btn-info btn-sm" value="查询">查询</button>#}
-                    <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero" class="btn btn-info btn-sm"
+                    <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero"
+                            class="btn btn-info btn-sm"
                             value="query">查询
                     </button>
-                    <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero" class="btn btn-danger btn-sm"
+                    <button type="submit" name="kind" style="margin-left: 10px;" id="label2zero"
+                            class="btn btn-danger btn-sm"
                             value="change">全部更改
                     </button>
                     <label style="margin-left: 10px">复选框操作：</label>
                     <button type="button" id="label2zero" class="btn btn-warning btn-sm"
-                            value="" onclick="clickLabel2One()">标签置为0
+                            value="" onclick="clickLabel2Zero()">标签置为0
                     </button>
                     <button type="button" style="margin-left: 0px;" id="label2one" class="btn btn-warning btn-sm"
                             value="" onclick="clickLabel2One()">标签置为1
@@ -88,27 +90,21 @@
                                             style="position: relative">
                                             标签
                                         </th>
+                                        <th>
+                                            操作
+                                        </th>
                                     </tr>
                                     </thead>
                                     <tbody id="otbody">
                                     {% for data in datas %}
                                         <tr role="row" class="odd">
                                             <td><input type="checkbox" name="checkItem"/></td>
-                                            <td style="display: none;">
-                                                {{ data.0 }}
-                                            </td>
-                                            <td>
-                                                {{ data.1|date:"Y-m-d H:i:s" }}
-                                            </td>
-                                            <td>
-                                                {{ data.2 }}
-                                            </td>
-                                            <td>
-                                                {{ data.3 }}
-                                                <button id="btn1" class="btn btn-info btn-sm pull-right">
-                                                    标记
-                                                </button>
-                                            </td>
+                                            {#                                            <td style="display: none;">#}
+                                            <td style="display: none;" id="rowId">{{ data.0 }}</td>
+                                            <td>{{ data.1|date:"Y-m-d H:i:s" }}</td>
+                                            <td>{{ data.2 }}</td>
+                                            <td>{{ data.3 }}</td>
+                                            <td><button id="btn1" class="btn btn-info btn-sm pull-right">标记</button></td>
                                         </tr>
                                     {% endfor %}
                                     </tbody>
@@ -142,34 +138,76 @@
             });
             $('#example1 tbody').on('click', 'button', function () {
                 var data = table.row($(this).parents('tr')).data();
-                alert(data[0] + "'s salary is: " + data[5]);
+                var rowNum = $(this).closest("tr").index();
+                var labelValue = document.getElementById('otbody').rows[rowNum].cells[4].textContent;
+                // tmp是更改后的值
+                labelValue = (parseInt(labelValue) + 1) % 2;
+                document.getElementById('otbody').rows[rowNum].cells[4].innerText = labelValue;
+
+                // 获取文件名称, 数据ID为data[1], 数据值为labelValue
+                var dataSetName = $("#dataset option:selected").text();
+                {#alert(dataSetName.text());#}
+                {#alert(data[1]);#}
+                {#alert(data[0] + "'s salary is: " + data[4]);#}
+                {#alert(dataSetName + " " + data[1] + " " + labelValue);#}
+                $.ajax({
+                    type: "POST",
+                    url: "/models/update_one_label/",
+                    data: {data_set_name: dataSetName, id: data[1], label_value: labelValue},
+                });
             });
 
         });
 
         function clickLabel2One() {
-            {#const Http = new XMLHttpRequest();#}
-            const url = 'http://127.0.0.1:8000/models/data_tag/';
-            {#Http.open("POST", url);#}
-            {##}
-            {#Http.send();#}
-            {#window.location.href = url;#}
-            {
-            {#var start_time = "";#}
-            var table_name = "A服务器内存使用量.csv";
-            var start_time = "2019-02-25T14:10";
-            var end_time = "2019-02-25T14:40";
-            var label = 1;
-            var kind = "change";
-
-            $.post(url, {table_name,start_time, end_time, label, kind});
+            var id_array = new Array();
+            var row_array = new Array();
+            $('input[name="checkItem"]:checked').each(function () {
+                var row = $(this).parent("td").parent("tr");
+                row_array.push(row.index());
+                {#alert(row.text());#}
+                var ids = row.find("[id='rowId']").text().replace(/\n|\r|\t/g,"");//注意html()和val()
+                id_array.push(ids);
+                this.checked = false;
+            });
+            var idstr = id_array.join(',');//将数组元素连接起来以构建一个字符串
+            var dataSetName = $("#dataset option:selected").text();
+            alert(idstr);
+            for(i of row_array) {
+                document.getElementById('otbody').rows[i].cells[4].innerText = 1;
             }
-
+            $.ajax({
+                    type: "POST",
+                    url: "/models/update_batch_label/",
+                    data: {data_set_name: dataSetName, id: idstr, label_value: 1},
+                });
         }
 
-        function clickChangeAll() {
 
+        function clickLabel2Zero() {
+            var id_array = new Array();
+            var row_array = new Array();
+            $('input[name="checkItem"]:checked').each(function () {
+                var row = $(this).parent("td").parent("tr");
+                row_array.push(row.index());
+                {#alert(row.text());#}
+                var ids = row.find("[id='rowId']").text().replace(/\n|\r|\t/g,"");//注意html()和val()
+                id_array.push(ids);
+                this.checked = false;
+            });
+            var idstr = id_array.join(',');//将数组元素连接起来以构建一个字符串
+            var dataSetName = $("#dataset option:selected").text();
+            alert(idstr);
+            for(i of row_array) {
+                document.getElementById('otbody').rows[i].cells[4].innerText = 0;
+            }
+            $.ajax({
+                    type: "POST",
+                    url: "/models/update_batch_label/",
+                    data: {data_set_name: dataSetName, id: idstr, label_value: 0},
+                });
         }
+
 
         {#全选和全不选#}
         $('#checkAll').on('click', function () {

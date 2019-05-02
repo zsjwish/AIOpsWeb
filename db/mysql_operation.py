@@ -577,6 +577,63 @@ def query_filename_from_file2uuid_by_uuid(uuid):
         db.rollback()
         return False
 
+
+def update_one_label_for_dataset(data_set_name, id, label_value):
+    """
+    单个更新某个数据集某条数据的
+    :param data_set_name:
+    :param id:
+    :param label_value:
+    :return:
+    """
+    db = connectdb()
+    cursor = db.cursor()
+    uuid = query_uuid_from_file2uuid_by_filename(data_set_name)
+    # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
+    sql = "UPDATE `%s` set `label` = %d where `id` = %d" % (uuid, int(label_value), int(id))
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        # 提交到数据库执行
+        db.commit()
+        print("单条数据更新成功")
+        return True
+    except:
+        # 如果失败则回滚
+        print('单个更新数据标签失败')
+        db.rollback()
+        return False
+
+
+def update_batch_label_for_dataset(data_set_name, id, label_value):
+    """
+    批量数据标签更新，复选框操作
+    :param data_set_name:
+    :param id:
+    :param label_value:
+    :return:
+    """
+    db = connectdb()
+    cursor = db.cursor()
+    uuid = query_uuid_from_file2uuid_by_filename(data_set_name)
+    # sql 插入语句,确定表名，字段名（有自增字段）,和插入内容
+    sql = "UPDATE `%s` set `label` = %d where `id` in (%s) " % (uuid, int(label_value), id)
+    print(sql)
+    try:
+        # 执行sql语句
+        cursor.execute(sql)
+        # 提交到数据库执行
+        db.commit()
+        print("复选框批量数据标签更新成功")
+        return True
+    except:
+        # 如果失败则回滚
+        print('复选框批量更新数据标签失败')
+        db.rollback()
+        return False
+
+
 def closedb(db):
     """
     关闭数据库连接

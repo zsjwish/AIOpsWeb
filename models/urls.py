@@ -38,6 +38,10 @@ urlpatterns = [
     # 重置异常检测模型
     url(r'^reset_xgboost_model/$', views.reset_xgboost_model),
     # 重置趋势预测模型
-    url(r'^reset_lstm_model/$', views.reset_lstm_model)
+    url(r'^reset_lstm_model/$', views.reset_lstm_model),
+    # 更新一个数据标签
+    url(r'^update_one_label/$', views.update_one_label),
+    # 批量更新数据标签，复选框
+    url(r'^update_batch_label/$', views.update_batch_label),
 
 ]

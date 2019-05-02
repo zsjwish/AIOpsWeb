@@ -492,7 +492,6 @@ def get_datas_for_tag(table_name, start_time=0, end_time=0, label=(0, 1)):
 
 def update_datas_for_tag(table_name, label, start_time=0, end_time=0):
     """
-
     :param table_name:
     :param start_time:
     :param end_time:
