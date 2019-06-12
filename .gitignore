@@ -3,3 +3,10 @@
 *.iml
 *.csv
 workspace.xml
+*.pc
+*.pyc
+*.pyo
+__pycache__
+.adoc
+.deps
+.dvi-dep
