@@ -11,11 +11,12 @@
             <div class="box">
                 <!-- /.box-header -->
                 <div class="box-body">
-                    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+                    {% if error_message %}<strong>{{ error_message }}</strong>{% endif %}
                     <form action="/models/upload/" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
-                        <p><input type="file" name="f1" id="myfile"></p>
-                        <p>请选择数据集异常比例<select name="abnormal_rate">
+                        <input type="file" name="f1" id="myfile">
+                        请选择数据集异常比例
+                        <select name="abnormal_rate">
                             <option value="0.1" selected>0.1</option>
                             <option value="0.2">0.2</option>
                             <option value="0.3">0.3</option>
@@ -25,14 +26,100 @@
                             <option value="0.7">0.7</option>
                             <option value="0.8">0.8</option>
                             <option value="0.9">0.9</option>
-                        </select></p>
-                        <input type="submit" value="上传" onclick="modals()" class="btn btn-info btn-sm">
+                        </select>
+                        <input type="submit" value="上传" onclick="modals()" class="btn btn-info btn-sm"
+                               style="margin-left: 20px;">
                     </form>
+                </div>
+            </div>
+
+            <h3 class="box-title">
+                已成功上传数据集
+            </h3>
+            <!-- /.box-header -->
+            <div class="box" >
+                <!-- /.box-header -->
+                <div class="box-body" >
+                    <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap" >
+                        <div class="row">
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="example1" class="table table-bordered table-striped dataTable" role="grid"
+                                       aria-describedby="example2_info">
+                                    <thead>
+                                    <tr role="row">
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Browser: activate to sort column ascending"
+                                            style="position: relative">
+                                            数据集名称
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
+                                            colspan="1" aria-label="Platform(s): activate to sort column ascending"
+                                            style="position: relative">
+                                            数据集UUID
+                                        </th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody id="otbody">
+{#                                    {% for data in datas %}#}
+                                        <tr role="row" class="odd">
+                                            <td >easytalk队列深度.csv</td>
+                                            <td >d6e6201c-63d2-40d9-9d9e-fb1d1dbb2c6</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >H2000.csv</td>
+                                            <td >50e75b93-e9dd-4b34-a211-659ba7d15060</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >MSMQ_Outgoting.csv</td>
+                                            <td >7a9cf1a7-8f91-4727-a400-da91bf55f9ab</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >MSMQ入.csv</td>
+                                            <td >20bc4dbb-f7f8-4521-9187-7dc31cac76e9</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >磁盘IO.csv</td>
+                                            <td >ca811f30-8588-478f-a188-4291d025b3b9</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >A服务器磁盘使用率.csv</td>
+                                            <td >4280740b-89e4-1594-125a-4gf7ebq3c8a5</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >sample队列深度.csv</td>
+                                            <td >8fa2e44b-53aa-4d13-8ebf-3f86e67eca47</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >A服务器CPU使用率.csv</td>
+                                            <td >ce74e80b-89e4-4280-8d9a-4f7b38503345</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >B服务器CPU使用率.csv</td>
+                                            <td >89e4ce0b-74e8-4280-8d9a-74fb33345850</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >MSMQ队列深度.csv</td>
+                                            <td >68b67a9c-7f1b-4175-904b-2ff032c6abf</td>
+                                        </tr>
+                                        <tr role="row" class="odd">
+                                            <td >B服务器网络流出.csv</td>
+                                            <td >a3772084-347c-4bb5-92c4-49741c4c0fc3</td>
+                                        </tr>
+{#                                    {% endfor %}#}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <div class="modal" id="myModal1">
+
+        <div class="modal" id="myModal1" style="padding-top: 5%">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -45,7 +132,9 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary " data-dismiss="modal">继续上传</button>
-                        <a href="/models/train_model"><button type="button" class="btn btn-primary">开始训练</button></a>
+                        <a href="/models/train_model">
+                            <button type="button" class="btn btn-primary">开始训练</button>
+                        </a>
                     </div>
                 </div>
                 <!-- /.modal-content -->
@@ -54,7 +143,7 @@
         </div>
     </div>
 
-    <div class="modal" id="myModal2">
+    <div class="modal" id="myModal2" style="padding-top: 5%">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -75,13 +164,29 @@
 {% endblock %}
 {% block js %}
     <script type="text/javascript">
+        $(document).ready(function () {
+
+            var table = $('#example1').DataTable({
+
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                "drawCallback": function (settings) {
+                    $("#th1").removeClass("sorting_asc");
+                },
+                "aoColumnDefs": [{"bSortable": false, "aTargets": [0]}],
+            });
+        });
+
         function modals() {
             var myfile = document.getElementById("myfile");
             console.log(myfile);
             if (myfile.files[0] === undefined) {
                 $("#myModal2").modal();
-            }
-            else {
+            } else {
                 $("#myModal1").modal();
             }
 

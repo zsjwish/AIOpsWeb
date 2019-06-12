@@ -83,14 +83,14 @@
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Platform(s): activate to sort column ascending"
                                             style="position: relative">
-                                            kpi
+                                            监控项值
                                         </th>
                                         <th class="sorting" tabindex="0" aria-controls="example2" rowspan="1"
                                             colspan="1" aria-label="Engine version: activate to sort column ascending"
                                             style="position: relative">
                                             标签
                                         </th>
-                                        <th>
+                                        <th width="8%">
                                             操作
                                         </th>
                                     </tr>
@@ -172,7 +172,6 @@
             });
             var idstr = id_array.join(',');//将数组元素连接起来以构建一个字符串
             var dataSetName = $("#dataset option:selected").text();
-            alert(idstr);
             for(i of row_array) {
                 document.getElementById('otbody').rows[i].cells[4].innerText = 1;
             }
@@ -197,7 +196,6 @@
             });
             var idstr = id_array.join(',');//将数组元素连接起来以构建一个字符串
             var dataSetName = $("#dataset option:selected").text();
-            alert(idstr);
             for(i of row_array) {
                 document.getElementById('otbody').rows[i].cells[4].innerText = 0;
             }

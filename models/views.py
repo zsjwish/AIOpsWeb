@@ -160,10 +160,10 @@ def abnormal(request):
     info = dict()
     time_now = datetime.datetime.now()
     timeformat = '%Y-%m-%d %H:%M'
-    info["start_time"] = (time_now - datetime.timedelta(days = 60)).strftime(timeformat)
-    info["end_time"] = time_now.strftime(timeformat)
-    # info["start_time"] = "2019-03-19T22:10"
-    # info["end_time"] = "2019-04-19T22:10"
+    # info["start_time"] = (time_now - datetime.timedelta(days = 60)).strftime(timeformat)
+    # info["end_time"] = time_now.strftime(timeformat)
+    info["start_time"] = "2019-03-19T22:10"
+    info["end_time"] = "2019-04-29T22:10"
     if request.method == "POST" and (max(len(request.POST["start_time"]),len(request.POST["end_time"])) != 0):
         info["start_time"] = request.POST["start_time"]
         info["end_time"] = request.POST["end_time"]
@@ -271,10 +271,10 @@ def data_tag(request):
         info.update(tag)
         print("info", info)
         if request.POST["kind"] == "change":
-            info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+            info["datas"] = update_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
                                                  end_time = info["end_time"], label = info["label"])
         else:
-            info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+            info["datas"] = get_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
                                               end_time = info["end_time"], label = info["label"])
         return render(request, 'models/data_tag.html', context = info)
 
