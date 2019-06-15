@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 
 import os
 
+HOST_IP = "127.0.0.1"
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from concurrent.futures import ProcessPoolExecutor
 
@@ -26,7 +28,7 @@ SECRET_KEY = '=0-pq9ya!*@7qf!(j135w-92cfko#m=rpz85*7t_gqg%(6!9lu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -124,7 +126,7 @@ STATICFILES_DIRS = [
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379/1",
+        "LOCATION": "redis://" + HOST_IP + ":6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
             # "CONNECTION_POOL_KWARGS": {"max_connections": 100},

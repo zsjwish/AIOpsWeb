@@ -7,13 +7,15 @@
 
 import pymysql
 
+from AIOps_pro import settings
+
 
 def connectdb():
     """
     打开数据库连接
     :return:
     """
-    db = pymysql.connect("localhost", "root", "123", "aiops")
+    db = pymysql.connect(settings.HOST_IP, "root", "123", "aiops")
     print('已连接数据库')
     return db
 

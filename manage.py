@@ -6,7 +6,6 @@ from AIOps_pro.static_value import StaticValue
 from isolate_model.base_function import load_datas_from_disk_to_memory
 
 if __name__ == '__main__':
-    print("manage 33333333333333333333")
     # 从磁盘中加载数据集名列表
     os.environ.update({"DJANGO_SETTINGS_MODULE": "AIOps_pro.settings"})
     load_datas_from_disk_to_memory()

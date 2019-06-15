@@ -1,0 +1,32 @@
+version: '3'
+services:
+  mysql:
+    restart: always
+    image: "mysql:${DB_TAG}"
+    ports:
+      - 3306:3306
+    command: --init-file /data/application/init.sql
+    volumes:
+      - ./aiops.sql:/data/application/init.sql
+    environment:
+      - MYSQL_DATABASE:${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+
+  redis:
+    restart: always
+    image: "redis:${REDIS_TAG}"
+    depends_on:
+      - mysql
+    ports:
+      - 6379:6379
+
+  web:
+    build: .
+    command: python manage.py runserver 0:8000 --noreload
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mysql
+      - redis
