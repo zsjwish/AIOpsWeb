@@ -9,8 +9,8 @@ services:
     volumes:
       - ./aiops.sql:/data/application/init.sql
     environment:
-      - MYSQL_DATABASE:${MYSQL_DATABASE}
-      - MYSQL_ROOT_PASSWORD:${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
 
   redis:
     restart: always
