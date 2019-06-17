@@ -636,6 +636,27 @@ def update_batch_label_for_dataset(data_set_name, id, label_value):
         return False
 
 
+def query_upload_file():
+    """
+    获取所有已经上传的文件
+    :return:
+    """
+    db = connectdb()
+    cursor = db.cursor()
+    sql = "select * from `file2uuid`"
+    print(sql)
+    try:
+        # 执行SQL语句
+        cursor.execute(sql)
+        # 获取所有记录列表
+        results = cursor.fetchall()
+        return results
+    except:
+        # 如果失败则回滚
+        print('获取上传文件信息是啊比')
+        db.rollback()
+        return False
+
 def closedb(db):
     """
     关闭数据库连接

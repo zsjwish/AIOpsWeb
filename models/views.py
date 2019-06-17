@@ -14,7 +14,7 @@ from django_redis import get_redis_connection
 
 from AIOps_pro.static_value import sv
 from db.mysql_operation import query_model_info, query_abnormal_list, insert_abnormal_list, \
-    update_one_label_for_dataset, update_batch_label_for_dataset
+    update_one_label_for_dataset, update_batch_label_for_dataset, query_upload_file
 from isolate_model.base_function import save_datas_with_labels, use_XGBoost_predict, train_model, get_datas_for_tag, \
     update_datas_for_tag, predict_future_30, print_model
 
@@ -203,6 +203,9 @@ def upload(request):
     :param request:
     :return:
     """
+    info = dict()
+    info["datas"] = query_upload_file()
+    print(info["datas"])
     # 判断接收的值是否为POST
     if request.method == "POST":
         abnormal_rate = request.POST["abnormal_rate"]
@@ -233,7 +236,7 @@ def upload(request):
             # return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         # return render(request, 'models/upload_failed.html')
         time.sleep(200)
-    return render(request, 'models/upload_dataset.html')  # 将处理好的结果通过render方式传给upload.html进行渲染
+    return render(request, 'models/upload_dataset.html', context = info)  # 将处理好的结果通过render方式传给upload.html进行渲染
 
 
 def dashboard(request):

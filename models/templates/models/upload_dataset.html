@@ -63,52 +63,12 @@
                                     </tr>
                                     </thead>
                                     <tbody id="otbody">
-{#                                    {% for data in datas %}#}
+                                    {% for data in datas %}
                                         <tr role="row" class="odd">
-                                            <td >easytalk队列深度.csv</td>
-                                            <td >d6e6201c-63d2-40d9-9d9e-fb1d1dbb2c6</td>
+                                            <td >{{ data.0 }}</td>
+                                            <td >{{ data.1 }}</td>
                                         </tr>
-                                        <tr role="row" class="odd">
-                                            <td >H2000.csv</td>
-                                            <td >50e75b93-e9dd-4b34-a211-659ba7d15060</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >MSMQ_Outgoting.csv</td>
-                                            <td >7a9cf1a7-8f91-4727-a400-da91bf55f9ab</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >MSMQ入.csv</td>
-                                            <td >20bc4dbb-f7f8-4521-9187-7dc31cac76e9</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >磁盘IO.csv</td>
-                                            <td >ca811f30-8588-478f-a188-4291d025b3b9</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >A服务器磁盘使用率.csv</td>
-                                            <td >4280740b-89e4-1594-125a-4gf7ebq3c8a5</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >sample队列深度.csv</td>
-                                            <td >8fa2e44b-53aa-4d13-8ebf-3f86e67eca47</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >A服务器CPU使用率.csv</td>
-                                            <td >ce74e80b-89e4-4280-8d9a-4f7b38503345</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >B服务器CPU使用率.csv</td>
-                                            <td >89e4ce0b-74e8-4280-8d9a-74fb33345850</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >MSMQ队列深度.csv</td>
-                                            <td >68b67a9c-7f1b-4175-904b-2ff032c6abf</td>
-                                        </tr>
-                                        <tr role="row" class="odd">
-                                            <td >B服务器网络流出.csv</td>
-                                            <td >a3772084-347c-4bb5-92c4-49741c4c0fc3</td>
-                                        </tr>
-{#                                    {% endfor %}#}
+                                    {% endfor %}
                                     </tbody>
                                 </table>
                             </div>
