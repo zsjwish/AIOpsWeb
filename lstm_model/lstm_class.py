@@ -7,6 +7,7 @@
 import math
 import time
 
+import keras
 import numpy as np
 from keras import Sequential
 from keras.layers import LSTM, Dense, Activation
@@ -83,13 +84,12 @@ class LSTMModel:
         print("model type", type(self.model))
         # 预测训练数据
         print("++++++++++", self.model.summary())
-        # try:
-        trainPredict = self.model.predict(trainX)
-        # except Exception as e:
-        #     logger.info(e)
-        #     keras.backend.clear_session()
-        #     lstm_model = self.model
-        #     lstm_model.predict(trainX)
+        try:
+            trainPredict = self.model.predict(trainX)
+        except Exception as e:
+            keras.backend.clear_session()
+            lstm_model = self.model
+            trainPredict = lstm_model.predict(trainX)
         # 预测测试数据
         testPredict = self.model.predict(testX)
         # 将标准化后是数据转换为原始数据

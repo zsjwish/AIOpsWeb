@@ -34,6 +34,7 @@ def query_table(db, table_name):
           "where " \
           "t.table_name = '%s' and n.SCHEMA_NAME = 'aiops';" % (table_name)
     res = cursor.execute(sql)
+    closedb(db)
     return res == 1
 
 
@@ -70,6 +71,8 @@ def create_table(db, np_array_field, table_name):
         print('创建数据表失败')
         db.rollback()
         return False
+    finally:
+        closedb(db)
 
 
 def insert_train_datas(db, table_name, np_array):
@@ -107,7 +110,8 @@ def insert_train_datas(db, table_name, np_array):
         print('插入数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0):
     """
@@ -148,6 +152,8 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0
     except:
         print("获取数据失败")
         return None
+    finally:
+        closedb(db)
 
 
 def update_datas(db, table_name, label, start_time=0, end_time=0):
@@ -184,7 +190,8 @@ def update_datas(db, table_name, label, start_time=0, end_time=0):
         # 发生错误时回滚
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def drop_table(db, table_name):
     """
@@ -210,7 +217,8 @@ def drop_table(db, table_name):
         # 发生错误时回滚
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def delete_datas(db, table_name, start_time=0, end_time=0):
     """
@@ -243,7 +251,8 @@ def delete_datas(db, table_name, start_time=0, end_time=0):
         # 发生错误时回滚
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def insert_xgboost_model(file_name, model_name, precision=0., recall=0., f1=0., trained=0, finished=0, changed=0, created_time=0,
                          lasted_update=0):
@@ -280,7 +289,8 @@ def insert_xgboost_model(file_name, model_name, precision=0., recall=0., f1=0., 
         print('插入数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def update_xgboost_model(model_name, precision=0., recall=0., f1=0., trained=0, finished=0, changed=0, lasted_update=0):
     """
@@ -330,7 +340,8 @@ def update_xgboost_model(model_name, precision=0., recall=0., f1=0., trained=0, 
         print('更新xgboost数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def insert_lstm_model(file_name, model_name, rmse=0., lasted_predict=0, predict_value=0., created_time=0, lasted_update=0):
     """
@@ -361,7 +372,8 @@ def insert_lstm_model(file_name, model_name, rmse=0., lasted_predict=0, predict_
         print('插入数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def update_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0, lasted_update=0):
     """
@@ -401,6 +413,8 @@ def update_lstm_model(model_name, rmse=0., lasted_predict=0, predict_value=0, la
         print('更新lstm数据失败')
         db.rollback()
         return False
+    finally:
+        closedb(db)
 
 
 def query_lstm_predict_30(table_name):
@@ -424,7 +438,8 @@ def query_lstm_predict_30(table_name):
         print('更新lstm数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_model_info(kind):
     """
@@ -450,7 +465,8 @@ def query_model_info(kind):
         print('更新lstm数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_abnormal_list(start_time = '', end_time = ''):
     """
@@ -481,7 +497,8 @@ def query_abnormal_list(start_time = '', end_time = ''):
         print('查询异常列表失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def insert_abnormal_list(model_name, time, value):
     """
@@ -508,7 +525,8 @@ def insert_abnormal_list(model_name, time, value):
         print('插入异常数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def insert_file2uuid(file_name, uuid):
     """
@@ -532,7 +550,8 @@ def insert_file2uuid(file_name, uuid):
         print('插入file2uuid失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_uuid_from_file2uuid_by_filename(file_name):
     """
@@ -555,7 +574,8 @@ def query_uuid_from_file2uuid_by_filename(file_name):
         print('获取文件uuid失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_filename_from_file2uuid_by_uuid(uuid):
     """
@@ -578,7 +598,8 @@ def query_filename_from_file2uuid_by_uuid(uuid):
         print('获取文件uuid失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def update_one_label_for_dataset(data_set_name, id, label_value):
     """
@@ -606,7 +627,8 @@ def update_one_label_for_dataset(data_set_name, id, label_value):
         print('单个更新数据标签失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def update_batch_label_for_dataset(data_set_name, id, label_value):
     """
@@ -634,7 +656,8 @@ def update_batch_label_for_dataset(data_set_name, id, label_value):
         print('复选框批量更新数据标签失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_upload_file():
     """
@@ -656,6 +679,9 @@ def query_upload_file():
         print('获取上传文件信息是啊比')
         db.rollback()
         return False
+    finally:
+        closedb(db)
+
 
 def closedb(db):
     """

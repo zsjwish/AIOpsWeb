@@ -191,7 +191,6 @@ def predict(request):
         predict_xAxis, predict_value = predict_future_30(data_name)
         datas = {"predict_table": data_name, "predict_xAxis": predict_xAxis, "predict_value": predict_value}
         datas = JsonResponse(datas)
-        print("infofffff", datas.getvalue())
         return HttpResponse(datas)
     return render(request, 'models/predict.html', context = info)
 
@@ -267,31 +266,18 @@ def data_tag(request):
     info["start_time"] = "2019-02-25T14:10"
     info["end_time"] = "2019-02-25T14:40"
     if request.method == "POST":
-        print("1111111111111", request.POST)
         tag = {"table_name": request.POST["table_name"], "start_time": request.POST["start_time"],
                "end_time": request.POST["end_time"], "label": request.POST["label"]}
         print(tag)
         info.update(tag)
         print("info", info)
         if request.POST["kind"] == "change":
-            info["datas"] = update_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
+            info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
                                                  end_time = info["end_time"], label = info["label"])
         else:
-            info["datas"] = get_datas_for_tag(table_name = "MSMQ入.csv", start_time = info["start_time"],
+            info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
                                               end_time = info["end_time"], label = info["label"])
         return render(request, 'models/data_tag.html', context = info)
-
-        # print("1111111111111", request.POST)
-        # info["table_name"] = request.POST["table_name"]
-        # info["start_time"] = request.POST["start_time"]
-        # info["end_time"] = request.POST["end_time"]
-        # print("info", info)
-        # datas = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
-        #                                   end_time = info["end_time"])
-        # print("infoffffffffffffff", datas)
-        # datas = JsonResponse(datas, safe=False)
-        # print("infofffff", datas.getvalue())
-        # return HttpResponse(datas)
     return render(request, 'models/data_tag.html', context = info)
 
 
