@@ -148,8 +148,6 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0
     except:
         print("获取数据失败")
         return None
-    finally:
-        closedb(db)
 
 
 def update_datas(db, table_name, label, start_time=0, end_time=0):
