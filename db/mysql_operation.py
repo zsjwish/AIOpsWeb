@@ -34,6 +34,7 @@ def query_table(db, table_name):
           "where " \
           "t.table_name = '%s' and n.SCHEMA_NAME = 'aiops';" % (table_name)
     res = cursor.execute(sql)
+    cursor.close()
     return res == 1
 
 
@@ -147,6 +148,8 @@ def query_datas(db, table_name, label=(0, 1), start_time=0, end_time=0, number=0
     except:
         print("获取数据失败")
         return None
+    finally:
+        closedb(db)
 
 
 def update_datas(db, table_name, label, start_time=0, end_time=0):
@@ -183,6 +186,8 @@ def update_datas(db, table_name, label, start_time=0, end_time=0):
         # 发生错误时回滚
         db.rollback()
         return False
+    finally:
+        closedb(db)
 
 
 def drop_table(db, table_name):
@@ -449,7 +454,8 @@ def query_model_info(kind):
         print('更新lstm数据失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_abnormal_list(start_time = '', end_time = ''):
     """
@@ -480,7 +486,8 @@ def query_abnormal_list(start_time = '', end_time = ''):
         print('查询异常列表失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def insert_abnormal_list(model_name, time, value):
     """
@@ -554,7 +561,8 @@ def query_uuid_from_file2uuid_by_filename(file_name):
         print('获取文件uuid失败')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def query_filename_from_file2uuid_by_uuid(uuid):
     """
@@ -605,6 +613,8 @@ def update_one_label_for_dataset(data_set_name, id, label_value):
         print('单个更新数据标签失败')
         db.rollback()
         return False
+    finally:
+        closedb(db)
 
 
 def update_batch_label_for_dataset(data_set_name, id, label_value):
@@ -633,6 +643,8 @@ def update_batch_label_for_dataset(data_set_name, id, label_value):
         print('复选框批量更新数据标签失败')
         db.rollback()
         return False
+    finally:
+        closedb(db)
 
 
 def query_upload_file():
@@ -655,7 +667,8 @@ def query_upload_file():
         print('获取上传文件信息是啊比')
         db.rollback()
         return False
-
+    finally:
+        closedb(db)
 
 def closedb(db):
     """

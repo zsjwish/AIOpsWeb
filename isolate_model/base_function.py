@@ -425,7 +425,7 @@ def load_lstm_class(model_name):
 
 
 def print_model(model_kind, data_name):
-    print("print_modelllllllllllllllllll", model_kind, data_name)
+    print("print_model", model_kind, data_name)
 
 
 def train_model(model_kind, data_name, force = 0):

@@ -83,7 +83,6 @@ def train(request):
         info = {"kind": kind, "data_name": data_name}
         sv.executor5.submit(train_model, kind, data_name)
         # executor5.shutdown(wait = False)
-        print("overoverover")
         # if res == 0:
         #     return render(request, 'models/model_exists.html')
         time.sleep(1.5)
@@ -234,7 +233,6 @@ def upload(request):
             pass
             # return render(request, 'models/upload_success.html', {'file_name': f_name.split("/")[-1]})
         # return render(request, 'models/upload_failed.html')
-        time.sleep(200)
     return render(request, 'models/upload_dataset.html', context = info)  # 将处理好的结果通过render方式传给upload.html进行渲染
 
 
