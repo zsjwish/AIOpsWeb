@@ -270,10 +270,10 @@ def use_XGBoost_predict(json_data):
     :return:
     """
     model_name = json_data["host_id"]
-    times = datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S')
+    times = datetime.strptime(json_data["time"], '%Y/%m/%d %H:%M:%S')
     print(times.hour)
     print(type(times))
-    predict_list = [model_name, datetime.strptime(json_data["time"], '%Y-%m-%d %H:%M:%S'), json_data["kpi"]]
+    predict_list = [model_name, datetime.strptime(json_data["time"], '%Y/%m/%d %H:%M:%S'), json_data["kpi"]]
     print(predict_list)
     predict_array = np.array(predict_list)
     # 转换成XGBoost能使用的数据格式

@@ -44,7 +44,7 @@ def submit(request):
         result = use_XGBoost_predict(body)
         if result == 1:
             model_name = body["host_id"]
-            times = datet.strptime(body["time"], '%Y-%m-%d %H:%M:%S')
+            times = datet.strptime(body["time"], '%Y/%m/%d %H:%M:%S')
             value = float(body["kpi"])
             insert_abnormal_list(model_name, times, value)
         print(result)
@@ -270,8 +270,9 @@ def data_tag(request):
         info.update(tag)
         print("info", info)
         if request.POST["kind"] == "change":
-            info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
-                                                 end_time = info["end_time"], label = info["label"])
+            if info["label"].isdigit():
+                info["datas"] = update_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
+                                                    end_time = info["end_time"], label = info["label"])
         else:
             info["datas"] = get_datas_for_tag(table_name = info["table_name"], start_time = info["start_time"],
                                               end_time = info["end_time"], label = info["label"])
