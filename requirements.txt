@@ -29,5 +29,5 @@ six == 1.12.0
 tensorboard == 1.12.2
 tensorflow == 1.12.0
 termcolor == 1.1.0
-wheel == 0.33.1
+wheel == 0.38.1
 xgboost == 0.81
